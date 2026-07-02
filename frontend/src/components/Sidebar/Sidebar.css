@@ -50,6 +50,15 @@
   border-radius: 4px;
 }
 
+.nav-heading {
+  color: #888;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 16px 20px 8px;
+  font-weight: bold;
+}
+
 .nav-text a:hover {
   background-color: #1a83ff;
 }

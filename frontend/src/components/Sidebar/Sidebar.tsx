@@ -27,14 +27,22 @@ const Sidebar = () => {
               </Link>
             </li>
             {SidebarData.map((item, index) => {
-              return (
-                <li key={index} className={item.cName}>
-                  <Link to={item.path}>
-                    {item.icon}
-                    <span>{item.title}</span>
-                  </Link>
-                </li>
-              );
+              if (item.type === "link") {
+                return (
+                  <li key={index} className={item.cName}>
+                    <Link to={item.path!}>
+                      {item.icon}
+                      <span>{item.title}</span>
+                    </Link>
+                  </li>
+                );
+              } else if (item.type === "heading") {
+                return (
+                  <li key={index} className="nav-heading">
+                    {item.title}
+                  </li>
+                );
+              }
             })}
           </ul>
         </nav>
