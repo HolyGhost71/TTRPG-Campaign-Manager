@@ -3,6 +3,7 @@ import { PrismaClient, EntityType } from "../generated/prisma/client";
 import { PrismaPg } from "@prisma/adapter-pg";
 import "dotenv/config";
 import cors from "cors";
+import path from "path";
 
 const app = express();
 
@@ -20,6 +21,8 @@ app.use(cors({
 
 app.use(express.json());
 
+app.use("/uploads", express.static(path.join(process.cwd(), "uploads")));
+
 // Get campaign by ID with all entities
 app.get("/campaigns/:id/full", async (req, res) => {
     const id = Number(req.params.id);
@@ -28,9 +31,6 @@ app.get("/campaigns/:id/full", async (req, res) => {
         where: { id },
         include: {
             entities: {
-                include: {
-                    npcDetails: true,
-                },
             },
         },
     });
@@ -59,9 +59,6 @@ app.get("/campaigns/:id", async (req, res) => {
         where: { id },
         include: {
             entities: {
-                include: {
-                    npcDetails: true,
-                },
             },
         },
     });
@@ -143,6 +140,11 @@ app.get("/campaigns/:id/entities", async (req, res) => {
         },
         include: {
             npcDetails: true,
+            locationDetails: true,
+            itemDetails: true,
+            factionDetails: true,
+            questDetails: true,
+            playerDetails: true,
         },
     });
 
@@ -172,12 +174,16 @@ app.get("/entities/:id", async (req, res) => {
 // Create an entitiy
 app.post("/entities", async (req, res) => {
 
+    console.log("HEADERS:", req.headers);
+    console.log("BODY:", req.body);
+
     const entity = await prisma.entity.create({
         data: {
             campaignId: req.body.campaignId,
             type: req.body.type,
             name: req.body.name,
             description: req.body.description,
+            image: req.body.image,
 
             npcDetails: req.body.type === "NPC"
                 ? {
@@ -189,32 +195,60 @@ app.post("/entities", async (req, res) => {
                         appearance: req.body.npcDetails.appearance,
                     }
                 }
-                : undefined
-        },
+                : undefined,
 
-        include: {
-            npcDetails: true
-        }
+            locationDetails: req.body.type === "LOCATION"
+                ? {
+                    create: {
+                        population: req.body.locationDetails.population,
+                        ruler: req.body.locationDetails.ruler,
+                        region: req.body.locationDetails.region,
+                    }
+                }
+                : undefined,
+
+            itemDetails: req.body.type === "ITEM"
+                ? {
+                    create: {
+                        owner: req.body.itemDetails.owner,
+                        rarity: req.body.itemDetails.rarity,
+                    }
+                }
+                : undefined,
+
+            factionDetails: req.body.type === "FACTION"
+                ? {
+                    create: {
+                        leader: req.body.factionDetails.leader,
+                    }
+                }
+                : undefined,
+
+            playerDetails: req.body.type === "PLAYER"
+                ? {
+                    create: {
+                        species: req.body.playerDetails.species,
+                        age: req.body.playerDetails.age,
+                        location: req.body.playerDetails.location,
+                        status: req.body.playerDetails.status,
+                        appearance: req.body.playerDetails.appearance,
+                        player: req.body.playerDetails.player,
+                    }
+                }
+                : undefined,
+
+            questDetails: req.body.type === "QUEST"
+                ? {
+                    create: {
+                        questGiver: req.body.questDetails.questGiver,
+                    }
+                }
+                : undefined,
+        },
     });
 
 
     res.status(201).json(entity);
-});
-
-// Update an entity
-app.put("/entities/:id", async (req, res) => {
-    const id = Number(req.params.id);
-
-    const entity = await prisma.entity.update({
-        where: { id },
-        data: {
-            type: req.body.type,
-            name: req.body.name,
-            description: req.body.description,
-        },
-    });
-
-    res.json(entity);
 });
 
 // Delete an entity

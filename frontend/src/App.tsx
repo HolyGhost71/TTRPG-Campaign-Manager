@@ -5,6 +5,13 @@ import NPCs from "./pages/NPCs";
 import "./App.css";
 
 import Sidebar from "./components/Sidebar/Sidebar";
+import Factions from "./pages/Factions";
+import Sessions from "./pages/Sessions";
+import Items from "./pages/Items";
+import Locations from "./pages/Locations";
+import PCs from "./pages/PCs";
+import History from "./pages/History";
+import Quests from "./pages/Quests";
 
 function App() {
   return (
@@ -12,12 +19,14 @@ function App() {
       <Sidebar />
       <Routes>
         <Route path="/" element={<Dashboard />} />
-        <Route path="/sessions" element={<NPCs />} />
-        <Route path="/pcs" element={<NPCs />} />
-        <Route path="/history" element={<NPCs />} />
-        <Route path="/locations" element={<NPCs />} />
+        <Route path="/sessions" element={<Sessions />} />
+        <Route path="/pcs" element={<PCs />} />
+        <Route path="/history" element={<History />} />
+        <Route path="/locations" element={<Locations />} />
         <Route path="/npcs" element={<NPCs />} />
-        <Route path="/items" element={<NPCs />} />
+        <Route path="/items" element={<Items />} />
+        <Route path="/factions" element={<Factions />} />
+        <Route path="/quests" element={<Quests />} />
       </Routes>
     </BrowserRouter>
   );

@@ -1,15 +1,10 @@
 import { useEffect, useState } from "react";
-import api from "../api/api";
-import { BiFontSize } from "react-icons/bi";
 
-type NPC = {
-  id: number;
-  name: string;
-  location: string;
-};
+import api from "../api/api";
+import EntityCard from "../components/EntityCard/EntityCard";
 
 export default function NPCs() {
-  const [npcArray, setNpcArray] = useState<NPC[]>([]);
+  const [npcArray, setNpcArray] = useState<any[]>([]);
 
   useEffect(() => {
     api
@@ -25,9 +20,11 @@ export default function NPCs() {
   return (
     <>
       <div className="page-heading">NPCs</div>
-      {npcArray.map((npc) => (
-        <h1 key={npc.id}>{npc.name}</h1>
-      ))}
+      <div className="entity-grid">
+        {npcArray.map((entity) => (
+          <EntityCard key={entity.id} entity={entity} />
+        ))}
+      </div>
     </>
   );
 }

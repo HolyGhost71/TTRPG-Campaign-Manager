@@ -37,7 +37,7 @@ export const SidebarData = [
   {
     type: "link",
     title: "Quests",
-    path: "/questss",
+    path: "/quests",
     icon: <BsStopwatch />,
     cName: "nav-text",
   },
