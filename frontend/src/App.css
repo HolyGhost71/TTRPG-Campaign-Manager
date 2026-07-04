@@ -17,6 +17,14 @@
   font-size: 3rem;
 }
 
-body{
-    background-color: "black";
+body{background-color: rgb(57, 62, 70);
+}
+
+
+.page-heading {
+    font-size: 64px;
+    font-weight: bold;
+    text-align: center;
+    color: #dfd0b8;
+    padding-top: 5px;
 }

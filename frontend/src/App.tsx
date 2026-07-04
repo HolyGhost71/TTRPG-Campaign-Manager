@@ -12,7 +12,12 @@ function App() {
       <Sidebar />
       <Routes>
         <Route path="/" element={<Dashboard />} />
+        <Route path="/sessions" element={<NPCs />} />
+        <Route path="/pcs" element={<NPCs />} />
+        <Route path="/history" element={<NPCs />} />
+        <Route path="/locations" element={<NPCs />} />
         <Route path="/npcs" element={<NPCs />} />
+        <Route path="/items" element={<NPCs />} />
       </Routes>
     </BrowserRouter>
   );

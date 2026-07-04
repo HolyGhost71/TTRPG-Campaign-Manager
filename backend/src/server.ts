@@ -1,7 +1,8 @@
 import express from "express";
-import { PrismaClient } from "../generated/prisma/client";
+import { PrismaClient, EntityType } from "../generated/prisma/client";
 import { PrismaPg } from "@prisma/adapter-pg";
 import "dotenv/config";
+import cors from "cors";
 
 const app = express();
 
@@ -12,6 +13,10 @@ const adapter = new PrismaPg({
 const prisma = new PrismaClient({
     adapter,
 });
+
+app.use(cors({
+    origin: "http://localhost:5173"
+}));
 
 app.use(express.json());
 
@@ -123,10 +128,18 @@ const entities = await prisma.entity.findMany({
 // Get all entities by campaign ID
 app.get("/campaigns/:id/entities", async (req, res) => {
     const campaignId = Number(req.params.id);
+    const type = req.query.type as string | undefined;
+
+    let entityType: EntityType | undefined;
+
+    if (type && Object.values(EntityType).includes(type as EntityType)) {
+    entityType = type as EntityType;
+    }
 
     const entities = await prisma.entity.findMany({
-        where: {
-            campaignId,
+    where: {
+        campaignId,
+        ...(entityType && { type: entityType }),
         },
         include: {
             npcDetails: true,
