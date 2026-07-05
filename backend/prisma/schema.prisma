@@ -1,0 +1,114 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+
+model Campaign {
+  id          Int      @id @default(autoincrement())
+  name        String
+  description String?
+
+  entities    Entity[]
+}
+
+model Entity {
+  id          Int      @id @default(autoincrement())
+
+  campaignId  Int
+
+  type        EntityType
+  name        String
+  description String?
+  image       String?
+  dmNotes     String?
+  playerNotes String?
+
+  campaign Campaign @relation(fields: [campaignId], references: [id])
+
+  npcDetails      NPCDetails?
+  locationDetails LocationDetails?
+  itemDetails     ItemDetails?
+  factionDetails  FactionDetails?
+  questDetails    QuestDetails?
+  playerDetails   PlayerDetails?
+}
+
+model NPCDetails {
+  id          Int      @id @default(autoincrement())
+  entityId    Int      @unique
+
+  species     String?
+  location    String?
+  age         String?
+  status      String?
+  appearance  String?
+
+  entity Entity @relation(fields: [entityId], references: [id], onDelete: Cascade)
+}
+
+model LocationDetails {
+  id        Int @id @default(autoincrement())
+  entityId  Int @unique
+
+  population Int?
+  ruler      String?
+  region    String?
+
+  entity Entity @relation(fields: [entityId], references: [id], onDelete: Cascade)
+}
+
+model ItemDetails {
+  id        Int @id @default(autoincrement())
+  entityId  Int @unique
+
+  owner     String?
+  rarity    String?
+
+  entity Entity @relation(fields: [entityId], references: [id], onDelete: Cascade)
+}
+
+model FactionDetails {
+  id        Int @id @default(autoincrement())
+  entityId  Int @unique
+
+  leader    String?
+
+  entity Entity @relation(fields: [entityId], references: [id], onDelete: Cascade)
+}
+
+model PlayerDetails {
+  id          Int      @id @default(autoincrement())
+  entityId    Int      @unique
+
+  species     String?
+  location    String?
+  age         String?
+  status      String?
+  appearance  String?
+  player      String?
+
+  entity Entity @relation(fields: [entityId], references: [id], onDelete: Cascade)
+}
+
+model QuestDetails {
+  id        Int @id @default(autoincrement())
+  entityId  Int @unique
+
+  questGiver    String?
+
+  entity Entity @relation(fields: [entityId], references: [id], onDelete: Cascade)
+}
+
+enum EntityType {
+  NPC
+  LOCATION
+  ITEM
+  QUEST
+  PLAYER
+  FACTION
+}
