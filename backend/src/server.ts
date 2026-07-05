@@ -252,8 +252,141 @@ app.post("/entities", async (req, res) => {
         },
     });
 
-
     res.status(201).json(entity);
+});
+
+// Update an entity
+app.put("/entities/:id", async (req, res) => {
+    const id = Number(req.params.id);
+    console.log("Updating entity");
+    console.log(req.body);
+
+    try {
+        const existingEntity = await prisma.entity.findUnique({
+            where: { id },
+        });
+
+        if (!existingEntity) {
+            return res.status(404).json({
+                message: "Entity not found",
+            });
+        }
+
+        // Update fields common to every entity
+        await prisma.entity.update({
+            where: { id },
+            data: {
+                name: req.body.name,
+                description: req.body.description,
+                image: req.body.image,
+                dmNotes: req.body.dmNotes,
+                playerNotes: req.body.playerNotes,
+            },
+        });
+
+        switch (existingEntity.type) {
+            case "NPC":
+                if (req.body.npcDetails) {
+                    await prisma.nPCDetails.update({
+                        where: { entityId: id },
+                        data: {
+                            species: req.body.npcDetails.species,
+                            location: req.body.npcDetails.location,
+                            age: req.body.npcDetails.age,
+                            status: req.body.npcDetails.status,
+                            appearance: req.body.npcDetails.appearance,
+                        },
+                    });
+                }
+                break;
+
+            case "LOCATION":
+                if (req.body.locationDetails) {
+                    await prisma.locationDetails.update({
+                        where: { entityId: id },
+                        data: {
+                            population: req.body.locationDetails.population,
+                            ruler: req.body.locationDetails.ruler,
+                            region: req.body.locationDetails.region,
+                        },
+                    });
+                }
+                break;
+
+            case "ITEM":
+                if (req.body.itemDetails) {
+                    await prisma.itemDetails.update({
+                        where: { entityId: id },
+                        data: {
+                            owner: req.body.itemDetails.owner,
+                            rarity: req.body.itemDetails.rarity,
+                        },
+                    });
+                }
+                break;
+
+            case "FACTION":
+                if (req.body.factionDetails) {
+                    await prisma.factionDetails.update({
+                        where: { entityId: id },
+                        data: {
+                            leader: req.body.factionDetails.leader,
+                        },
+                    });
+                }
+                break;
+
+            case "QUEST":
+                if (req.body.questDetails) {
+                    await prisma.questDetails.update({
+                        where: { entityId: id },
+                        data: {
+                            questGiver: req.body.questDetails.questGiver,
+                        },
+                    });
+                }
+                break;
+
+            case "PLAYER":
+                if (req.body.playerDetails) {
+                    await prisma.playerDetails.update({
+                        where: { entityId: id },
+                        data: {
+                            species: req.body.playerDetails.species,
+                            location: req.body.playerDetails.location,
+                            age: req.body.playerDetails.age,
+                            status: req.body.playerDetails.status,
+                            appearance: req.body.playerDetails.appearance,
+                            player: req.body.playerDetails.player,
+                        },
+                    });
+                }
+                break;
+        }
+
+        const updatedEntity = await prisma.entity.findUnique({
+            where: { id },
+            include: {
+                npcDetails: true,
+                locationDetails: true,
+                itemDetails: true,
+                factionDetails: true,
+                questDetails: true,
+                playerDetails: true,
+            },
+        });
+
+        console.log("Updated entity: ");
+        console.log(updatedEntity);
+
+        res.json(updatedEntity);
+
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({
+            message: "Failed to update entity",
+        });
+    }
 });
 
 // Delete an entity
