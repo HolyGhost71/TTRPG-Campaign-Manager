@@ -88,3 +88,35 @@ body{background-color: rgb(57, 62, 70);
   color: white;
   cursor: pointer;
 }
+
+.input-field {
+  width: 100%;
+  box-sizing: border-box;
+
+  padding: 10px 12px;
+
+  border-radius: 8px;
+  border: 1px solid #2f2f2f;
+
+  background-color: #fff;
+  color: #000;
+
+  font-size: 16px;
+}
+
+.creation-container{
+ max-width: 600px;
+
+  padding-top: 30px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.creation-subheading {
+  font-size: 16px;
+  color: white;
+  font-weight: bold;
+  padding-left: 5px;
+}

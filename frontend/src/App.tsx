@@ -13,6 +13,7 @@ import PCs from "./pages/PCs";
 import History from "./pages/History";
 import Quests from "./pages/Quests";
 import SoloEntity from "./pages/SoloEntity";
+import CreateEntity from "./pages/CreateEntity";
 
 function App() {
   return (
@@ -34,6 +35,10 @@ function App() {
         <Route
           path="/campaigns/:campaignId/entities/:entityId"
           element={<SoloEntity />}
+        />
+        <Route
+          path="/campaigns/:campaignId/create-entity"
+          element={<CreateEntity />}
         />
       </Routes>
     </BrowserRouter>
