@@ -159,6 +159,11 @@ app.get("/entities/:id", async (req, res) => {
         where: { id },
         include: {
             npcDetails: true,
+            locationDetails: true,
+            itemDetails: true,
+            factionDetails: true,
+            questDetails: true,
+            playerDetails: true,
         },
     });
 

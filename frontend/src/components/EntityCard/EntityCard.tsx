@@ -1,11 +1,11 @@
 import "./EntityCard.css";
+import { useNavigate, useParams } from "react-router-dom";
 
 const EntityCard = (props: any) => {
   const entity = props.entity;
 
   const API_URL = "http://localhost:3000";
-
-  console.log(entity);
+  const navigate = useNavigate();
 
   const renderTypeSpecificInfo = () => {
     switch (entity.type) {
@@ -110,7 +110,10 @@ const EntityCard = (props: any) => {
   };
 
   return (
-    <div className="entity-card">
+    <div
+      className="entity-card"
+      onClick={() => navigate(`/campaigns/1/entities/${entity.id}`)}
+    >
       <div className="entity-header">
         <div className="entity-image">
           <img

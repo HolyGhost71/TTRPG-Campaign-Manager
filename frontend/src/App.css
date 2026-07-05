@@ -2,29 +2,27 @@
 
 * {
   box-sizing: border-box;
-  margin: 0;
   padding: 0;
   font-family: 'Lato', sans-serif;
 }
 
-.home,
-.reports,
-.products {
-  display: flex;
-  height: 90vh;
-  align-items: center;
-  justify-content: center;
-  font-size: 3rem;
-}
 
 body{background-color: rgb(57, 62, 70);
+  padding-left: 250px
 }
-
 
 .page-heading {
     font-size: 64px;
     font-weight: bold;
-    text-align: center;
-    color: #dfd0b8;
-    padding-top: 5px;
+    padding-left: 20px;
+    color: #ffffff;
+    text-decoration: underline;
+}
+
+.page-subheading {
+  font-size: 32px;
+  color: white;
+  font-weight: bold;
+  padding-left: 20px;
+  padding-top: 10px;
 }

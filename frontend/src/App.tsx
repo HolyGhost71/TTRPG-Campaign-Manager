@@ -12,21 +12,29 @@ import Locations from "./pages/Locations";
 import PCs from "./pages/PCs";
 import History from "./pages/History";
 import Quests from "./pages/Quests";
+import SoloEntity from "./pages/SoloEntity";
 
 function App() {
   return (
     <BrowserRouter>
       <Sidebar />
       <Routes>
-        <Route path="/" element={<Dashboard />} />
-        <Route path="/sessions" element={<Sessions />} />
-        <Route path="/pcs" element={<PCs />} />
-        <Route path="/history" element={<History />} />
-        <Route path="/locations" element={<Locations />} />
-        <Route path="/npcs" element={<NPCs />} />
-        <Route path="/items" element={<Items />} />
-        <Route path="/factions" element={<Factions />} />
-        <Route path="/quests" element={<Quests />} />
+        <Route path="/campaigns/:campaignId/" element={<Dashboard />} />
+        <Route path="/campaigns/:campaignId/sessions" element={<Sessions />} />
+        <Route path="/campaigns/:campaignId/pcs" element={<PCs />} />
+        <Route path="/campaigns/:campaignId/history" element={<History />} />
+        <Route
+          path="/campaigns/:campaignId/locations"
+          element={<Locations />}
+        />
+        <Route path="/campaigns/:campaignId/npcs" element={<NPCs />} />
+        <Route path="/campaigns/:campaignId/items" element={<Items />} />
+        <Route path="/campaigns/:campaignId/factions" element={<Factions />} />
+        <Route path="/campaigns/:campaignId/quests" element={<Quests />} />
+        <Route
+          path="/campaigns/:campaignId/entities/:entityId"
+          element={<SoloEntity />}
+        />
       </Routes>
     </BrowserRouter>
   );
