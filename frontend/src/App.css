@@ -120,3 +120,15 @@ body{background-color: rgb(57, 62, 70);
   font-weight: bold;
   padding-left: 5px;
 }
+
+.radio-container {
+  background: #1b1b1b;
+  border: 1px solid #2f2f2f;
+  border-radius: 8px;
+  padding: 16px;
+  margin-top: 16px;
+}
+
+.form-label {
+    color: "#ffffff";
+              font-weight: "bold";}

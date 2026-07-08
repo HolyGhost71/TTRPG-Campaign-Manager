@@ -28,6 +28,7 @@ export default function CreateEntity() {
 
   // Quest
   const [questGiver, setQuestGiver] = useState("");
+  const [questStatus, setQuestStatus] = useState("In progress");
 
   const [type, setType] = useState("NPC");
 
@@ -74,6 +75,7 @@ export default function CreateEntity() {
     } else if (type === "QUEST") {
       payload.questDetails = {
         questGiver,
+        questStatus,
       };
     }
 
@@ -85,7 +87,7 @@ export default function CreateEntity() {
 
   return (
     <div className="page-heading">
-      Create New Entry
+      Create New Entity
       <div />
       <div className="creation-container">
         <div className="creation-subheading">Name</div>
@@ -231,6 +233,12 @@ export default function CreateEntity() {
           <input
             value={questGiver}
             onChange={(e) => setQuestGiver(e.target.value)}
+            className="input-field"
+          />
+          <div className="creation-subheading">Quest Status</div>
+          <input
+            value={questStatus}
+            onChange={(e) => setQuestStatus(e.target.value)}
             className="input-field"
           />
         </div>

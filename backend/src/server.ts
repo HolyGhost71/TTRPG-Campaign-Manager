@@ -246,6 +246,7 @@ app.post("/entities", async (req, res) => {
                 ? {
                     create: {
                         questGiver: req.body.questDetails.questGiver,
+                        status: req.body.questDetails.status,
                     }
                 }
                 : undefined,
@@ -342,6 +343,7 @@ app.put("/entities/:id", async (req, res) => {
                         where: { entityId: id },
                         data: {
                             questGiver: req.body.questDetails.questGiver,
+                            status: req.body.questDetails.status
                         },
                     });
                 }

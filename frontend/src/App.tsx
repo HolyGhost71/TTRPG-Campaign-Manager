@@ -20,7 +20,10 @@ function App() {
     <BrowserRouter>
       <Sidebar />
       <Routes>
-        <Route path="/campaigns/:campaignId/" element={<Dashboard />} />
+        <Route
+          path="/campaigns/:campaignId/dashboard"
+          element={<Dashboard />}
+        />
         <Route path="/campaigns/:campaignId/sessions" element={<Sessions />} />
         <Route path="/campaigns/:campaignId/pcs" element={<PCs />} />
         <Route path="/campaigns/:campaignId/history" element={<History />} />

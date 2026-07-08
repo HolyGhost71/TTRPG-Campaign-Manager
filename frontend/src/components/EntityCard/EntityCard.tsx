@@ -38,13 +38,17 @@ const EntityCard = (props: any) => {
         return (
           <>
             <div className="info-row">
-              <span className="label">Population</span>
-              <span>{entity.locationDetails?.population ?? "Unknown"}</span>
+              <span className="label">Region</span>
+              <span>{entity.locationDetails?.region ?? "Unknown"}</span>
             </div>
-
             <div className="info-row">
               <span className="label">Ruler</span>
               <span>{entity.locationDetails?.ruler ?? "Unknown"}</span>
+            </div>
+
+            <div className="info-row">
+              <span className="label">Population</span>
+              <span>{entity.locationDetails?.population ?? "Unknown"}</span>
             </div>
           </>
         );
@@ -70,11 +74,6 @@ const EntityCard = (props: any) => {
             <div className="info-row">
               <span className="label">Leader</span>
               <span>{entity.factionDetails?.leader ?? "Unknown"}</span>
-            </div>
-
-            <div className="info-row">
-              <span className="label">Influence</span>
-              <span>{entity.factionDetails?.influence ?? "Unknown"}</span>
             </div>
           </>
         );
@@ -120,7 +119,7 @@ const EntityCard = (props: any) => {
             src={
               entity.image
                 ? `${API_URL}/${entity.image}`
-                : "https://placehold.co/120x120?text=NPC"
+                : "https://placehold.co/120x120?text=Placeholder"
             }
             alt={entity.name}
           />
