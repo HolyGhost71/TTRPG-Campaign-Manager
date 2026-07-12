@@ -7,9 +7,11 @@ import { useParams } from "react-router-dom";
 export default function Locations() {
   const [locationArray, setLocationArray] = useState<any[]>([]);
 
+  const campaignId = useParams().campaignId;
+
   useEffect(() => {
     api
-      .get(`/campaigns/${useParams().campaignId}/entities?type=LOCATION`)
+      .get(`/campaigns/${campaignId}/entities?type=LOCATION`)
       .then((response) => {
         setLocationArray(response.data);
       })

@@ -4,6 +4,7 @@ import "./Sidebar.css";
 
 const Sidebar = () => {
   const navigator = useNavigate();
+  const { campaignId } = useParams();
 
   return (
     <>
@@ -19,8 +20,8 @@ const Sidebar = () => {
                   <Link
                     to={
                       item.path === ""
-                        ? `/campaigns/${useParams().campaignId}`
-                        : `/campaigns/${useParams().campaignId}/${item.path}`
+                        ? `/campaigns/${campaignId}`
+                        : `/campaigns/${campaignId}/${item.path}`
                     }
                   >
                     {item.icon}
@@ -41,7 +42,7 @@ const Sidebar = () => {
           <button
             className="creation-button"
             onClick={() => {
-              navigator(`/campaigns/${useParams().campaignId}/create-entity`);
+              navigator(`/campaigns/${campaignId}/create-entity`);
             }}
           >
             Create new Entity

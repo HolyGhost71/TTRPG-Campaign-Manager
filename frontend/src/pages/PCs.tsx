@@ -7,9 +7,11 @@ import { useParams } from "react-router-dom";
 export default function PCs() {
   const [pcArray, setPcArray] = useState<any[]>([]);
 
+  const campaignId = useParams().campaignId;
+
   useEffect(() => {
     api
-      .get(`/campaigns/${useParams().campaignId}/entities?type=PLAYER`)
+      .get(`/campaigns/${campaignId}/entities?type=PLAYER`)
       .then((response) => {
         setPcArray(response.data);
       })

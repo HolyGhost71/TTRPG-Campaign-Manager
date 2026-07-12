@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import api from "../api/api";
 import { useEffect, useState } from "react";
 import EntityCard from "../components/EntityCard/EntityCard";
@@ -10,6 +10,15 @@ export default function SoloEntity() {
   const [entity, setEntity] = useState<any>();
   console.log("Opened entity page for entity" + entityId);
   console.log(entity);
+
+  let navigate = useNavigate();
+
+  const params = useParams();
+
+  const goToEditPage = () => {
+    let path = `/campaigns/${params.campaignId}/edit-entity/${params.entityId}`;
+    navigate(path);
+  };
 
   useEffect(() => {
     api
@@ -62,6 +71,7 @@ export default function SoloEntity() {
 
       <div className="entity-card-wrapper">
         <EntityCard entity={entity ?? {}} />
+        <button onClick={goToEditPage}>Edit</button>
       </div>
     </div>
   );

@@ -7,9 +7,11 @@ import { useParams } from "react-router-dom";
 export default function Items() {
   const [itemArray, setItemArray] = useState<any[]>([]);
 
+  const campaignId = useParams().campaignId;
+
   useEffect(() => {
     api
-      .get(`/campaigns/${useParams().campaignId}/entities?type=ITEM`)
+      .get(`/campaigns/${campaignId}/entities?type=ITEM`)
       .then((response) => {
         setItemArray(response.data);
       })

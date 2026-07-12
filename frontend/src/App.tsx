@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 import Dashboard from "./pages/Dashboard";
 import NPCs from "./pages/NPCs";
@@ -14,35 +14,27 @@ import History from "./pages/History";
 import Quests from "./pages/Quests";
 import SoloEntity from "./pages/SoloEntity";
 import CreateEntity from "./pages/CreateEntity";
+import EditEntity from "./pages/EditEntity";
+import Layout from "./Layout";
 
 function App() {
   return (
     <BrowserRouter>
-      <Sidebar />
       <Routes>
-        <Route
-          path="/campaigns/:campaignId/dashboard"
-          element={<Dashboard />}
-        />
-        <Route path="/campaigns/:campaignId/sessions" element={<Sessions />} />
-        <Route path="/campaigns/:campaignId/pcs" element={<PCs />} />
-        <Route path="/campaigns/:campaignId/history" element={<History />} />
-        <Route
-          path="/campaigns/:campaignId/locations"
-          element={<Locations />}
-        />
-        <Route path="/campaigns/:campaignId/npcs" element={<NPCs />} />
-        <Route path="/campaigns/:campaignId/items" element={<Items />} />
-        <Route path="/campaigns/:campaignId/factions" element={<Factions />} />
-        <Route path="/campaigns/:campaignId/quests" element={<Quests />} />
-        <Route
-          path="/campaigns/:campaignId/entities/:entityId"
-          element={<SoloEntity />}
-        />
-        <Route
-          path="/campaigns/:campaignId/create-entity"
-          element={<CreateEntity />}
-        />
+        <Route path="/campaigns/:campaignId" element={<Layout />}>
+          <Route path="dashboard" element={<Dashboard />} />
+          <Route path="npcs" element={<NPCs />} />
+          <Route path="sessions" element={<Sessions />} />
+          <Route path="pcs" element={<PCs />} />
+          <Route path="history" element={<History />} />
+          <Route path="quests" element={<Quests />} />
+          <Route path="items" element={<Items />} />
+          <Route path="locations" element={<Locations />} />
+          <Route path="factions" element={<Factions />} />
+          <Route path="entities/:entityId" element={<SoloEntity />} />
+          <Route path="create-entity" element={<CreateEntity />} />
+          <Route path="edit-entity/:entityId" element={<EditEntity />} />
+        </Route>
       </Routes>
     </BrowserRouter>
   );

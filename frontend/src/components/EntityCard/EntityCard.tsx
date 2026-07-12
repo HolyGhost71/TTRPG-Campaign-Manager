@@ -1,10 +1,10 @@
-import api from "../../api/api";
 import "./EntityCard.css";
 import { useNavigate, useParams } from "react-router-dom";
 
 const EntityCard = (props: any) => {
   const entity = props.entity;
 
+  const API_URL = "http://localhost:3000";
   const navigate = useNavigate();
 
   const campaignID = useParams().campaignId;
@@ -120,7 +120,7 @@ const EntityCard = (props: any) => {
           <img
             src={
               entity.image
-                ? `${api}/${entity.image}`
+                ? `${API_URL}/${entity.image}`
                 : "https://placehold.co/120x120?text=Placeholder"
             }
             alt={entity.name}

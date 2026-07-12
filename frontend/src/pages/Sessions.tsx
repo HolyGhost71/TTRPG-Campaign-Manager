@@ -6,9 +6,11 @@ import { useParams } from "react-router-dom";
 export default function Sessions() {
   const [sessionsArray, setSessionsArray] = useState<any[]>([]);
 
+  const campaignId = useParams().campaignId;
+
   useEffect(() => {
     api
-      .get(`/campaigns/${useParams().campaignId}/entities?type=SESSIOM`)
+      .get(`/campaigns/${campaignId}/entities?type=SESSIOM`)
       .then((response) => {
         setSessionsArray(response.data);
       })

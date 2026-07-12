@@ -33,10 +33,11 @@ export default function CreateEntity() {
   const [type, setType] = useState("NPC");
 
   const navigator = useNavigate();
+  const campaignId = Number(useParams().campaignId);
 
   const createEntity = async () => {
     const payload: any = {
-      campaignId: 1,
+      campaignId: campaignId,
       type,
       name,
       description,
@@ -82,7 +83,7 @@ export default function CreateEntity() {
     const res = await api.post("/entities", payload);
     const newEntity = res.data;
 
-    navigator(`/campaigns/${useParams().campaignId}/entities/${newEntity.id}`);
+    navigator(`/campaigns/${campaignId}/entities/${newEntity.id}`);
   };
 
   return (

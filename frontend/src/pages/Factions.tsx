@@ -7,9 +7,11 @@ import { useParams } from "react-router-dom";
 export default function Factions() {
   const [factionArray, setFactionArray] = useState<any[]>([]);
 
+  const { campaignId } = useParams();
+
   useEffect(() => {
     api
-      .get(`/campaigns/${useParams().campaignId}/entities?type=FACTION`)
+      .get(`/campaigns/${campaignId}/entities?type=FACTION`)
       .then((response) => {
         setFactionArray(response.data);
       })
