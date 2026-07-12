@@ -2,13 +2,14 @@ import { useEffect, useState } from "react";
 
 import api from "../api/api";
 import EntityCard from "../components/EntityCard/EntityCard";
+import { useParams } from "react-router-dom";
 
 export default function Locations() {
   const [locationArray, setLocationArray] = useState<any[]>([]);
 
   useEffect(() => {
     api
-      .get("/campaigns/1/entities?type=LOCATION")
+      .get(`/campaigns/${useParams().campaignId}/entities?type=LOCATION`)
       .then((response) => {
         setLocationArray(response.data);
       })

@@ -2,13 +2,14 @@ import { useEffect, useState } from "react";
 
 import api from "../api/api";
 import EntityCard from "../components/EntityCard/EntityCard";
+import { useParams } from "react-router-dom";
 
 export default function Factions() {
   const [factionArray, setFactionArray] = useState<any[]>([]);
 
   useEffect(() => {
     api
-      .get("/campaigns/1/entities?type=FACTION")
+      .get(`/campaigns/${useParams().campaignId}/entities?type=FACTION`)
       .then((response) => {
         setFactionArray(response.data);
       })

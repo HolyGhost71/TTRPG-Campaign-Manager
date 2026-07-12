@@ -1,11 +1,13 @@
+import api from "../../api/api";
 import "./EntityCard.css";
 import { useNavigate, useParams } from "react-router-dom";
 
 const EntityCard = (props: any) => {
   const entity = props.entity;
 
-  const API_URL = "http://localhost:3000";
   const navigate = useNavigate();
+
+  const campaignID = useParams().campaignId;
 
   const renderTypeSpecificInfo = () => {
     switch (entity.type) {
@@ -111,14 +113,14 @@ const EntityCard = (props: any) => {
   return (
     <div
       className="entity-card"
-      onClick={() => navigate(`/campaigns/1/entities/${entity.id}`)}
+      onClick={() => navigate(`/campaigns/${campaignID}/entities/${entity.id}`)}
     >
       <div className="entity-header">
         <div className="entity-image">
           <img
             src={
               entity.image
-                ? `${API_URL}/${entity.image}`
+                ? `${api}/${entity.image}`
                 : "https://placehold.co/120x120?text=Placeholder"
             }
             alt={entity.name}

@@ -2,7 +2,7 @@ import { useState } from "react";
 import api from "../api/api";
 import { useNavigate, useParams } from "react-router-dom";
 
-export default function CreateEntity() {
+export default function EditEntity() {
   // All
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
@@ -34,7 +34,7 @@ export default function CreateEntity() {
 
   const navigator = useNavigate();
 
-  const createEntity = async () => {
+  const editEntity = async () => {
     const payload: any = {
       campaignId: 1,
       type,
@@ -243,7 +243,7 @@ export default function CreateEntity() {
           />
         </div>
       )}
-      <button onClick={createEntity}>Create</button>
+      <button onClick={editEntity}>Submit</button>
     </div>
   );
 }

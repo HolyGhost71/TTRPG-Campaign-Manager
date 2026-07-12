@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react";
 
 import api from "../api/api";
+import { useParams } from "react-router-dom";
 
 export default function Sessions() {
   const [sessionsArray, setSessionsArray] = useState<any[]>([]);
 
   useEffect(() => {
     api
-      .get("/campaigns/1/entities?type=Session")
+      .get(`/campaigns/${useParams().campaignId}/entities?type=SESSIOM`)
       .then((response) => {
         setSessionsArray(response.data);
       })

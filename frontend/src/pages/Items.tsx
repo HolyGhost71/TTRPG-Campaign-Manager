@@ -2,13 +2,14 @@ import { useEffect, useState } from "react";
 
 import api from "../api/api";
 import EntityCard from "../components/EntityCard/EntityCard";
+import { useParams } from "react-router-dom";
 
 export default function Items() {
   const [itemArray, setItemArray] = useState<any[]>([]);
 
   useEffect(() => {
     api
-      .get("/campaigns/1/entities?type=ITEM")
+      .get(`/campaigns/${useParams().campaignId}/entities?type=ITEM`)
       .then((response) => {
         setItemArray(response.data);
       })

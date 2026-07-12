@@ -7,6 +7,7 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import Radio from "@mui/material/Radio";
 import FormControl from "@mui/material/FormControl";
 import FormLabel from "@mui/material/FormLabel";
+import { useParams } from "react-router-dom";
 
 export default function NPCs() {
   const [npcArray, setNpcArray] = useState<any[]>([]);
@@ -14,7 +15,7 @@ export default function NPCs() {
 
   useEffect(() => {
     api
-      .get("/campaigns/1/entities?type=NPC")
+      .get(`/campaigns/${useParams().campaignId}/entities?type=NPC`)
       .then((response) => {
         setNpcArray(response.data);
       })

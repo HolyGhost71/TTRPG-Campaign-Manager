@@ -1,7 +1,6 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { SidebarData } from "./SidebarData";
 import "./Sidebar.css";
-import { IconContext } from "react-icons";
 
 const Sidebar = () => {
   const navigator = useNavigate();
@@ -20,8 +19,8 @@ const Sidebar = () => {
                   <Link
                     to={
                       item.path === ""
-                        ? `/campaigns/1`
-                        : `/campaigns/1/${item.path}`
+                        ? `/campaigns/${useParams().campaignId}`
+                        : `/campaigns/${useParams().campaignId}/${item.path}`
                     }
                   >
                     {item.icon}
@@ -42,7 +41,7 @@ const Sidebar = () => {
           <button
             className="creation-button"
             onClick={() => {
-              navigator("/campaigns/1/create-entity");
+              navigator(`/campaigns/${useParams().campaignId}/create-entity`);
             }}
           >
             Create new Entity
