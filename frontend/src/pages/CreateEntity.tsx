@@ -103,19 +103,6 @@ export default function CreateEntity() {
           onChange={(e) => setDescription(e.target.value)}
           className="input-field"
         />
-        <div className="creation-subheading">Entity Type</div>
-        <select
-          className="input-field"
-          value={type}
-          onChange={(e) => setType(e.target.value)}
-        >
-          <option value="NPC">NPC</option>
-          <option value="LOCATION">Location</option>
-          <option value="ITEM">Item</option>
-          <option value="FACTION">Faction</option>
-          <option value="QUEST">Quest</option>
-          <option value="PLAYER">Player Character</option>
-        </select>
       </div>
       {type === "NPC" && (
         <div className="creation-container">
