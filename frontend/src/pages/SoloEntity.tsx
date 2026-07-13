@@ -71,7 +71,9 @@ export default function SoloEntity() {
 
       <div className="entity-card-wrapper">
         <EntityCard entity={entity ?? {}} />
-        <button onClick={goToEditPage}>Edit</button>
+        <button onClick={goToEditPage} className="button">
+          Edit
+        </button>
       </div>
     </div>
   );

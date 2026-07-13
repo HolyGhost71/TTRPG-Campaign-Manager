@@ -244,7 +244,9 @@ export default function CreateEntity() {
           />
         </div>
       )}
-      <button onClick={createEntity}>Create</button>
+      <button onClick={createEntity} className="button">
+        Create
+      </button>
     </div>
   );
 }

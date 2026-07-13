@@ -26,7 +26,7 @@ export default function EditableNotes({
       {!isEditing ? (
         <div className="notes-text">
           {value ||
-            "Be the first to add notes for this character. Double click to add notes..."}
+            "Be the first to add notes for this entity. Double click to add notes..."}
         </div>
       ) : (
         <div className="notes-editor">

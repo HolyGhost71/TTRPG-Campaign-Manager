@@ -1,8 +1,21 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import api from "../api/api";
 import { useNavigate, useParams } from "react-router-dom";
 
 export default function EditEntity() {
+  const [entity, setEntity] = useState<any>(null);
+
+  useEffect(() => {
+    api
+      .get("/entities/" + params.entityId)
+      .then((response) => {
+        setEntity(response.data);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  }, []);
+
   // All
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
@@ -33,10 +46,11 @@ export default function EditEntity() {
   const [type, setType] = useState("NPC");
 
   const navigator = useNavigate();
+  const params = useParams();
 
   const editEntity = async () => {
     const payload: any = {
-      campaignId: 1,
+      campaignId: params.campaignId,
       type,
       name,
       description,
@@ -79,15 +93,58 @@ export default function EditEntity() {
       };
     }
 
-    const res = await api.post("/entities", payload);
-    const newEntity = res.data;
+    await api.put(`/entities/${params.entityId}`, payload);
 
-    navigator(`/campaigns/${useParams().campaignId}/entities/${newEntity.id}`);
+    navigator(`/campaigns/${params.campaignId}/entities/${params.entityId}`);
   };
+
+  useEffect(() => {
+    if (!entity) return;
+
+    setName(entity.name ?? "");
+    setDescription(entity.description ?? "");
+
+    switch (entity.type) {
+      case "NPC":
+        setSpecies(entity.npcDetails?.species ?? "");
+        setAge(entity.npcDetails?.age ?? "");
+        setLocation(entity.npcDetails?.location ?? "");
+        setStatus(entity.npcDetails?.status ?? "");
+        break;
+
+      case "PLAYER":
+        setSpecies(entity.playerDetails?.species ?? "");
+        setAge(entity.playerDetails?.age ?? "");
+        setLocation(entity.playerDetails?.location ?? "");
+        setStatus(entity.playerDetails?.status ?? "");
+        setPlayer(entity.playerDetails?.player ?? "");
+        break;
+
+      case "LOCATION":
+        setPopulation(entity.locationDetails?.population ?? 0);
+        setRuler(entity.locationDetails?.ruler ?? "");
+        setRegion(entity.locationDetails?.region ?? "");
+        break;
+
+      case "ITEM":
+        setOwner(entity.itemDetails?.owner ?? "");
+        setRarity(entity.itemDetails?.rarity ?? "");
+        break;
+
+      case "FACTION":
+        setLeader(entity.factionDetails?.leader ?? "");
+        break;
+
+      case "QUEST":
+        setQuestGiver(entity.questDetails?.questGiver ?? "");
+        setQuestStatus(entity.questDetails?.questStatus ?? "In progress");
+        break;
+    }
+  }, [entity]);
 
   return (
     <div className="page-heading">
-      Create New Entity
+      Edit Entity
       <div />
       <div className="creation-container">
         <div className="creation-subheading">Name</div>
@@ -243,7 +300,9 @@ export default function EditEntity() {
           />
         </div>
       )}
-      <button onClick={editEntity}>Submit</button>
+      <button onClick={editEntity} className="button">
+        Submit
+      </button>
     </div>
   );
 }
