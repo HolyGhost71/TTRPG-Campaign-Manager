@@ -1,10 +1,9 @@
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Dashboard from "./pages/Dashboard";
 import NPCs from "./pages/NPCs";
 import "./App.css";
 
-import Sidebar from "./components/Sidebar/Sidebar";
 import Factions from "./pages/Factions";
 import Sessions from "./pages/Sessions";
 import Items from "./pages/Items";
@@ -16,11 +15,13 @@ import SoloEntity from "./pages/SoloEntity";
 import CreateEntity from "./pages/CreateEntity";
 import EditEntity from "./pages/EditEntity";
 import Layout from "./Layout";
+import CampaignSelect from "./pages/Campaign Select/CampaignSelect";
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
+        <Route path="/campaigns" element={<CampaignSelect />} />
         <Route path="/campaigns/:campaignId" element={<Layout />}>
           <Route path="dashboard" element={<Dashboard />} />
           <Route path="npcs" element={<NPCs />} />

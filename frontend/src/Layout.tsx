@@ -5,7 +5,9 @@ export default function Layout() {
   return (
     <>
       <Sidebar />
-      <Outlet />
+      <main className="layout-content">
+        <Outlet />
+      </main>
     </>
   );
 }

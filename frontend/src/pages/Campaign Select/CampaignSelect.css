@@ -1,0 +1,9 @@
+.cs-page-heading {
+    font-size: 64px;
+    font-weight: bold;
+    color: #ffffff;
+    text-decoration: underline;
+    display: flex;
+    justify-content: center;
+    padding-top: 30px;
+}

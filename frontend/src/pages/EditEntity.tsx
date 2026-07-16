@@ -43,7 +43,7 @@ export default function EditEntity() {
   const [questGiver, setQuestGiver] = useState("");
   const [questStatus, setQuestStatus] = useState("In progress");
 
-  const [type, setType] = useState("NPC");
+  const [type] = useState("NPC");
 
   const navigator = useNavigate();
   const params = useParams();
