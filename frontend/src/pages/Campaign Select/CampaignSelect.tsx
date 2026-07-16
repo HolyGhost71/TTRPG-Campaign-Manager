@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import "./CampaignSelect.css";
 import api from "../../api/api";
-import EntityCard from "../../components/EntityCard/EntityCard";
 import CampaignCard from "../../components/CampaignCard";
 
 export default function CampaignSelect() {

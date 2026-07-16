@@ -4,6 +4,7 @@ import { PrismaPg } from "@prisma/adapter-pg";
 import "dotenv/config";
 import cors from "cors";
 import path from "path";
+import upload from "./middleware/upload";
 
 const app = express();
 
@@ -21,7 +22,10 @@ app.use(cors({
 
 app.use(express.json());
 
-app.use("/uploads", express.static(path.join(process.cwd(), "uploads")));
+app.use(
+    "/uploads",
+    express.static(path.join(__dirname, "../uploads"))
+);
 
 // Get campaign by ID with all entities
 app.get("/campaigns/:id/full", async (req, res) => {
@@ -177,18 +181,34 @@ app.get("/entities/:id", async (req, res) => {
 });
 
 // Create an entitiy
-app.post("/entities", async (req, res) => {
+app.post(
+    "/entities",
+    upload.single("image"), async (req, res) => {
 
-    console.log("HEADERS:", req.headers);
-    console.log("BODY:", req.body);
+    console.log(req.file);
+
+    const jsonFields = [
+  "npcDetails",
+  "locationDetails",
+  "itemDetails",
+  "factionDetails",
+  "playerDetails",
+  "questDetails",
+];
+
+jsonFields.forEach((field) => {
+  if (req.body[field]) {
+    req.body[field] = JSON.parse(req.body[field]);
+  }
+});
 
     const entity = await prisma.entity.create({
         data: {
-            campaignId: req.body.campaignId,
+            campaignId: Number(req.body.campaignId),
             type: req.body.type,
             name: req.body.name,
             description: req.body.description,
-            image: req.body.image,
+            image: req.file?.path,
 
             npcDetails: req.body.type === "NPC"
                 ? {

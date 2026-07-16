@@ -32,58 +32,103 @@ export default function CreateEntity() {
 
   const [type, setType] = useState("NPC");
 
+  const [image, setImage] = useState<File | null>(null);
+
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files?.length) {
+      setImage(e.target.files[0]);
+    }
+  };
+
   const navigator = useNavigate();
-  const campaignId = Number(useParams().campaignId);
+  const campaignId = useParams().campaignId;
 
   const createEntity = async () => {
-    const payload: any = {
-      campaignId: campaignId,
-      type,
-      name,
-      description,
-    };
+    try {
+      const formData = new FormData();
 
-    if (type === "NPC") {
-      payload.npcDetails = {
-        species,
-        age,
-        location,
-        status,
-      };
-    } else if (type === "LOCATION") {
-      payload.locationDetails = {
-        population,
-        ruler,
-        region,
-      };
-    } else if (type === "ITEM") {
-      payload.itemDetails = {
-        owner,
-        rarity,
-      };
-    } else if (type === "FACTION") {
-      payload.factionDetails = {
-        leader,
-      };
-    } else if (type === "PLAYER") {
-      payload.playerDetails = {
-        species,
-        age,
-        location,
-        status,
-        player,
-      };
-    } else if (type === "QUEST") {
-      payload.questDetails = {
-        questGiver,
-        questStatus,
-      };
+      // Common fields
+      formData.append("campaignId", String(campaignId) ?? "");
+      formData.append("type", type);
+      formData.append("name", name);
+      formData.append("description", description ?? "");
+
+      // Image
+      if (image) {
+        formData.append("image", image);
+      }
+
+      // Type-specific details
+      if (type === "NPC") {
+        formData.append(
+          "npcDetails",
+          JSON.stringify({
+            species,
+            age,
+            location,
+            status,
+          }),
+        );
+      } else if (type === "LOCATION") {
+        formData.append(
+          "locationDetails",
+          JSON.stringify({
+            population,
+            ruler,
+            region,
+          }),
+        );
+      } else if (type === "ITEM") {
+        formData.append(
+          "itemDetails",
+          JSON.stringify({
+            owner,
+            rarity,
+          }),
+        );
+      } else if (type === "FACTION") {
+        formData.append(
+          "factionDetails",
+          JSON.stringify({
+            leader,
+          }),
+        );
+      } else if (type === "PLAYER") {
+        formData.append(
+          "playerDetails",
+          JSON.stringify({
+            species,
+            age,
+            location,
+            status,
+            player,
+          }),
+        );
+      } else if (type === "QUEST") {
+        formData.append(
+          "questDetails",
+          JSON.stringify({
+            questGiver,
+            questStatus,
+          }),
+        );
+      }
+
+      // Send request
+      const res = await api.post("/entities", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+
+      const newEntity = res.data;
+
+      // Redirect to the new entity page
+      navigator(`/campaigns/${campaignId}/entities/${newEntity.id}`);
+    } catch (err) {
+      console.error(err);
+      alert("Failed to create entity");
     }
-
-    const res = await api.post("/entities", payload);
-    const newEntity = res.data;
-
-    navigator(`/campaigns/${campaignId}/entities/${newEntity.id}`);
   };
 
   return (
@@ -103,6 +148,11 @@ export default function CreateEntity() {
           onChange={(e) => setDescription(e.target.value)}
           className="input-field"
         />
+
+        <input type="file" accept="image/*" onChange={handleImageChange} />
+
+        {image && <img src={URL.createObjectURL(image)} width={150} />}
+
         <div className="creation-subheading">Entity Type</div>
         <select
           className="input-field"

@@ -1,5 +1,5 @@
 import "../components/EntityCard/EntityCard.css";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const CampaignCard = (props: any) => {
   const API_URL = "http://localhost:3000";
