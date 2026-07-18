@@ -67,6 +67,14 @@ const Sidebar = () => {
           >
             Create new Entity
           </button>
+          <button
+            className="creation-button"
+            onClick={() => {
+              navigator(`/campaigns/`);
+            }}
+          >
+            Select Campaign
+          </button>
         </ul>
       </nav>
     </>
