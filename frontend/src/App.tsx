@@ -21,6 +21,7 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
+        <Route path="/" element={<CampaignSelect />} />
         <Route path="/campaigns" element={<CampaignSelect />} />
         <Route path="/campaigns/:campaignId" element={<Layout />}>
           <Route path="dashboard" element={<Dashboard />} />
