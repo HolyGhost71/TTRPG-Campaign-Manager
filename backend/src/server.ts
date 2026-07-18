@@ -18,7 +18,10 @@ const prisma = new PrismaClient({
 });
 
 app.use(cors({
-    origin: "http://localhost:5173"
+  origin: [
+    "http://localhost:5173",
+    "https://ttrpg-campaign-manager-1.onrender.com"
+  ]
 }));
 
 app.use(express.json());
