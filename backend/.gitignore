@@ -9,3 +9,4 @@ prisma.config.js
 
 # Build output
 dist/
+.env.*
