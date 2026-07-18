@@ -6,7 +6,7 @@ import { useParams } from "react-router-dom";
 
 export default function NPCs() {
   const [npcArray, setNpcArray] = useState<any[]>([]);
-  const [sortType, setSortType] = useState("alphabetical");
+  // const [sortType, setSortType] = useState("alphabetical");
 
   const campaignId = useParams().campaignId;
 

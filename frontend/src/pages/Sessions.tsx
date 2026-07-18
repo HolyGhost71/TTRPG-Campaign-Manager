@@ -22,6 +22,7 @@ export default function Sessions() {
   return (
     <>
       <div className="page-heading">Sessions</div>
+      <div>{sessionsArray}</div>
     </>
   );
 }
