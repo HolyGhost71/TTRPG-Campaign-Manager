@@ -2,8 +2,7 @@ import "../components/EntityCard/EntityCard.css";
 import { useNavigate } from "react-router-dom";
 
 const CampaignCard = (props: any) => {
-  const API_URL = "http://localhost:3000";
-
+  const API_URL = import.meta.env.VITE_API_URL;
   const campaign = props.campaign;
   const campaignID = props.campaignID;
   const navigate = useNavigate();

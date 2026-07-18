@@ -4,6 +4,7 @@
     "@emotion/styled": "^11.14.1",
     "@mui/material": "^9.2.0",
     "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
     "multer": "^2.2.0"
   },
   "devDependencies": {

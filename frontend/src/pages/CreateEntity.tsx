@@ -136,24 +136,8 @@ export default function CreateEntity() {
       Create New Entity
       <div />
       <div className="creation-container">
-        <div className="creation-subheading">Name</div>
-        <input
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          className="input-field"
-        />
-        <div className="creation-subheading">Description</div>
-        <input
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-          className="input-field"
-        />
-
-        <input type="file" accept="image/*" onChange={handleImageChange} />
-
-        {image && <img src={URL.createObjectURL(image)} width={150} />}
-
         <div className="creation-subheading">Entity Type</div>
+
         <select
           className="input-field"
           value={type}
@@ -166,6 +150,24 @@ export default function CreateEntity() {
           <option value="QUEST">Quest</option>
           <option value="PLAYER">Player Character</option>
         </select>
+        <div className="creation-subheading">Name</div>
+        <input
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          className="input-field"
+        />
+        <div className="creation-subheading">Description</div>
+        {type != "PLAYER" && (
+          <input
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+            className="input-field"
+          />
+        )}
+
+        <input type="file" accept="image/*" onChange={handleImageChange} />
+
+        {image && <img src={URL.createObjectURL(image)} width={150} />}
       </div>
       {type === "NPC" && (
         <div className="creation-container">

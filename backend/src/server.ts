@@ -5,6 +5,7 @@ import "dotenv/config";
 import cors from "cors";
 import path from "path";
 import upload from "./middleware/upload";
+import dotenv from "dotenv";
 
 const app = express();
 
@@ -433,6 +434,8 @@ app.get("/", (req, res) => {
     });
 });
 
-app.listen(3000, () => {
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, () => {
     console.log("Server running on port 3000");
 });
