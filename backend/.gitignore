@@ -3,3 +3,9 @@ node_modules
 .env
 
 /generated/prisma
+
+# Prisma generated config
+prisma.config.js
+
+# Build output
+dist/
