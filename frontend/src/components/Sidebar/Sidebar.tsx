@@ -1,10 +1,26 @@
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { SidebarData } from "./SidebarData";
 import "./Sidebar.css";
+import { useEffect, useState } from "react";
+import api from "../../api/api";
 
 const Sidebar = () => {
   const navigator = useNavigate();
   const { campaignId } = useParams();
+  const [campaign, setCampaign] = useState<any>();
+
+  useEffect(() => {
+    if (!campaignId) return;
+
+    api
+      .get(`/campaigns/${campaignId}`)
+      .then((response) => {
+        setCampaign(response.data);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  }, [campaignId]);
 
   return (
     <>
@@ -36,7 +52,11 @@ const Sidebar = () => {
                 </li>
               );
             } else if (item.type === "title") {
-              return <div className={item.cName}>Echoes of Obsidian</div>;
+              return (
+                <div className={item.cName}>
+                  {campaign?.name || "My Campaign"}
+                </div>
+              );
             }
           })}
           <button
