@@ -26,11 +26,6 @@ app.use(cors({
 
 app.use(express.json());
 
-app.use(
-    "/uploads",
-    express.static(path.join(__dirname, "../uploads"))
-);
-
 // Get campaign by ID with all entities
 app.get("/campaigns/:id/full", async (req, res) => {
     const id = Number(req.params.id);

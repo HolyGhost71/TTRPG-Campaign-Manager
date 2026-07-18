@@ -122,6 +122,7 @@ export default function CreateEntity() {
       });
 
       const newEntity = res.data;
+      console.log(newEntity);
 
       // Redirect to the new entity page
       navigator(`/campaigns/${campaignId}/entities/${newEntity.id}`);

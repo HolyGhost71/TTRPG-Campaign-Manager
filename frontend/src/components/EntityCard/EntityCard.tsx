@@ -4,7 +4,6 @@ import { useNavigate, useParams } from "react-router-dom";
 const EntityCard = (props: any) => {
   const entity = props.entity;
 
-  const API_URL = import.meta.env.VITE_API_URL;
   const navigate = useNavigate();
 
   const campaignID = useParams().campaignId;
@@ -117,14 +116,19 @@ const EntityCard = (props: any) => {
     >
       <div className="entity-header">
         <div className="entity-image">
-          <img
-            src={
-              entity.image
-                ? `${API_URL}/${entity.image}`
-                : "https://placehold.co/120x120?text=Placeholder"
-            }
-            alt={entity.name}
-          />
+          {entity.image ? (
+            <img
+              src={entity.image}
+              alt={entity.name}
+              className="entity-image"
+            />
+          ) : (
+            <img
+              src="https://placehold.co/120x120?text=Placeholder"
+              alt="No image"
+              className="entity-image"
+            />
+          )}
         </div>
 
         <div className="entity-title">
