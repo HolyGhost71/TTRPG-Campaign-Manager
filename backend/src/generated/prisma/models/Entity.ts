@@ -251,6 +251,7 @@ export type EntityWhereInput = {
   factionDetails?: Prisma.XOR<Prisma.FactionDetailsNullableScalarRelationFilter, Prisma.FactionDetailsWhereInput> | null
   questDetails?: Prisma.XOR<Prisma.QuestDetailsNullableScalarRelationFilter, Prisma.QuestDetailsWhereInput> | null
   playerDetails?: Prisma.XOR<Prisma.PlayerDetailsNullableScalarRelationFilter, Prisma.PlayerDetailsWhereInput> | null
+  sessionDetails?: Prisma.XOR<Prisma.SessionDetailsNullableScalarRelationFilter, Prisma.SessionDetailsWhereInput> | null
 }
 
 export type EntityOrderByWithRelationInput = {
@@ -269,6 +270,7 @@ export type EntityOrderByWithRelationInput = {
   factionDetails?: Prisma.FactionDetailsOrderByWithRelationInput
   questDetails?: Prisma.QuestDetailsOrderByWithRelationInput
   playerDetails?: Prisma.PlayerDetailsOrderByWithRelationInput
+  sessionDetails?: Prisma.SessionDetailsOrderByWithRelationInput
 }
 
 export type EntityWhereUniqueInput = Prisma.AtLeast<{
@@ -290,6 +292,7 @@ export type EntityWhereUniqueInput = Prisma.AtLeast<{
   factionDetails?: Prisma.XOR<Prisma.FactionDetailsNullableScalarRelationFilter, Prisma.FactionDetailsWhereInput> | null
   questDetails?: Prisma.XOR<Prisma.QuestDetailsNullableScalarRelationFilter, Prisma.QuestDetailsWhereInput> | null
   playerDetails?: Prisma.XOR<Prisma.PlayerDetailsNullableScalarRelationFilter, Prisma.PlayerDetailsWhereInput> | null
+  sessionDetails?: Prisma.XOR<Prisma.SessionDetailsNullableScalarRelationFilter, Prisma.SessionDetailsWhereInput> | null
 }, "id">
 
 export type EntityOrderByWithAggregationInput = {
@@ -336,6 +339,7 @@ export type EntityCreateInput = {
   factionDetails?: Prisma.FactionDetailsCreateNestedOneWithoutEntityInput
   questDetails?: Prisma.QuestDetailsCreateNestedOneWithoutEntityInput
   playerDetails?: Prisma.PlayerDetailsCreateNestedOneWithoutEntityInput
+  sessionDetails?: Prisma.SessionDetailsCreateNestedOneWithoutEntityInput
 }
 
 export type EntityUncheckedCreateInput = {
@@ -353,6 +357,7 @@ export type EntityUncheckedCreateInput = {
   factionDetails?: Prisma.FactionDetailsUncheckedCreateNestedOneWithoutEntityInput
   questDetails?: Prisma.QuestDetailsUncheckedCreateNestedOneWithoutEntityInput
   playerDetails?: Prisma.PlayerDetailsUncheckedCreateNestedOneWithoutEntityInput
+  sessionDetails?: Prisma.SessionDetailsUncheckedCreateNestedOneWithoutEntityInput
 }
 
 export type EntityUpdateInput = {
@@ -369,6 +374,7 @@ export type EntityUpdateInput = {
   factionDetails?: Prisma.FactionDetailsUpdateOneWithoutEntityNestedInput
   questDetails?: Prisma.QuestDetailsUpdateOneWithoutEntityNestedInput
   playerDetails?: Prisma.PlayerDetailsUpdateOneWithoutEntityNestedInput
+  sessionDetails?: Prisma.SessionDetailsUpdateOneWithoutEntityNestedInput
 }
 
 export type EntityUncheckedUpdateInput = {
@@ -386,6 +392,7 @@ export type EntityUncheckedUpdateInput = {
   factionDetails?: Prisma.FactionDetailsUncheckedUpdateOneWithoutEntityNestedInput
   questDetails?: Prisma.QuestDetailsUncheckedUpdateOneWithoutEntityNestedInput
   playerDetails?: Prisma.PlayerDetailsUncheckedUpdateOneWithoutEntityNestedInput
+  sessionDetails?: Prisma.SessionDetailsUncheckedUpdateOneWithoutEntityNestedInput
 }
 
 export type EntityCreateManyInput = {
@@ -607,6 +614,20 @@ export type EntityUpdateOneRequiredWithoutQuestDetailsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.EntityUpdateToOneWithWhereWithoutQuestDetailsInput, Prisma.EntityUpdateWithoutQuestDetailsInput>, Prisma.EntityUncheckedUpdateWithoutQuestDetailsInput>
 }
 
+export type EntityCreateNestedOneWithoutSessionDetailsInput = {
+  create?: Prisma.XOR<Prisma.EntityCreateWithoutSessionDetailsInput, Prisma.EntityUncheckedCreateWithoutSessionDetailsInput>
+  connectOrCreate?: Prisma.EntityCreateOrConnectWithoutSessionDetailsInput
+  connect?: Prisma.EntityWhereUniqueInput
+}
+
+export type EntityUpdateOneRequiredWithoutSessionDetailsNestedInput = {
+  create?: Prisma.XOR<Prisma.EntityCreateWithoutSessionDetailsInput, Prisma.EntityUncheckedCreateWithoutSessionDetailsInput>
+  connectOrCreate?: Prisma.EntityCreateOrConnectWithoutSessionDetailsInput
+  upsert?: Prisma.EntityUpsertWithoutSessionDetailsInput
+  connect?: Prisma.EntityWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.EntityUpdateToOneWithWhereWithoutSessionDetailsInput, Prisma.EntityUpdateWithoutSessionDetailsInput>, Prisma.EntityUncheckedUpdateWithoutSessionDetailsInput>
+}
+
 export type EntityCreateWithoutCampaignInput = {
   type: $Enums.EntityType
   name: string
@@ -620,6 +641,7 @@ export type EntityCreateWithoutCampaignInput = {
   factionDetails?: Prisma.FactionDetailsCreateNestedOneWithoutEntityInput
   questDetails?: Prisma.QuestDetailsCreateNestedOneWithoutEntityInput
   playerDetails?: Prisma.PlayerDetailsCreateNestedOneWithoutEntityInput
+  sessionDetails?: Prisma.SessionDetailsCreateNestedOneWithoutEntityInput
 }
 
 export type EntityUncheckedCreateWithoutCampaignInput = {
@@ -636,6 +658,7 @@ export type EntityUncheckedCreateWithoutCampaignInput = {
   factionDetails?: Prisma.FactionDetailsUncheckedCreateNestedOneWithoutEntityInput
   questDetails?: Prisma.QuestDetailsUncheckedCreateNestedOneWithoutEntityInput
   playerDetails?: Prisma.PlayerDetailsUncheckedCreateNestedOneWithoutEntityInput
+  sessionDetails?: Prisma.SessionDetailsUncheckedCreateNestedOneWithoutEntityInput
 }
 
 export type EntityCreateOrConnectWithoutCampaignInput = {
@@ -691,6 +714,7 @@ export type EntityCreateWithoutNpcDetailsInput = {
   factionDetails?: Prisma.FactionDetailsCreateNestedOneWithoutEntityInput
   questDetails?: Prisma.QuestDetailsCreateNestedOneWithoutEntityInput
   playerDetails?: Prisma.PlayerDetailsCreateNestedOneWithoutEntityInput
+  sessionDetails?: Prisma.SessionDetailsCreateNestedOneWithoutEntityInput
 }
 
 export type EntityUncheckedCreateWithoutNpcDetailsInput = {
@@ -707,6 +731,7 @@ export type EntityUncheckedCreateWithoutNpcDetailsInput = {
   factionDetails?: Prisma.FactionDetailsUncheckedCreateNestedOneWithoutEntityInput
   questDetails?: Prisma.QuestDetailsUncheckedCreateNestedOneWithoutEntityInput
   playerDetails?: Prisma.PlayerDetailsUncheckedCreateNestedOneWithoutEntityInput
+  sessionDetails?: Prisma.SessionDetailsUncheckedCreateNestedOneWithoutEntityInput
 }
 
 export type EntityCreateOrConnectWithoutNpcDetailsInput = {
@@ -738,6 +763,7 @@ export type EntityUpdateWithoutNpcDetailsInput = {
   factionDetails?: Prisma.FactionDetailsUpdateOneWithoutEntityNestedInput
   questDetails?: Prisma.QuestDetailsUpdateOneWithoutEntityNestedInput
   playerDetails?: Prisma.PlayerDetailsUpdateOneWithoutEntityNestedInput
+  sessionDetails?: Prisma.SessionDetailsUpdateOneWithoutEntityNestedInput
 }
 
 export type EntityUncheckedUpdateWithoutNpcDetailsInput = {
@@ -754,6 +780,7 @@ export type EntityUncheckedUpdateWithoutNpcDetailsInput = {
   factionDetails?: Prisma.FactionDetailsUncheckedUpdateOneWithoutEntityNestedInput
   questDetails?: Prisma.QuestDetailsUncheckedUpdateOneWithoutEntityNestedInput
   playerDetails?: Prisma.PlayerDetailsUncheckedUpdateOneWithoutEntityNestedInput
+  sessionDetails?: Prisma.SessionDetailsUncheckedUpdateOneWithoutEntityNestedInput
 }
 
 export type EntityCreateWithoutLocationDetailsInput = {
@@ -769,6 +796,7 @@ export type EntityCreateWithoutLocationDetailsInput = {
   factionDetails?: Prisma.FactionDetailsCreateNestedOneWithoutEntityInput
   questDetails?: Prisma.QuestDetailsCreateNestedOneWithoutEntityInput
   playerDetails?: Prisma.PlayerDetailsCreateNestedOneWithoutEntityInput
+  sessionDetails?: Prisma.SessionDetailsCreateNestedOneWithoutEntityInput
 }
 
 export type EntityUncheckedCreateWithoutLocationDetailsInput = {
@@ -785,6 +813,7 @@ export type EntityUncheckedCreateWithoutLocationDetailsInput = {
   factionDetails?: Prisma.FactionDetailsUncheckedCreateNestedOneWithoutEntityInput
   questDetails?: Prisma.QuestDetailsUncheckedCreateNestedOneWithoutEntityInput
   playerDetails?: Prisma.PlayerDetailsUncheckedCreateNestedOneWithoutEntityInput
+  sessionDetails?: Prisma.SessionDetailsUncheckedCreateNestedOneWithoutEntityInput
 }
 
 export type EntityCreateOrConnectWithoutLocationDetailsInput = {
@@ -816,6 +845,7 @@ export type EntityUpdateWithoutLocationDetailsInput = {
   factionDetails?: Prisma.FactionDetailsUpdateOneWithoutEntityNestedInput
   questDetails?: Prisma.QuestDetailsUpdateOneWithoutEntityNestedInput
   playerDetails?: Prisma.PlayerDetailsUpdateOneWithoutEntityNestedInput
+  sessionDetails?: Prisma.SessionDetailsUpdateOneWithoutEntityNestedInput
 }
 
 export type EntityUncheckedUpdateWithoutLocationDetailsInput = {
@@ -832,6 +862,7 @@ export type EntityUncheckedUpdateWithoutLocationDetailsInput = {
   factionDetails?: Prisma.FactionDetailsUncheckedUpdateOneWithoutEntityNestedInput
   questDetails?: Prisma.QuestDetailsUncheckedUpdateOneWithoutEntityNestedInput
   playerDetails?: Prisma.PlayerDetailsUncheckedUpdateOneWithoutEntityNestedInput
+  sessionDetails?: Prisma.SessionDetailsUncheckedUpdateOneWithoutEntityNestedInput
 }
 
 export type EntityCreateWithoutItemDetailsInput = {
@@ -847,6 +878,7 @@ export type EntityCreateWithoutItemDetailsInput = {
   factionDetails?: Prisma.FactionDetailsCreateNestedOneWithoutEntityInput
   questDetails?: Prisma.QuestDetailsCreateNestedOneWithoutEntityInput
   playerDetails?: Prisma.PlayerDetailsCreateNestedOneWithoutEntityInput
+  sessionDetails?: Prisma.SessionDetailsCreateNestedOneWithoutEntityInput
 }
 
 export type EntityUncheckedCreateWithoutItemDetailsInput = {
@@ -863,6 +895,7 @@ export type EntityUncheckedCreateWithoutItemDetailsInput = {
   factionDetails?: Prisma.FactionDetailsUncheckedCreateNestedOneWithoutEntityInput
   questDetails?: Prisma.QuestDetailsUncheckedCreateNestedOneWithoutEntityInput
   playerDetails?: Prisma.PlayerDetailsUncheckedCreateNestedOneWithoutEntityInput
+  sessionDetails?: Prisma.SessionDetailsUncheckedCreateNestedOneWithoutEntityInput
 }
 
 export type EntityCreateOrConnectWithoutItemDetailsInput = {
@@ -894,6 +927,7 @@ export type EntityUpdateWithoutItemDetailsInput = {
   factionDetails?: Prisma.FactionDetailsUpdateOneWithoutEntityNestedInput
   questDetails?: Prisma.QuestDetailsUpdateOneWithoutEntityNestedInput
   playerDetails?: Prisma.PlayerDetailsUpdateOneWithoutEntityNestedInput
+  sessionDetails?: Prisma.SessionDetailsUpdateOneWithoutEntityNestedInput
 }
 
 export type EntityUncheckedUpdateWithoutItemDetailsInput = {
@@ -910,6 +944,7 @@ export type EntityUncheckedUpdateWithoutItemDetailsInput = {
   factionDetails?: Prisma.FactionDetailsUncheckedUpdateOneWithoutEntityNestedInput
   questDetails?: Prisma.QuestDetailsUncheckedUpdateOneWithoutEntityNestedInput
   playerDetails?: Prisma.PlayerDetailsUncheckedUpdateOneWithoutEntityNestedInput
+  sessionDetails?: Prisma.SessionDetailsUncheckedUpdateOneWithoutEntityNestedInput
 }
 
 export type EntityCreateWithoutFactionDetailsInput = {
@@ -925,6 +960,7 @@ export type EntityCreateWithoutFactionDetailsInput = {
   itemDetails?: Prisma.ItemDetailsCreateNestedOneWithoutEntityInput
   questDetails?: Prisma.QuestDetailsCreateNestedOneWithoutEntityInput
   playerDetails?: Prisma.PlayerDetailsCreateNestedOneWithoutEntityInput
+  sessionDetails?: Prisma.SessionDetailsCreateNestedOneWithoutEntityInput
 }
 
 export type EntityUncheckedCreateWithoutFactionDetailsInput = {
@@ -941,6 +977,7 @@ export type EntityUncheckedCreateWithoutFactionDetailsInput = {
   itemDetails?: Prisma.ItemDetailsUncheckedCreateNestedOneWithoutEntityInput
   questDetails?: Prisma.QuestDetailsUncheckedCreateNestedOneWithoutEntityInput
   playerDetails?: Prisma.PlayerDetailsUncheckedCreateNestedOneWithoutEntityInput
+  sessionDetails?: Prisma.SessionDetailsUncheckedCreateNestedOneWithoutEntityInput
 }
 
 export type EntityCreateOrConnectWithoutFactionDetailsInput = {
@@ -972,6 +1009,7 @@ export type EntityUpdateWithoutFactionDetailsInput = {
   itemDetails?: Prisma.ItemDetailsUpdateOneWithoutEntityNestedInput
   questDetails?: Prisma.QuestDetailsUpdateOneWithoutEntityNestedInput
   playerDetails?: Prisma.PlayerDetailsUpdateOneWithoutEntityNestedInput
+  sessionDetails?: Prisma.SessionDetailsUpdateOneWithoutEntityNestedInput
 }
 
 export type EntityUncheckedUpdateWithoutFactionDetailsInput = {
@@ -988,6 +1026,7 @@ export type EntityUncheckedUpdateWithoutFactionDetailsInput = {
   itemDetails?: Prisma.ItemDetailsUncheckedUpdateOneWithoutEntityNestedInput
   questDetails?: Prisma.QuestDetailsUncheckedUpdateOneWithoutEntityNestedInput
   playerDetails?: Prisma.PlayerDetailsUncheckedUpdateOneWithoutEntityNestedInput
+  sessionDetails?: Prisma.SessionDetailsUncheckedUpdateOneWithoutEntityNestedInput
 }
 
 export type EntityCreateWithoutPlayerDetailsInput = {
@@ -1003,6 +1042,7 @@ export type EntityCreateWithoutPlayerDetailsInput = {
   itemDetails?: Prisma.ItemDetailsCreateNestedOneWithoutEntityInput
   factionDetails?: Prisma.FactionDetailsCreateNestedOneWithoutEntityInput
   questDetails?: Prisma.QuestDetailsCreateNestedOneWithoutEntityInput
+  sessionDetails?: Prisma.SessionDetailsCreateNestedOneWithoutEntityInput
 }
 
 export type EntityUncheckedCreateWithoutPlayerDetailsInput = {
@@ -1019,6 +1059,7 @@ export type EntityUncheckedCreateWithoutPlayerDetailsInput = {
   itemDetails?: Prisma.ItemDetailsUncheckedCreateNestedOneWithoutEntityInput
   factionDetails?: Prisma.FactionDetailsUncheckedCreateNestedOneWithoutEntityInput
   questDetails?: Prisma.QuestDetailsUncheckedCreateNestedOneWithoutEntityInput
+  sessionDetails?: Prisma.SessionDetailsUncheckedCreateNestedOneWithoutEntityInput
 }
 
 export type EntityCreateOrConnectWithoutPlayerDetailsInput = {
@@ -1050,6 +1091,7 @@ export type EntityUpdateWithoutPlayerDetailsInput = {
   itemDetails?: Prisma.ItemDetailsUpdateOneWithoutEntityNestedInput
   factionDetails?: Prisma.FactionDetailsUpdateOneWithoutEntityNestedInput
   questDetails?: Prisma.QuestDetailsUpdateOneWithoutEntityNestedInput
+  sessionDetails?: Prisma.SessionDetailsUpdateOneWithoutEntityNestedInput
 }
 
 export type EntityUncheckedUpdateWithoutPlayerDetailsInput = {
@@ -1066,6 +1108,7 @@ export type EntityUncheckedUpdateWithoutPlayerDetailsInput = {
   itemDetails?: Prisma.ItemDetailsUncheckedUpdateOneWithoutEntityNestedInput
   factionDetails?: Prisma.FactionDetailsUncheckedUpdateOneWithoutEntityNestedInput
   questDetails?: Prisma.QuestDetailsUncheckedUpdateOneWithoutEntityNestedInput
+  sessionDetails?: Prisma.SessionDetailsUncheckedUpdateOneWithoutEntityNestedInput
 }
 
 export type EntityCreateWithoutQuestDetailsInput = {
@@ -1081,6 +1124,7 @@ export type EntityCreateWithoutQuestDetailsInput = {
   itemDetails?: Prisma.ItemDetailsCreateNestedOneWithoutEntityInput
   factionDetails?: Prisma.FactionDetailsCreateNestedOneWithoutEntityInput
   playerDetails?: Prisma.PlayerDetailsCreateNestedOneWithoutEntityInput
+  sessionDetails?: Prisma.SessionDetailsCreateNestedOneWithoutEntityInput
 }
 
 export type EntityUncheckedCreateWithoutQuestDetailsInput = {
@@ -1097,6 +1141,7 @@ export type EntityUncheckedCreateWithoutQuestDetailsInput = {
   itemDetails?: Prisma.ItemDetailsUncheckedCreateNestedOneWithoutEntityInput
   factionDetails?: Prisma.FactionDetailsUncheckedCreateNestedOneWithoutEntityInput
   playerDetails?: Prisma.PlayerDetailsUncheckedCreateNestedOneWithoutEntityInput
+  sessionDetails?: Prisma.SessionDetailsUncheckedCreateNestedOneWithoutEntityInput
 }
 
 export type EntityCreateOrConnectWithoutQuestDetailsInput = {
@@ -1128,6 +1173,7 @@ export type EntityUpdateWithoutQuestDetailsInput = {
   itemDetails?: Prisma.ItemDetailsUpdateOneWithoutEntityNestedInput
   factionDetails?: Prisma.FactionDetailsUpdateOneWithoutEntityNestedInput
   playerDetails?: Prisma.PlayerDetailsUpdateOneWithoutEntityNestedInput
+  sessionDetails?: Prisma.SessionDetailsUpdateOneWithoutEntityNestedInput
 }
 
 export type EntityUncheckedUpdateWithoutQuestDetailsInput = {
@@ -1143,6 +1189,89 @@ export type EntityUncheckedUpdateWithoutQuestDetailsInput = {
   locationDetails?: Prisma.LocationDetailsUncheckedUpdateOneWithoutEntityNestedInput
   itemDetails?: Prisma.ItemDetailsUncheckedUpdateOneWithoutEntityNestedInput
   factionDetails?: Prisma.FactionDetailsUncheckedUpdateOneWithoutEntityNestedInput
+  playerDetails?: Prisma.PlayerDetailsUncheckedUpdateOneWithoutEntityNestedInput
+  sessionDetails?: Prisma.SessionDetailsUncheckedUpdateOneWithoutEntityNestedInput
+}
+
+export type EntityCreateWithoutSessionDetailsInput = {
+  type: $Enums.EntityType
+  name: string
+  description?: string | null
+  image?: string | null
+  dmNotes?: string | null
+  playerNotes?: string | null
+  campaign: Prisma.CampaignCreateNestedOneWithoutEntitiesInput
+  npcDetails?: Prisma.NPCDetailsCreateNestedOneWithoutEntityInput
+  locationDetails?: Prisma.LocationDetailsCreateNestedOneWithoutEntityInput
+  itemDetails?: Prisma.ItemDetailsCreateNestedOneWithoutEntityInput
+  factionDetails?: Prisma.FactionDetailsCreateNestedOneWithoutEntityInput
+  questDetails?: Prisma.QuestDetailsCreateNestedOneWithoutEntityInput
+  playerDetails?: Prisma.PlayerDetailsCreateNestedOneWithoutEntityInput
+}
+
+export type EntityUncheckedCreateWithoutSessionDetailsInput = {
+  id?: number
+  campaignId: number
+  type: $Enums.EntityType
+  name: string
+  description?: string | null
+  image?: string | null
+  dmNotes?: string | null
+  playerNotes?: string | null
+  npcDetails?: Prisma.NPCDetailsUncheckedCreateNestedOneWithoutEntityInput
+  locationDetails?: Prisma.LocationDetailsUncheckedCreateNestedOneWithoutEntityInput
+  itemDetails?: Prisma.ItemDetailsUncheckedCreateNestedOneWithoutEntityInput
+  factionDetails?: Prisma.FactionDetailsUncheckedCreateNestedOneWithoutEntityInput
+  questDetails?: Prisma.QuestDetailsUncheckedCreateNestedOneWithoutEntityInput
+  playerDetails?: Prisma.PlayerDetailsUncheckedCreateNestedOneWithoutEntityInput
+}
+
+export type EntityCreateOrConnectWithoutSessionDetailsInput = {
+  where: Prisma.EntityWhereUniqueInput
+  create: Prisma.XOR<Prisma.EntityCreateWithoutSessionDetailsInput, Prisma.EntityUncheckedCreateWithoutSessionDetailsInput>
+}
+
+export type EntityUpsertWithoutSessionDetailsInput = {
+  update: Prisma.XOR<Prisma.EntityUpdateWithoutSessionDetailsInput, Prisma.EntityUncheckedUpdateWithoutSessionDetailsInput>
+  create: Prisma.XOR<Prisma.EntityCreateWithoutSessionDetailsInput, Prisma.EntityUncheckedCreateWithoutSessionDetailsInput>
+  where?: Prisma.EntityWhereInput
+}
+
+export type EntityUpdateToOneWithWhereWithoutSessionDetailsInput = {
+  where?: Prisma.EntityWhereInput
+  data: Prisma.XOR<Prisma.EntityUpdateWithoutSessionDetailsInput, Prisma.EntityUncheckedUpdateWithoutSessionDetailsInput>
+}
+
+export type EntityUpdateWithoutSessionDetailsInput = {
+  type?: Prisma.EnumEntityTypeFieldUpdateOperationsInput | $Enums.EntityType
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dmNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  playerNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  campaign?: Prisma.CampaignUpdateOneRequiredWithoutEntitiesNestedInput
+  npcDetails?: Prisma.NPCDetailsUpdateOneWithoutEntityNestedInput
+  locationDetails?: Prisma.LocationDetailsUpdateOneWithoutEntityNestedInput
+  itemDetails?: Prisma.ItemDetailsUpdateOneWithoutEntityNestedInput
+  factionDetails?: Prisma.FactionDetailsUpdateOneWithoutEntityNestedInput
+  questDetails?: Prisma.QuestDetailsUpdateOneWithoutEntityNestedInput
+  playerDetails?: Prisma.PlayerDetailsUpdateOneWithoutEntityNestedInput
+}
+
+export type EntityUncheckedUpdateWithoutSessionDetailsInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  campaignId?: Prisma.IntFieldUpdateOperationsInput | number
+  type?: Prisma.EnumEntityTypeFieldUpdateOperationsInput | $Enums.EntityType
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dmNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  playerNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  npcDetails?: Prisma.NPCDetailsUncheckedUpdateOneWithoutEntityNestedInput
+  locationDetails?: Prisma.LocationDetailsUncheckedUpdateOneWithoutEntityNestedInput
+  itemDetails?: Prisma.ItemDetailsUncheckedUpdateOneWithoutEntityNestedInput
+  factionDetails?: Prisma.FactionDetailsUncheckedUpdateOneWithoutEntityNestedInput
+  questDetails?: Prisma.QuestDetailsUncheckedUpdateOneWithoutEntityNestedInput
   playerDetails?: Prisma.PlayerDetailsUncheckedUpdateOneWithoutEntityNestedInput
 }
 
@@ -1169,6 +1298,7 @@ export type EntityUpdateWithoutCampaignInput = {
   factionDetails?: Prisma.FactionDetailsUpdateOneWithoutEntityNestedInput
   questDetails?: Prisma.QuestDetailsUpdateOneWithoutEntityNestedInput
   playerDetails?: Prisma.PlayerDetailsUpdateOneWithoutEntityNestedInput
+  sessionDetails?: Prisma.SessionDetailsUpdateOneWithoutEntityNestedInput
 }
 
 export type EntityUncheckedUpdateWithoutCampaignInput = {
@@ -1185,6 +1315,7 @@ export type EntityUncheckedUpdateWithoutCampaignInput = {
   factionDetails?: Prisma.FactionDetailsUncheckedUpdateOneWithoutEntityNestedInput
   questDetails?: Prisma.QuestDetailsUncheckedUpdateOneWithoutEntityNestedInput
   playerDetails?: Prisma.PlayerDetailsUncheckedUpdateOneWithoutEntityNestedInput
+  sessionDetails?: Prisma.SessionDetailsUncheckedUpdateOneWithoutEntityNestedInput
 }
 
 export type EntityUncheckedUpdateManyWithoutCampaignInput = {
@@ -1215,6 +1346,7 @@ export type EntitySelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   factionDetails?: boolean | Prisma.Entity$factionDetailsArgs<ExtArgs>
   questDetails?: boolean | Prisma.Entity$questDetailsArgs<ExtArgs>
   playerDetails?: boolean | Prisma.Entity$playerDetailsArgs<ExtArgs>
+  sessionDetails?: boolean | Prisma.Entity$sessionDetailsArgs<ExtArgs>
 }, ExtArgs["result"]["entity"]>
 
 export type EntitySelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -1261,6 +1393,7 @@ export type EntityInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   factionDetails?: boolean | Prisma.Entity$factionDetailsArgs<ExtArgs>
   questDetails?: boolean | Prisma.Entity$questDetailsArgs<ExtArgs>
   playerDetails?: boolean | Prisma.Entity$playerDetailsArgs<ExtArgs>
+  sessionDetails?: boolean | Prisma.Entity$sessionDetailsArgs<ExtArgs>
 }
 export type EntityIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   campaign?: boolean | Prisma.CampaignDefaultArgs<ExtArgs>
@@ -1279,6 +1412,7 @@ export type $EntityPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
     factionDetails: Prisma.$FactionDetailsPayload<ExtArgs> | null
     questDetails: Prisma.$QuestDetailsPayload<ExtArgs> | null
     playerDetails: Prisma.$PlayerDetailsPayload<ExtArgs> | null
+    sessionDetails: Prisma.$SessionDetailsPayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
@@ -1690,6 +1824,7 @@ export interface Prisma__EntityClient<T, Null = never, ExtArgs extends runtime.T
   factionDetails<T extends Prisma.Entity$factionDetailsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Entity$factionDetailsArgs<ExtArgs>>): Prisma.Prisma__FactionDetailsClient<runtime.Types.Result.GetResult<Prisma.$FactionDetailsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   questDetails<T extends Prisma.Entity$questDetailsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Entity$questDetailsArgs<ExtArgs>>): Prisma.Prisma__QuestDetailsClient<runtime.Types.Result.GetResult<Prisma.$QuestDetailsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   playerDetails<T extends Prisma.Entity$playerDetailsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Entity$playerDetailsArgs<ExtArgs>>): Prisma.Prisma__PlayerDetailsClient<runtime.Types.Result.GetResult<Prisma.$PlayerDetailsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  sessionDetails<T extends Prisma.Entity$sessionDetailsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Entity$sessionDetailsArgs<ExtArgs>>): Prisma.Prisma__SessionDetailsClient<runtime.Types.Result.GetResult<Prisma.$SessionDetailsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2239,6 +2374,25 @@ export type Entity$playerDetailsArgs<ExtArgs extends runtime.Types.Extensions.In
    */
   include?: Prisma.PlayerDetailsInclude<ExtArgs> | null
   where?: Prisma.PlayerDetailsWhereInput
+}
+
+/**
+ * Entity.sessionDetails
+ */
+export type Entity$sessionDetailsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the SessionDetails
+   */
+  select?: Prisma.SessionDetailsSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the SessionDetails
+   */
+  omit?: Prisma.SessionDetailsOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SessionDetailsInclude<ExtArgs> | null
+  where?: Prisma.SessionDetailsWhereInput
 }
 
 /**

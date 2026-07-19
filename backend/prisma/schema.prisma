@@ -36,6 +36,7 @@ model Entity {
   factionDetails  FactionDetails?
   questDetails    QuestDetails?
   playerDetails   PlayerDetails?
+  sessionDetails  SessionDetails?
 }
 
 model NPCDetails {
@@ -105,6 +106,15 @@ model QuestDetails {
   entity Entity @relation(fields: [entityId], references: [id], onDelete: Cascade)
 }
 
+model SessionDetails {
+  id        Int @id @default(autoincrement())
+  entityId  Int @unique
+
+  date        String?
+
+  entity Entity @relation(fields: [entityId], references: [id], onDelete: Cascade)
+}
+
 enum EntityType {
   NPC
   LOCATION
@@ -112,4 +122,5 @@ enum EntityType {
   QUEST
   PLAYER
   FACTION
+  SESSION
 }

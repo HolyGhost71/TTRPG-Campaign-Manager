@@ -43,59 +43,102 @@ export default function EditEntity() {
   const [questGiver, setQuestGiver] = useState("");
   const [questStatus, setQuestStatus] = useState("In progress");
 
+  const [image, setImage] = useState<File | null>(null); // New uploaded file
+  const [imagePreview, setImagePreview] = useState(""); // Existing/new image URL
+
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+
+    if (file) {
+      setImage(file);
+      setImagePreview(URL.createObjectURL(file));
+    }
+  };
+
   const [type] = useState("NPC");
 
   const navigator = useNavigate();
   const params = useParams();
+  const campaignId = useParams().campaignId;
 
   const editEntity = async () => {
-    const payload: any = {
-      campaignId: params.campaignId,
-      type,
-      name,
-      description,
-    };
+    try {
+      const formData = new FormData();
 
-    if (type === "NPC") {
-      payload.npcDetails = {
-        species,
-        age,
-        location,
-        status,
-      };
-    } else if (type === "LOCATION") {
-      payload.locationDetails = {
-        population,
-        ruler,
-        region,
-      };
-    } else if (type === "ITEM") {
-      payload.itemDetails = {
-        owner,
-        rarity,
-      };
-    } else if (type === "FACTION") {
-      payload.factionDetails = {
-        leader,
-      };
-    } else if (type === "PLAYER") {
-      payload.playerDetails = {
-        species,
-        age,
-        location,
-        status,
-        player,
-      };
-    } else if (type === "QUEST") {
-      payload.questDetails = {
-        questGiver,
-        questStatus,
-      };
+      // Common fields
+      formData.append("campaignId", String(campaignId) ?? "");
+      formData.append("type", type);
+      formData.append("name", name);
+      formData.append("description", description ?? "");
+
+      // Image
+      if (image) {
+        formData.append("image", image);
+      }
+
+      // Type-specific details
+      if (type === "NPC") {
+        formData.append(
+          "npcDetails",
+          JSON.stringify({
+            species,
+            age,
+            location,
+            status,
+          }),
+        );
+      } else if (type === "LOCATION") {
+        formData.append(
+          "locationDetails",
+          JSON.stringify({
+            population,
+            ruler,
+            region,
+          }),
+        );
+      } else if (type === "ITEM") {
+        formData.append(
+          "itemDetails",
+          JSON.stringify({
+            owner,
+            rarity,
+          }),
+        );
+      } else if (type === "FACTION") {
+        formData.append(
+          "factionDetails",
+          JSON.stringify({
+            leader,
+          }),
+        );
+      } else if (type === "PLAYER") {
+        formData.append(
+          "playerDetails",
+          JSON.stringify({
+            species,
+            age,
+            location,
+            status,
+            player,
+          }),
+        );
+      } else if (type === "QUEST") {
+        formData.append(
+          "questDetails",
+          JSON.stringify({
+            questGiver,
+            questStatus,
+          }),
+        );
+      }
+
+      await api.put(`/entities/${params.entityId}`, formData);
+
+      navigator(`/campaigns/${params.campaignId}/entities/${params.entityId}`);
+    } catch (err) {
+      console.error(err);
+      alert("Failed to update entity");
     }
-
-    await api.put(`/entities/${params.entityId}`, payload);
-
-    navigator(`/campaigns/${params.campaignId}/entities/${params.entityId}`);
   };
 
   useEffect(() => {
@@ -103,6 +146,9 @@ export default function EditEntity() {
 
     setName(entity.name ?? "");
     setDescription(entity.description ?? "");
+    setImagePreview(
+      entity.image ?? "https://placehold.co/120x120?text=Placeholder",
+    );
 
     switch (entity.type) {
       case "NPC":
@@ -153,12 +199,19 @@ export default function EditEntity() {
           onChange={(e) => setName(e.target.value)}
           className="input-field"
         />
-        <div className="creation-subheading">Description</div>
-        <input
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-          className="input-field"
-        />
+        {entity?.type != "PLAYER" && (
+          <>
+            <div className="creation-subheading">Description</div>
+            <input
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+              className="input-field"
+            />
+          </>
+        )}
+        <input type="file" accept="image/*" onChange={handleImageChange} />
+
+        {imagePreview && <img src={imagePreview} width={150} alt="Preview" />}
       </div>
       {type === "NPC" && (
         <div className="creation-container">

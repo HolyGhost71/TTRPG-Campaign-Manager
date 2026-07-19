@@ -10,9 +10,10 @@ export default function Sessions() {
 
   useEffect(() => {
     api
-      .get(`/campaigns/${campaignId}/entities?type=SESSIOM`)
+      .get(`/campaigns/${campaignId}/entities?type=SESSION`)
       .then((response) => {
         setSessionsArray(response.data);
+        console.log(sessionsArray);
       })
       .catch((err) => {
         console.error(err);
@@ -22,7 +23,6 @@ export default function Sessions() {
   return (
     <>
       <div className="page-heading">Sessions</div>
-      <div>{sessionsArray}</div>
     </>
   );
 }

@@ -391,7 +391,8 @@ export const ModelName = {
   ItemDetails: 'ItemDetails',
   FactionDetails: 'FactionDetails',
   PlayerDetails: 'PlayerDetails',
-  QuestDetails: 'QuestDetails'
+  QuestDetails: 'QuestDetails',
+  SessionDetails: 'SessionDetails'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -407,7 +408,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "campaign" | "entity" | "nPCDetails" | "locationDetails" | "itemDetails" | "factionDetails" | "playerDetails" | "questDetails"
+    modelProps: "campaign" | "entity" | "nPCDetails" | "locationDetails" | "itemDetails" | "factionDetails" | "playerDetails" | "questDetails" | "sessionDetails"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1003,6 +1004,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    SessionDetails: {
+      payload: Prisma.$SessionDetailsPayload<ExtArgs>
+      fields: Prisma.SessionDetailsFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.SessionDetailsFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SessionDetailsPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.SessionDetailsFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SessionDetailsPayload>
+        }
+        findFirst: {
+          args: Prisma.SessionDetailsFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SessionDetailsPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.SessionDetailsFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SessionDetailsPayload>
+        }
+        findMany: {
+          args: Prisma.SessionDetailsFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SessionDetailsPayload>[]
+        }
+        create: {
+          args: Prisma.SessionDetailsCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SessionDetailsPayload>
+        }
+        createMany: {
+          args: Prisma.SessionDetailsCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.SessionDetailsCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SessionDetailsPayload>[]
+        }
+        delete: {
+          args: Prisma.SessionDetailsDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SessionDetailsPayload>
+        }
+        update: {
+          args: Prisma.SessionDetailsUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SessionDetailsPayload>
+        }
+        deleteMany: {
+          args: Prisma.SessionDetailsDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.SessionDetailsUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.SessionDetailsUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SessionDetailsPayload>[]
+        }
+        upsert: {
+          args: Prisma.SessionDetailsUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SessionDetailsPayload>
+        }
+        aggregate: {
+          args: Prisma.SessionDetailsAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateSessionDetails>
+        }
+        groupBy: {
+          args: Prisma.SessionDetailsGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.SessionDetailsGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.SessionDetailsCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.SessionDetailsCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -1130,6 +1205,15 @@ export const QuestDetailsScalarFieldEnum = {
 } as const
 
 export type QuestDetailsScalarFieldEnum = (typeof QuestDetailsScalarFieldEnum)[keyof typeof QuestDetailsScalarFieldEnum]
+
+
+export const SessionDetailsScalarFieldEnum = {
+  id: 'id',
+  entityId: 'entityId',
+  date: 'date'
+} as const
+
+export type SessionDetailsScalarFieldEnum = (typeof SessionDetailsScalarFieldEnum)[keyof typeof SessionDetailsScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -1335,6 +1419,7 @@ export type GlobalOmitConfig = {
   factionDetails?: Prisma.FactionDetailsOmit
   playerDetails?: Prisma.PlayerDetailsOmit
   questDetails?: Prisma.QuestDetailsOmit
+  sessionDetails?: Prisma.SessionDetailsOmit
 }
 
 /* Types for Logging */

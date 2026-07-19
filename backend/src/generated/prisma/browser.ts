@@ -57,3 +57,8 @@ export type PlayerDetails = Prisma.PlayerDetailsModel
  * 
  */
 export type QuestDetails = Prisma.QuestDetailsModel
+/**
+ * Model SessionDetails
+ * 
+ */
+export type SessionDetails = Prisma.SessionDetailsModel

@@ -157,13 +157,16 @@ export default function CreateEntity() {
           onChange={(e) => setName(e.target.value)}
           className="input-field"
         />
-        <div className="creation-subheading">Description</div>
+
         {type != "PLAYER" && (
-          <input
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-            className="input-field"
-          />
+          <>
+            <div className="creation-subheading">Description</div>
+            <input
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+              className="input-field"
+            />
+          </>
         )}
 
         <input type="file" accept="image/*" onChange={handleImageChange} />

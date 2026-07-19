@@ -17,6 +17,7 @@ const prisma = new PrismaClient({
     adapter,
 });
 
+// Dashboard info
 app.use(cors({
   origin: [
     "http://localhost:5173",
@@ -25,6 +26,128 @@ app.use(cors({
 }));
 
 app.use(express.json());
+
+app.get("/campaigns/:id/dashboard", async (req, res) => {
+    const campaignId = Number(req.params.id);
+
+    const campaign = await prisma.campaign.findUnique({
+        where: {
+            id: campaignId
+        }
+    });
+
+    if (!campaign) {
+        return res.status(404).json({
+            message: "Campaign not found"
+        });
+    }
+
+
+    // Get random NPC
+    const npcCount = await prisma.entity.count({
+        where: {
+            campaignId,
+            type: "NPC"
+        }
+    });
+
+
+    let randomNPC = null;
+
+    if (npcCount > 0) {
+        const randomIndex = Math.floor(Math.random() * npcCount);
+
+        const npcs = await prisma.entity.findMany({
+            where: {
+                campaignId,
+                type: "NPC"
+            },
+            include: {
+                npcDetails: true
+            },
+            skip: randomIndex,
+            take: 1
+        });
+
+        randomNPC = npcs[0];
+    }
+
+
+    // Get active quests
+    const quests = await prisma.entity.findMany({
+        where: {
+            campaignId,
+            type: "QUEST",
+            questDetails: {
+                status: "In progress"
+            }
+        },
+        include: {
+            questDetails: true
+        }
+    });
+
+
+    // Get stats
+    const stats = {
+        npcs: await prisma.entity.count({
+            where: {
+                campaignId,
+                type: "NPC"
+            }
+        }),
+
+        locations: await prisma.entity.count({
+            where: {
+                campaignId,
+                type: "LOCATION"
+            }
+        }),
+
+        items: await prisma.entity.count({
+            where: {
+                campaignId,
+                type: "ITEM"
+            }
+        }),
+
+        quests: await prisma.entity.count({
+            where: {
+                campaignId,
+                type: "QUEST"
+            }
+        }),
+
+        pcs: await prisma.entity.count({
+            where: {
+                campaignId,
+                type: "PLAYER"
+            }
+        }),
+
+        factions: await prisma.entity.count({
+            where: {
+                campaignId,
+                type: "FACTION"
+            }
+        }),
+
+        sessions: await prisma.entity.count({
+            where: {
+                campaignId,
+                type: "SESSION"
+            }
+        })
+    };
+
+    res.json({
+        campaign,
+        randomNPC,
+        quests,
+        stats,
+    });
+});
+
 
 // Get campaign by ID with all entities
 app.get("/campaigns/:id/full", async (req, res) => {
@@ -148,6 +271,7 @@ app.get("/campaigns/:id/entities", async (req, res) => {
             factionDetails: true,
             questDetails: true,
             playerDetails: true,
+            sessionDetails: true,
         },
     });
 
@@ -167,6 +291,7 @@ app.get("/entities/:id", async (req, res) => {
             factionDetails: true,
             questDetails: true,
             playerDetails: true,
+            sessionDetails: true,
         },
     });
 
@@ -193,6 +318,7 @@ app.post(
   "factionDetails",
   "playerDetails",
   "questDetails",
+  "sessionDetails",
 ];
 
 jsonFields.forEach((field) => {
@@ -269,6 +395,14 @@ jsonFields.forEach((field) => {
                     }
                 }
                 : undefined,
+
+            sessionDetails: req.body.type === "SESSION"
+                ? {
+                    create: {
+                        date: req.body.sessionDetails.date,
+                    }
+                }
+                : undefined
         },
     });
 
@@ -383,6 +517,17 @@ app.put("/entities/:id", async (req, res) => {
                     });
                 }
                 break;
+
+            case "SESSION":
+                if (req.body.sessionDetails) {
+                    await prisma.sessionDetails.update({
+                        where: { entityId: id },
+                        data: {
+                            date: req.body.sessionDetails.date,
+                        },
+                    });
+                }
+                break;
         }
 
         const updatedEntity = await prisma.entity.findUnique({
@@ -394,6 +539,7 @@ app.put("/entities/:id", async (req, res) => {
                 factionDetails: true,
                 questDetails: true,
                 playerDetails: true,
+                sessionDetails: true,
             },
         });
 

@@ -58,7 +58,8 @@ export const ModelName = {
   ItemDetails: 'ItemDetails',
   FactionDetails: 'FactionDetails',
   PlayerDetails: 'PlayerDetails',
-  QuestDetails: 'QuestDetails'
+  QuestDetails: 'QuestDetails',
+  SessionDetails: 'SessionDetails'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -165,6 +166,15 @@ export const QuestDetailsScalarFieldEnum = {
 } as const
 
 export type QuestDetailsScalarFieldEnum = (typeof QuestDetailsScalarFieldEnum)[keyof typeof QuestDetailsScalarFieldEnum]
+
+
+export const SessionDetailsScalarFieldEnum = {
+  id: 'id',
+  entityId: 'entityId',
+  date: 'date'
+} as const
+
+export type SessionDetailsScalarFieldEnum = (typeof SessionDetailsScalarFieldEnum)[keyof typeof SessionDetailsScalarFieldEnum]
 
 
 export const SortOrder = {

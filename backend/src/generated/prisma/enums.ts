@@ -15,7 +15,8 @@ export const EntityType = {
   ITEM: 'ITEM',
   QUEST: 'QUEST',
   PLAYER: 'PLAYER',
-  FACTION: 'FACTION'
+  FACTION: 'FACTION',
+  SESSION: 'SESSION'
 } as const
 
 export type EntityType = (typeof EntityType)[keyof typeof EntityType]
