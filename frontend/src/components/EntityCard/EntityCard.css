@@ -27,7 +27,31 @@
     gap: 18px;
 }
 
+.campaign-card {
+    background: #22262e;
+    border-radius: 14px;
+    border: 1px solid #363c47;
+    padding: 20px;
+    color: white;
+    width: 70%;
+
+    transition: 0.2s;
+    cursor: pointer;
+
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    justify-self:  center;
+    margin-top: 20px;
+}
+
 .entity-card:hover {
+    transform: translateY(-4px);
+    border-color: #5b8cff;
+    box-shadow: 0 12px 28px rgba(0,0,0,.35);
+}
+
+.campaign-card:hover {
     transform: translateY(-4px);
     border-color: #5b8cff;
     box-shadow: 0 12px 28px rgba(0,0,0,.35);
