@@ -410,10 +410,16 @@ jsonFields.forEach((field) => {
 });
 
 // Update an entity
-app.put("/entities/:id", async (req, res) => {
+app.put(
+    "/entities/:id",
+    upload.single("image"),
+    async (req, res) => {
+
     const id = Number(req.params.id);
-    console.log("Updating entity");
-    console.log(req.body);
+
+    console.log("Updating entity:", id);
+    console.log("Body:", req.body);
+    console.log("File:", req.file);
 
     try {
         const existingEntity = await prisma.entity.findUnique({
@@ -426,19 +432,44 @@ app.put("/entities/:id", async (req, res) => {
             });
         }
 
-        // Update fields common to every entity
+
+        // Convert JSON strings from FormData back into objects
+        const jsonFields = [
+            "npcDetails",
+            "locationDetails",
+            "itemDetails",
+            "factionDetails",
+            "playerDetails",
+            "questDetails",
+            "sessionDetails",
+        ];
+
+        jsonFields.forEach((field) => {
+            if (req.body[field]) {
+                req.body[field] = JSON.parse(req.body[field]);
+            }
+        });
+
+
+        // Update main entity
         await prisma.entity.update({
             where: { id },
             data: {
                 name: req.body.name,
                 description: req.body.description,
-                image: req.body.image,
+
+                // Only replace image if a new one was uploaded
+                image: req.file?.path ?? existingEntity.image,
+
                 dmNotes: req.body.dmNotes,
                 playerNotes: req.body.playerNotes,
             },
         });
 
+
+        // Update related table
         switch (existingEntity.type) {
+
             case "NPC":
                 if (req.body.npcDetails) {
                     await prisma.nPCDetails.update({
@@ -454,18 +485,20 @@ app.put("/entities/:id", async (req, res) => {
                 }
                 break;
 
+
             case "LOCATION":
                 if (req.body.locationDetails) {
                     await prisma.locationDetails.update({
                         where: { entityId: id },
                         data: {
-                            population: req.body.locationDetails.population,
+                            population: Number(req.body.locationDetails.population),
                             ruler: req.body.locationDetails.ruler,
                             region: req.body.locationDetails.region,
                         },
                     });
                 }
                 break;
+
 
             case "ITEM":
                 if (req.body.itemDetails) {
@@ -479,6 +512,7 @@ app.put("/entities/:id", async (req, res) => {
                 }
                 break;
 
+
             case "FACTION":
                 if (req.body.factionDetails) {
                     await prisma.factionDetails.update({
@@ -490,17 +524,6 @@ app.put("/entities/:id", async (req, res) => {
                 }
                 break;
 
-            case "QUEST":
-                if (req.body.questDetails) {
-                    await prisma.questDetails.update({
-                        where: { entityId: id },
-                        data: {
-                            questGiver: req.body.questDetails.questGiver,
-                            status: req.body.questDetails.status
-                        },
-                    });
-                }
-                break;
 
             case "PLAYER":
                 if (req.body.playerDetails) {
@@ -518,6 +541,20 @@ app.put("/entities/:id", async (req, res) => {
                 }
                 break;
 
+
+            case "QUEST":
+                if (req.body.questDetails) {
+                    await prisma.questDetails.update({
+                        where: { entityId: id },
+                        data: {
+                            questGiver: req.body.questDetails.questGiver,
+                            status: req.body.questDetails.status,
+                        },
+                    });
+                }
+                break;
+
+
             case "SESSION":
                 if (req.body.sessionDetails) {
                     await prisma.sessionDetails.update({
@@ -530,6 +567,8 @@ app.put("/entities/:id", async (req, res) => {
                 break;
         }
 
+
+        // Return updated entity
         const updatedEntity = await prisma.entity.findUnique({
             where: { id },
             include: {
@@ -543,13 +582,13 @@ app.put("/entities/:id", async (req, res) => {
             },
         });
 
-        console.log("Updated entity: ");
-        console.log(updatedEntity);
 
         res.json(updatedEntity);
 
+
     } catch (error) {
         console.error(error);
+
         res.status(500).json({
             message: "Failed to update entity",
         });
