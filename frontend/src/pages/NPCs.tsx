@@ -8,7 +8,7 @@ import SmallEntityCard from "../components/EntityCard/SmallEntityCard";
 export default function NPCs() {
   const [npcArray, setNpcArray] = useState<any[]>([]);
   const [sortType, setSortType] = useState("alphabetical");
-  const [isBigCard, setIsBigCard] = useState(true);
+  const [isBigCard, setIsBigCard] = useState(false);
 
   const campaignId = useParams().campaignId;
 
