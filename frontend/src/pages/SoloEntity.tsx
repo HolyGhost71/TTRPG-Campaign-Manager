@@ -31,25 +31,26 @@ export default function SoloEntity() {
       });
   }, []);
 
-  const saveNotes = async (newNotes: any, noteType: string) => {
-    let updatedEntity;
+  const saveNotes = async (newNotes: string, noteType: "DM" | "PLAYER") => {
+    const updatedEntity = {
+      ...entity,
+      dmNotes: noteType === "DM" ? newNotes : entity.dmNotes,
+      playerNotes: noteType === "PLAYER" ? newNotes : entity.playerNotes,
+    };
 
-    if (noteType == "DM") {
-      updatedEntity = {
-        ...entity,
-        dmNotes: newNotes,
-      };
-    } else if (noteType == "PLAYER") {
-      updatedEntity = {
-        ...entity,
-        playerNotes: newNotes,
-      };
-    }
+    const formData = new FormData();
 
-    console.log("Updating entity. New entity: ");
-    console.log(updatedEntity);
+    Object.entries(updatedEntity).forEach(([key, value]) => {
+      if (value == null) return;
 
-    await api.put(`/entities/${entity.id}`, updatedEntity);
+      if (typeof value === "object" && !(value instanceof File)) {
+        formData.append(key, JSON.stringify(value));
+      } else {
+        formData.append(key, String(value));
+      }
+    });
+
+    await api.put(`/entities/${entity.id}`, formData);
   };
 
   return (
