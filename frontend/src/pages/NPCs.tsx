@@ -1,4 +1,4 @@
-import { useEffect, useState, type SetStateAction } from "react";
+import { useEffect, useState } from "react";
 
 import api from "../api/api";
 import EntityCard from "../components/EntityCard/EntityCard";
