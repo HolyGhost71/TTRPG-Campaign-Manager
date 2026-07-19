@@ -59,19 +59,16 @@ export default function EditEntity() {
 
   const navigator = useNavigate();
   const params = useParams();
-  const campaignId = useParams().campaignId;
 
   const editEntity = async () => {
     try {
       const formData = new FormData();
 
       // Common fields
-      formData.append("campaignId", String(campaignId) ?? "");
-      formData.append("type", type);
       formData.append("name", name);
       formData.append("description", description ?? "");
 
-      // Image
+      // Image (only if a new one was selected)
       if (image) {
         formData.append("image", image);
       }
@@ -127,16 +124,23 @@ export default function EditEntity() {
           "questDetails",
           JSON.stringify({
             questGiver,
-            questStatus,
+            status: questStatus,
           }),
         );
       }
 
-      await api.put(`/entities/${params.entityId}`, formData);
+      const response = await api.put(`/entities/${params.entityId}`, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+
+      console.log("Updated entity:", response.data);
 
       navigator(`/campaigns/${params.campaignId}/entities/${params.entityId}`);
-    } catch (err) {
-      console.error(err);
+    } catch (err: any) {
+      console.error(err.response?.data || err.message);
+
       alert("Failed to update entity");
     }
   };
