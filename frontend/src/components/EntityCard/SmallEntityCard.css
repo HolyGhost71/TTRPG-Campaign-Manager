@@ -1,28 +1,28 @@
-.entity-grid {
+.entity-grid-small {
     display: grid;
     gap: 24px;
     padding: 20px;
 }
 
-.entity-card:hover {
+.entity-card-small:hover {
     transform: translateY(-4px);
     border-color: #5b8cff;
     box-shadow: 0 12px 28px rgba(0,0,0,.35);
 }
 
-.campaign-card:hover {
+.campaign-card-small:hover {
     transform: translateY(-4px);
     border-color: #5b8cff;
     box-shadow: 0 12px 28px rgba(0,0,0,.35);
 }
 
-.entity-header {
+.entity-header-small {
     display: flex;
     gap: 18px;
     align-items: center;
 }
 
-.entity-image img {
+.entity-image-small img {
     width: 60px;
     height: 60px;
     border-radius: 50%;
@@ -30,22 +30,22 @@
     border: 2px solid #5b8cff;
 }
 
-.entity-title {
+.entity-title-small {
     flex: 1;
 }
 
-.entity-title h2 {
+.entity-title-small h2 {
     margin: 0;
     font-size: 1.4rem;
 }
 
-.entity-info {
+.entity-info-small {
     display: flex;
     flex-direction: column;
     gap: 10px;
 }
 
-.entity-description {
+.entity-description-small {
     color: #d0d0d0;
     line-height: 1.5;
     font-size: .9rem;

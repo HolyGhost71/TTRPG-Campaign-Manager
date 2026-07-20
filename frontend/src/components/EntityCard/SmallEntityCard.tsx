@@ -12,28 +12,28 @@ const SmallEntityCard = (props: any) => {
       className="entity-card"
       onClick={() => navigate(`/campaigns/${campaignID}/entities/${entity.id}`)}
     >
-      <div className="entity-header">
-        <div className="entity-image">
+      <div className="entity-header-small">
+        <div className="entity-image-small">
           {entity.image ? (
             <img
               src={entity.image}
               alt={entity.name}
-              className="entity-image"
+              className="entity-image-small"
             />
           ) : (
             <img
               src="https://placehold.co/120x120?text=Placeholder"
               alt="No image"
-              className="entity-image"
+              className="entity-image-small"
             />
           )}
         </div>
         <div>
-          <div className="entity-title">
+          <div className="entity-title-small">
             <h2>{entity.name}</h2>
           </div>
           {!entity.playerDetails && (
-            <div className="entity-description">
+            <div className="entity-description-small">
               {entity.description || "No description available."}
             </div>
           )}

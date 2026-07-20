@@ -70,7 +70,6 @@ export default function NPCs() {
             checked={isBigCard}
             onChange={(e) => setIsBigCard(e.target.checked)}
           />
-          Large Cards
         </label>
       </div>
 

@@ -55,7 +55,7 @@ export default function Locations() {
 
   return (
     <>
-      <div className="page-heading">NPCs</div>
+      <div className="page-heading">Locations</div>
       <div>
         <div className="page-body">Sort by</div>
         <select
@@ -74,7 +74,6 @@ export default function Locations() {
             checked={isBigCard}
             onChange={(e) => setIsBigCard(e.target.checked)}
           />
-          Large Cards
         </label>
       </div>
 
