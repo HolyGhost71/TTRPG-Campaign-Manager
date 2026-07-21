@@ -23,7 +23,7 @@ export default function CampaignSelect() {
 
   return (
     <>
-      <div className="cs-page-heading">Campaign Select</div>;
+      <div className="cs-page-heading">Campaign Select</div>
       <div className="entity-list">
         {campaigns.map((campaign) => (
           <CampaignCard
