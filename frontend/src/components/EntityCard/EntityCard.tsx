@@ -79,6 +79,20 @@ const EntityCard = (props: any) => {
           </>
         );
 
+      case "QUEST":
+        return (
+          <>
+            <div className="info-row">
+              <span className="label">Quest Giver</span>
+              <span>{entity.questDetails?.questGiver ?? "Unknown"}</span>
+            </div>
+            <div className="info-row">
+              <span className="label">Status</span>
+              <span>{entity.questDetails?.status ?? "Unknown"}</span>
+            </div>
+          </>
+        );
+
       case "PLAYER":
         return (
           <>

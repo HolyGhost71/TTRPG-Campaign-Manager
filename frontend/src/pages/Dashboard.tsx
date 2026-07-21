@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import api from "../api/api";
 import { useParams } from "react-router-dom";
+import EntityCard from "../components/EntityCard/EntityCard";
+import SmallEntityCard from "../components/EntityCard/SmallEntityCard";
 
 export default function Dashboard() {
   const { campaignId } = useParams();
@@ -23,7 +25,16 @@ export default function Dashboard() {
       <div className="page-heading">
         {campaign?.campaign.name || "My Campaign"}
       </div>
-      <div className="page-subheading">{campaign?.campaign.description}</div>
+      <div className="page-large-body">{campaign?.campaign.description}</div>
+
+      <div className="page-subheading">Random NPC</div>
+      <div style={{ margin: 20 }}>
+        <SmallEntityCard
+          key={campaign?.randomNPC}
+          entity={campaign?.randomNPC}
+        />
+      </div>
+
       <div className="page-subheading">Stats</div>
       <div className="page-body">{`Number of Player Characters: ${campaign?.stats.pcs}`}</div>
       <div className="page-body">{`Number of NPCS: ${campaign?.stats.npcs}`}</div>
