@@ -109,7 +109,7 @@ export default function CreateEntity() {
           "questDetails",
           JSON.stringify({
             questGiver,
-            questStatus,
+            status: questStatus,
           }),
         );
       }
@@ -293,11 +293,14 @@ export default function CreateEntity() {
             className="input-field"
           />
           <div className="creation-subheading">Quest Status</div>
-          <input
+          <select
+            className="input-field"
             value={questStatus}
             onChange={(e) => setQuestStatus(e.target.value)}
-            className="input-field"
-          />
+          >
+            <option value="In progress">In progress</option>
+            <option value="Completed">Completed</option>
+          </select>
         </div>
       )}
       <button onClick={createEntity} className="button">

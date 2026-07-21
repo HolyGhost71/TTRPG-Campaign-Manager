@@ -32,6 +32,14 @@ body{
   padding-top: 10px;
 }
 
+.page-large-body {
+  font-size: 22px;
+  color: white;
+  padding-left: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
 .page-body {
   font-size: 18px;
   color: white;

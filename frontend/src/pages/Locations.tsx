@@ -64,8 +64,8 @@ export default function Locations() {
           onChange={(e) => changeSort(e.target.value)}
         >
           <option value="alphabetical">A-Z</option>
-          <option value="location">Region</option>
-          <option value="status">Population</option>
+          <option value="region">Region</option>
+          <option value="population">Population</option>
         </select>
         <div className="page-body">Toggle card info</div>
         <label style={{ marginLeft: 20, marginTop: 5, marginBottom: 0 }}>

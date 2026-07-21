@@ -14,19 +14,20 @@ const SmallEntityCard = (props: any) => {
     >
       <div className="entity-header-small">
         <div className="entity-image-small">
-          {entity.image ? (
-            <img
-              src={entity.image}
-              alt={entity.name}
-              className="entity-image-small"
-            />
-          ) : (
-            <img
-              src="https://placehold.co/120x120?text=Placeholder"
-              alt="No image"
-              className="entity-image-small"
-            />
-          )}
+          {entity.type !== "QUEST" &&
+            (entity.image ? (
+              <img
+                src={entity.image}
+                alt={entity.name}
+                className="entity-image-small"
+              />
+            ) : (
+              <img
+                src="https://placehold.co/120x120?text=Placeholder"
+                alt="No image"
+                className="entity-image-small"
+              />
+            ))}
         </div>
         <div>
           <div className="entity-title-small">

@@ -55,7 +55,7 @@ export default function EditEntity() {
     }
   };
 
-  const [type] = useState("NPC");
+  const [type, setType] = useState("");
 
   const navigator = useNavigate();
   const params = useParams();
@@ -153,6 +153,7 @@ export default function EditEntity() {
     setImagePreview(
       entity.image ?? "https://placehold.co/120x120?text=Placeholder",
     );
+    setType(entity.type);
 
     switch (entity.type) {
       case "NPC":
@@ -187,7 +188,7 @@ export default function EditEntity() {
 
       case "QUEST":
         setQuestGiver(entity.questDetails?.questGiver ?? "");
-        setQuestStatus(entity.questDetails?.questStatus ?? "In progress");
+        setQuestStatus(entity.questDetails?.status ?? "");
         break;
     }
   }, [entity]);
@@ -217,7 +218,7 @@ export default function EditEntity() {
 
         {imagePreview && <img src={imagePreview} width={150} alt="Preview" />}
       </div>
-      {type === "NPC" && (
+      {entity?.type === "NPC" && (
         <div className="creation-container">
           <div className="creation-subheading">Species</div>
           <input
@@ -279,7 +280,7 @@ export default function EditEntity() {
           />
         </div>
       )}
-      {type === "LOCATION" && (
+      {entity?.type === "LOCATION" && (
         <div className="creation-container">
           <div className="creation-subheading">Population</div>
           <input
@@ -302,7 +303,7 @@ export default function EditEntity() {
           />
         </div>
       )}
-      {type === "ITEM" && (
+      {entity?.type === "ITEM" && (
         <div className="creation-container">
           <div className="creation-subheading">Owner</div>
           <input
@@ -318,7 +319,7 @@ export default function EditEntity() {
           />
         </div>
       )}
-      {type === "FACTION" && (
+      {entity?.type === "FACTION" && (
         <div className="creation-container">
           <div className="creation-subheading">Leader</div>
           <input
@@ -328,7 +329,7 @@ export default function EditEntity() {
           />
         </div>
       )}
-      {type === "QUEST" && (
+      {entity?.type === "QUEST" && (
         <div className="creation-container">
           <div className="creation-subheading">Quest Giver</div>
           <input
@@ -337,11 +338,14 @@ export default function EditEntity() {
             className="input-field"
           />
           <div className="creation-subheading">Quest Status</div>
-          <input
+          <select
+            className="input-field"
             value={questStatus}
             onChange={(e) => setQuestStatus(e.target.value)}
-            className="input-field"
-          />
+          >
+            <option value="In progress">In progress</option>
+            <option value="Completed">Completed</option>
+          </select>
         </div>
       )}
       <button onClick={editEntity} className="button">
