@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import api from "../api/api";
 import { useParams } from "react-router-dom";
-import EntityCard from "../components/EntityCard/EntityCard";
 import SmallEntityCard from "../components/EntityCard/SmallEntityCard";
 
 export default function Dashboard() {
