@@ -28,10 +28,12 @@ export default function Dashboard() {
 
       <div className="page-subheading">Random NPC</div>
       <div style={{ margin: 20 }}>
-        <SmallEntityCard
-          key={campaign?.randomNPC}
-          entity={campaign?.randomNPC}
-        />
+        {campaign?.randomNPC && (
+          <SmallEntityCard
+            key={campaign.randomNPC.id}
+            entity={campaign.randomNPC}
+          />
+        )}
       </div>
 
       <div className="page-subheading">Stats</div>
