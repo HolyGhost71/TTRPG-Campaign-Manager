@@ -7,3 +7,30 @@
     justify-content: center;
     padding-top: 30px;
 }
+.popup {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 100%;
+    min-height: 200px;
+
+    font-size: 2rem;
+    font-weight: bold;
+    color: white;
+
+    text-align: center;
+}
+
+.dots::after {
+    content: "";
+    animation: dots 1.5s steps(4, end) infinite;
+}
+
+@keyframes dots {
+    0%   { content: ""; }
+    25%  { content: "."; }
+    50%  { content: ".."; }
+    75%  { content: "..."; }
+    100% { content: ""; }
+}
