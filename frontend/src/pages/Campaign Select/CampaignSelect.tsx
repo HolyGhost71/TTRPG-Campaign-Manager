@@ -33,7 +33,11 @@ export default function CampaignSelect() {
         <div className="popup">No campaigns found.</div>
       ) : (
         campaigns.map((campaign) => (
-          <CampaignCard key={campaign.id} campaign={campaign} />
+          <CampaignCard
+            key={campaign.id}
+            campaign={campaign}
+            campaignID={campaign.id}
+          />
         ))
       )}
     </>
