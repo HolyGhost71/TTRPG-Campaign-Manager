@@ -19,7 +19,8 @@ body{
 .page-heading {
     font-size: 64px;
     font-weight: bold;
-    padding-left: 20px;
+    padding-left: 5px;
+    padding-top: 10px;
     color: #ffffff;
     text-decoration: underline;
 }
@@ -28,22 +29,22 @@ body{
   font-size: 32px;
   color: white;
   font-weight: bold;
-  padding-left: 20px;
+  padding-left: 5px;
   padding-top: 10px;
 }
 
 .page-large-body {
   font-size: 22px;
   color: white;
-  padding-left: 20px;
+  padding-left: 5px;
   padding-top: 10px;
   padding-bottom: 10px;
 }
 
 .page-body {
   font-size: 18px;
+  padding-left: 5px;
   color: white;
-  padding-left: 20px;
   padding-top: 5px;
 }
 
@@ -59,8 +60,8 @@ body{
 }
 
 .notes-box {
-  padding: 12px;
   border-radius: 10px;
+  padding-bottom: 10px;
   color: #f2f2f2;
   width: 50%;
   margin-left: 7px;
@@ -185,4 +186,33 @@ body{
 .button svg {
   width: 16px;
   height: 16px;
+}
+
+.app-layout {
+    display:flex;
+    min-height:100vh;
+}
+
+
+.main-content {
+    flex:1;
+    transition:0.3s ease;
+}
+
+@media (max-width: 768px) {
+
+  .entity-card-wrapper {
+    position: static;
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    margin: 20px 0;
+  }
+
+  .notes-box {
+    width: calc(100% - 14px);
+  }
 }
