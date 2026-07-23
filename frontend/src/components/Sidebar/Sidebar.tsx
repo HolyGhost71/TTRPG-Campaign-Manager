@@ -27,6 +27,13 @@ const Sidebar = ({ collapsed, setCollapsed }: SidebarProps) => {
       });
   }, [campaignId]);
 
+  // Ensures that sidebar closes on mobile but stays open on web
+  const closeSidebarIfMobile = () => {
+    if (window.innerWidth <= 768) {
+      setCollapsed(true);
+    }
+  };
+
   return (
     <>
       <button
@@ -48,6 +55,7 @@ const Sidebar = ({ collapsed, setCollapsed }: SidebarProps) => {
                           ? `/campaigns/${campaignId}`
                           : `/campaigns/${campaignId}/${item.path}`
                       }
+                      onClick={closeSidebarIfMobile}
                     >
                       {item.icon}
                       <span>{item.title}</span>
@@ -71,6 +79,7 @@ const Sidebar = ({ collapsed, setCollapsed }: SidebarProps) => {
             <button
               className="creation-button"
               onClick={() => {
+                closeSidebarIfMobile();
                 navigator(`/campaigns/${campaignId}/create-entity`);
               }}
             >
@@ -79,6 +88,7 @@ const Sidebar = ({ collapsed, setCollapsed }: SidebarProps) => {
             <button
               className="creation-button"
               onClick={() => {
+                closeSidebarIfMobile();
                 navigator(`/campaigns/`);
               }}
             >
