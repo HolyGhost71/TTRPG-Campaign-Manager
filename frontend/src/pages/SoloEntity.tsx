@@ -55,20 +55,7 @@ export default function SoloEntity() {
 
   return (
     <div className="solo-entity-page">
-      <div className="page-content">
-        <div className="page-heading">{entity?.name}</div>
-        <div className="page-subheading">DM Notes</div>
-        <EditableNotes
-          initialValue={entity?.dmNotes}
-          onSave={(value) => saveNotes(value, "DM")}
-        />
-
-        <div className="page-subheading">Player Notes</div>
-        <EditableNotes
-          initialValue={entity?.playerNotes}
-          onSave={(value) => saveNotes(value, "PLAYER")}
-        />
-      </div>
+      <div className="page-heading">{entity?.name}</div>
 
       <div className="entity-card-wrapper">
         <EntityCard entity={entity ?? {}} />
@@ -76,6 +63,18 @@ export default function SoloEntity() {
           Edit
         </button>
       </div>
+
+      <div className="page-subheading">DM Notes</div>
+      <EditableNotes
+        initialValue={entity?.dmNotes}
+        onSave={(value) => saveNotes(value, "DM")}
+      />
+
+      <div className="page-subheading">Player Notes</div>
+      <EditableNotes
+        initialValue={entity?.playerNotes}
+        onSave={(value) => saveNotes(value, "PLAYER")}
+      />
     </div>
   );
 }

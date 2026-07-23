@@ -54,17 +54,13 @@ export default function NPCs() {
       <div className="page-heading">NPCs</div>
       <div>
         <div className="page-body">Sort by</div>
-        <select
-          style={{ marginLeft: 20, marginTop: 5, marginBottom: 0 }}
-          value={sortType}
-          onChange={(e) => changeSort(e.target.value)}
-        >
+        <select value={sortType} onChange={(e) => changeSort(e.target.value)}>
           <option value="alphabetical">A-Z</option>
           <option value="location">Location</option>
           <option value="status">Status</option>
         </select>
         <div className="page-body">Toggle card info</div>
-        <label style={{ marginLeft: 20, marginTop: 5, marginBottom: 0 }}>
+        <label>
           <input
             type="checkbox"
             checked={isBigCard}
