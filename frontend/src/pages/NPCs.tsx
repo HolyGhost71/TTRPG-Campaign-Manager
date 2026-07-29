@@ -35,9 +35,15 @@ export default function NPCs() {
     }
     if (type === "location") {
       setNpcArray(
-        [...npcArray].sort((a, b) =>
-          a.npcDetails.location.localeCompare(b.npcDetails.location),
-        ),
+        [...npcArray].sort((a, b) => {
+          const locA = a.npcDetails.location?.name;
+          const locB = b.npcDetails.location?.name;
+
+          if (!locA) return 1;
+          if (!locB) return -1;
+
+          return locA.localeCompare(locB);
+        }),
       );
     }
     if (type === "status") {

@@ -275,7 +275,81 @@ app.get("/campaigns/:id/entities", async (req, res) => {
         },
     });
 
-    res.json(entities);
+    const populatedEntities = await Promise.all(
+    entities.map(async (entity) => {
+
+        let location = null;
+        let faction = null;
+
+        // NPC location/faction
+        if (entity.type === "NPC" && entity.npcDetails) {
+
+            if (entity.npcDetails.locationId) {
+                location = await prisma.entity.findUnique({
+                    where: {
+                        id: entity.npcDetails.locationId
+                    },
+                    select: {
+                        id: true,
+                        name: true
+                    }
+                });
+            }
+
+            if (entity.npcDetails.factionId) {
+                faction = await prisma.entity.findUnique({
+                    where: {
+                        id: entity.npcDetails.factionId
+                    },
+                    select: {
+                        id: true,
+                        name: true
+                    }
+                });
+            }
+
+            return {
+                ...entity,
+                npcDetails: {
+                    ...entity.npcDetails,
+                    location,
+                    faction
+                }
+            };
+        }
+
+
+        // PLAYER location
+        if (entity.type === "PLAYER" && entity.playerDetails) {
+
+            if (entity.playerDetails.locationId) {
+                location = await prisma.entity.findUnique({
+                    where: {
+                        id: entity.playerDetails.locationId
+                    },
+                    select: {
+                        id: true,
+                        name: true
+                    }
+                });
+            }
+
+            return {
+                ...entity,
+                playerDetails: {
+                    ...entity.playerDetails,
+                    location
+                }
+            };
+        }
+
+
+        return entity;
+    })
+);
+
+
+res.json(populatedEntities);
 });
 
 // Get one entity by ID
@@ -301,7 +375,64 @@ app.get("/entities/:id", async (req, res) => {
         });
     }
 
-    res.json(entity);
+    let location = null;
+let faction = null;
+
+if (entity.npcDetails?.locationId) {
+    location = await prisma.entity.findUnique({
+        where: {
+            id: entity.npcDetails.locationId,
+        },
+        select: {
+            id: true,
+            name: true,
+        },
+    });
+}
+
+if (entity.npcDetails?.factionId) {
+    faction = await prisma.entity.findUnique({
+        where: {
+            id: entity.npcDetails.factionId,
+        },
+        select: {
+            id: true,
+            name: true,
+        },
+    });
+}
+
+// Player location
+if (entity.playerDetails?.locationId) {
+    location = await prisma.entity.findUnique({
+        where: {
+            id: entity.playerDetails.locationId,
+        },
+        select: {
+            id: true,
+            name: true,
+        },
+    });
+}
+
+    res.json({
+    ...entity,
+
+    npcDetails: entity.npcDetails
+        ? {
+            ...entity.npcDetails,
+            location,
+            faction,
+        }
+        : null,
+
+    playerDetails: entity.playerDetails
+        ? {
+            ...entity.playerDetails,
+            location,
+        }
+        : null,
+});
 });
 
 // Create an entitiy
@@ -340,9 +471,10 @@ jsonFields.forEach((field) => {
                     create: {
                         species: req.body.npcDetails.species,
                         age: req.body.npcDetails.age,
-                        location: req.body.npcDetails.location,
                         status: req.body.npcDetails.status,
                         appearance: req.body.npcDetails.appearance,
+                        locationId: req.body.npcDetails.locationId,
+            factionId: req.body.npcDetails.factionId,
                     }
                 }
                 : undefined,
@@ -379,10 +511,10 @@ jsonFields.forEach((field) => {
                     create: {
                         species: req.body.playerDetails.species,
                         age: req.body.playerDetails.age,
-                        location: req.body.playerDetails.location,
                         status: req.body.playerDetails.status,
                         appearance: req.body.playerDetails.appearance,
                         player: req.body.playerDetails.player,
+                        locationId: req.body.playerDetails.locationId,
                     }
                 }
                 : undefined,
@@ -476,10 +608,11 @@ app.put(
                         where: { entityId: id },
                         data: {
                             species: req.body.npcDetails.species,
-                            location: req.body.npcDetails.location,
                             age: req.body.npcDetails.age,
                             status: req.body.npcDetails.status,
                             appearance: req.body.npcDetails.appearance,
+                            locationId: req.body.npcDetails.locationId,
+                            factionId: req.body.npcDetails.factionId,
                         },
                     });
                 }
@@ -531,11 +664,11 @@ app.put(
                         where: { entityId: id },
                         data: {
                             species: req.body.playerDetails.species,
-                            location: req.body.playerDetails.location,
                             age: req.body.playerDetails.age,
                             status: req.body.playerDetails.status,
                             appearance: req.body.playerDetails.appearance,
                             player: req.body.playerDetails.player,
+                            locationId: req.body.playerDetails.locationId,
                         },
                     });
                 }

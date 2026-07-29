@@ -20,7 +20,12 @@ const EntityCard = (props: any) => {
 
             <div className="info-row">
               <span className="label">Location</span>
-              <span>{entity.npcDetails?.location ?? "Unknown"}</span>
+              <span>{entity.npcDetails.location?.name ?? "Unknown"}</span>
+            </div>
+
+            <div className="info-row">
+              <span className="label">Faction</span>
+              <span>{entity.npcDetails.faction?.name ?? "None"}</span>
             </div>
 
             <div className="info-row">
@@ -104,6 +109,11 @@ const EntityCard = (props: any) => {
             <div className="info-row">
               <span className="label">Species</span>
               <span>{entity.playerDetails?.species ?? "Unknown"}</span>
+            </div>
+
+            <div className="info-row">
+              <span className="label">Location</span>
+              <span>{entity.location?.name ?? "Unknown"}</span>
             </div>
 
             <div className="info-row">

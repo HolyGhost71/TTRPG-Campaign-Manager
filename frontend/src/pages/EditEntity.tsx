@@ -2,6 +2,11 @@ import { useEffect, useState } from "react";
 import api from "../api/api";
 import { useNavigate, useParams } from "react-router-dom";
 
+interface EntityReference {
+  id: number;
+  name: string;
+}
+
 export default function EditEntity() {
   const [entity, setEntity] = useState<any>(null);
 
@@ -23,7 +28,13 @@ export default function EditEntity() {
   // NPC / PC
   const [age, setAge] = useState("");
   const [status, setStatus] = useState("Alive");
-  const [location, setLocation] = useState("");
+
+  const [locations, setLocations] = useState<EntityReference[]>([]);
+  const [factions, setFactions] = useState<EntityReference[]>([]);
+
+  const [locationId, setLocationId] = useState<number | "">("");
+  const [factionId, setFactionId] = useState<number | "">("");
+
   const [species, setSpecies] = useState("");
   const [player, setPlayer] = useState("");
 
@@ -80,8 +91,9 @@ export default function EditEntity() {
           JSON.stringify({
             species,
             age,
-            location,
             status,
+            locationId: locationId === "" ? null : locationId,
+            factionId: factionId === "" ? null : factionId,
           }),
         );
       } else if (type === "LOCATION") {
@@ -114,7 +126,7 @@ export default function EditEntity() {
           JSON.stringify({
             species,
             age,
-            location,
+            locationId: locationId === "" ? null : locationId,
             status,
             player,
           }),
@@ -146,6 +158,18 @@ export default function EditEntity() {
   };
 
   useEffect(() => {
+    if (!params.campaignId) return;
+
+    api
+      .get(`/campaigns/${params.campaignId}/entities?type=LOCATION`)
+      .then((res) => setLocations(res.data));
+
+    api
+      .get(`/campaigns/${params.campaignId}/entities?type=FACTION`)
+      .then((res) => setFactions(res.data));
+  }, [params.campaignId]);
+
+  useEffect(() => {
     if (!entity) return;
 
     setName(entity.name ?? "");
@@ -159,16 +183,21 @@ export default function EditEntity() {
       case "NPC":
         setSpecies(entity.npcDetails?.species ?? "");
         setAge(entity.npcDetails?.age ?? "");
-        setLocation(entity.npcDetails?.location ?? "");
         setStatus(entity.npcDetails?.status ?? "");
+
+        setLocationId(entity.npcDetails?.locationId ?? "");
+        setFactionId(entity.npcDetails?.factionId ?? "");
+
         break;
 
       case "PLAYER":
         setSpecies(entity.playerDetails?.species ?? "");
         setAge(entity.playerDetails?.age ?? "");
-        setLocation(entity.playerDetails?.location ?? "");
         setStatus(entity.playerDetails?.status ?? "");
         setPlayer(entity.playerDetails?.player ?? "");
+
+        setLocationId(entity.playerDetails?.locationId ?? "");
+
         break;
 
       case "LOCATION":
@@ -227,11 +256,38 @@ export default function EditEntity() {
             className="input-field"
           />
           <div className="creation-subheading">Location</div>
-          <input
-            value={location}
-            onChange={(e) => setLocation(e.target.value)}
+          <select
+            value={locationId}
+            onChange={(e) =>
+              setLocationId(e.target.value === "" ? "" : Number(e.target.value))
+            }
             className="input-field"
-          />
+          >
+            <option value="">Unknown</option>
+
+            {locations.map((location) => (
+              <option key={location.id} value={location.id}>
+                {location.name}
+              </option>
+            ))}
+          </select>
+          <div className="creation-subheading">Faction</div>
+
+          <select
+            value={factionId}
+            onChange={(e) =>
+              setFactionId(e.target.value === "" ? "" : Number(e.target.value))
+            }
+            className="input-field"
+          >
+            <option value="">None</option>
+
+            {factions.map((faction) => (
+              <option key={faction.id} value={faction.id}>
+                {faction.name}
+              </option>
+            ))}
+          </select>
           <div className="creation-subheading">Age</div>
           <input
             value={age}
@@ -255,11 +311,21 @@ export default function EditEntity() {
             className="input-field"
           />
           <div className="creation-subheading">Location</div>
-          <input
-            value={location}
-            onChange={(e) => setLocation(e.target.value)}
+          <select
+            value={locationId}
+            onChange={(e) =>
+              setLocationId(e.target.value === "" ? "" : Number(e.target.value))
+            }
             className="input-field"
-          />
+          >
+            <option value="">Unknown</option>
+
+            {locations.map((location) => (
+              <option key={location.id} value={location.id}>
+                {location.name}
+              </option>
+            ))}
+          </select>
           <div className="creation-subheading">Age</div>
           <input
             value={age}

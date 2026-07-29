@@ -29,41 +29,51 @@ export type AggregateNPCDetails = {
 export type NPCDetailsAvgAggregateOutputType = {
   id: number | null
   entityId: number | null
+  locationId: number | null
+  factionId: number | null
 }
 
 export type NPCDetailsSumAggregateOutputType = {
   id: number | null
   entityId: number | null
+  locationId: number | null
+  factionId: number | null
 }
 
 export type NPCDetailsMinAggregateOutputType = {
   id: number | null
   entityId: number | null
   species: string | null
-  location: string | null
   age: string | null
   status: string | null
   appearance: string | null
+  location: string | null
+  locationId: number | null
+  factionId: number | null
 }
 
 export type NPCDetailsMaxAggregateOutputType = {
   id: number | null
   entityId: number | null
   species: string | null
-  location: string | null
   age: string | null
   status: string | null
   appearance: string | null
+  location: string | null
+  locationId: number | null
+  factionId: number | null
 }
 
 export type NPCDetailsCountAggregateOutputType = {
   id: number
   entityId: number
   species: number
-  location: number
   age: number
   status: number
   appearance: number
+  location: number
+  locationId: number
+  factionId: number
   _all: number
 }
 
@@ -71,41 +81,51 @@ export type NPCDetailsCountAggregateOutputType = {
 export type NPCDetailsAvgAggregateInputType = {
   id?: true
   entityId?: true
+  locationId?: true
+  factionId?: true
 }
 
 export type NPCDetailsSumAggregateInputType = {
   id?: true
   entityId?: true
+  locationId?: true
+  factionId?: true
 }
 
 export type NPCDetailsMinAggregateInputType = {
   id?: true
   entityId?: true
   species?: true
-  location?: true
   age?: true
   status?: true
   appearance?: true
+  location?: true
+  locationId?: true
+  factionId?: true
 }
 
 export type NPCDetailsMaxAggregateInputType = {
   id?: true
   entityId?: true
   species?: true
-  location?: true
   age?: true
   status?: true
   appearance?: true
+  location?: true
+  locationId?: true
+  factionId?: true
 }
 
 export type NPCDetailsCountAggregateInputType = {
   id?: true
   entityId?: true
   species?: true
-  location?: true
   age?: true
   status?: true
   appearance?: true
+  location?: true
+  locationId?: true
+  factionId?: true
   _all?: true
 }
 
@@ -199,10 +219,12 @@ export type NPCDetailsGroupByOutputType = {
   id: number
   entityId: number
   species: string | null
-  location: string | null
   age: string | null
   status: string | null
   appearance: string | null
+  location: string | null
+  locationId: number | null
+  factionId: number | null
   _count: NPCDetailsCountAggregateOutputType | null
   _avg: NPCDetailsAvgAggregateOutputType | null
   _sum: NPCDetailsSumAggregateOutputType | null
@@ -232,10 +254,12 @@ export type NPCDetailsWhereInput = {
   id?: Prisma.IntFilter<"NPCDetails"> | number
   entityId?: Prisma.IntFilter<"NPCDetails"> | number
   species?: Prisma.StringNullableFilter<"NPCDetails"> | string | null
-  location?: Prisma.StringNullableFilter<"NPCDetails"> | string | null
   age?: Prisma.StringNullableFilter<"NPCDetails"> | string | null
   status?: Prisma.StringNullableFilter<"NPCDetails"> | string | null
   appearance?: Prisma.StringNullableFilter<"NPCDetails"> | string | null
+  location?: Prisma.StringNullableFilter<"NPCDetails"> | string | null
+  locationId?: Prisma.IntNullableFilter<"NPCDetails"> | number | null
+  factionId?: Prisma.IntNullableFilter<"NPCDetails"> | number | null
   entity?: Prisma.XOR<Prisma.EntityScalarRelationFilter, Prisma.EntityWhereInput>
 }
 
@@ -243,10 +267,12 @@ export type NPCDetailsOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   entityId?: Prisma.SortOrder
   species?: Prisma.SortOrderInput | Prisma.SortOrder
-  location?: Prisma.SortOrderInput | Prisma.SortOrder
   age?: Prisma.SortOrderInput | Prisma.SortOrder
   status?: Prisma.SortOrderInput | Prisma.SortOrder
   appearance?: Prisma.SortOrderInput | Prisma.SortOrder
+  location?: Prisma.SortOrderInput | Prisma.SortOrder
+  locationId?: Prisma.SortOrderInput | Prisma.SortOrder
+  factionId?: Prisma.SortOrderInput | Prisma.SortOrder
   entity?: Prisma.EntityOrderByWithRelationInput
 }
 
@@ -257,10 +283,12 @@ export type NPCDetailsWhereUniqueInput = Prisma.AtLeast<{
   OR?: Prisma.NPCDetailsWhereInput[]
   NOT?: Prisma.NPCDetailsWhereInput | Prisma.NPCDetailsWhereInput[]
   species?: Prisma.StringNullableFilter<"NPCDetails"> | string | null
-  location?: Prisma.StringNullableFilter<"NPCDetails"> | string | null
   age?: Prisma.StringNullableFilter<"NPCDetails"> | string | null
   status?: Prisma.StringNullableFilter<"NPCDetails"> | string | null
   appearance?: Prisma.StringNullableFilter<"NPCDetails"> | string | null
+  location?: Prisma.StringNullableFilter<"NPCDetails"> | string | null
+  locationId?: Prisma.IntNullableFilter<"NPCDetails"> | number | null
+  factionId?: Prisma.IntNullableFilter<"NPCDetails"> | number | null
   entity?: Prisma.XOR<Prisma.EntityScalarRelationFilter, Prisma.EntityWhereInput>
 }, "id" | "entityId">
 
@@ -268,10 +296,12 @@ export type NPCDetailsOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   entityId?: Prisma.SortOrder
   species?: Prisma.SortOrderInput | Prisma.SortOrder
-  location?: Prisma.SortOrderInput | Prisma.SortOrder
   age?: Prisma.SortOrderInput | Prisma.SortOrder
   status?: Prisma.SortOrderInput | Prisma.SortOrder
   appearance?: Prisma.SortOrderInput | Prisma.SortOrder
+  location?: Prisma.SortOrderInput | Prisma.SortOrder
+  locationId?: Prisma.SortOrderInput | Prisma.SortOrder
+  factionId?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.NPCDetailsCountOrderByAggregateInput
   _avg?: Prisma.NPCDetailsAvgOrderByAggregateInput
   _max?: Prisma.NPCDetailsMaxOrderByAggregateInput
@@ -286,18 +316,22 @@ export type NPCDetailsScalarWhereWithAggregatesInput = {
   id?: Prisma.IntWithAggregatesFilter<"NPCDetails"> | number
   entityId?: Prisma.IntWithAggregatesFilter<"NPCDetails"> | number
   species?: Prisma.StringNullableWithAggregatesFilter<"NPCDetails"> | string | null
-  location?: Prisma.StringNullableWithAggregatesFilter<"NPCDetails"> | string | null
   age?: Prisma.StringNullableWithAggregatesFilter<"NPCDetails"> | string | null
   status?: Prisma.StringNullableWithAggregatesFilter<"NPCDetails"> | string | null
   appearance?: Prisma.StringNullableWithAggregatesFilter<"NPCDetails"> | string | null
+  location?: Prisma.StringNullableWithAggregatesFilter<"NPCDetails"> | string | null
+  locationId?: Prisma.IntNullableWithAggregatesFilter<"NPCDetails"> | number | null
+  factionId?: Prisma.IntNullableWithAggregatesFilter<"NPCDetails"> | number | null
 }
 
 export type NPCDetailsCreateInput = {
   species?: string | null
-  location?: string | null
   age?: string | null
   status?: string | null
   appearance?: string | null
+  location?: string | null
+  locationId?: number | null
+  factionId?: number | null
   entity: Prisma.EntityCreateNestedOneWithoutNpcDetailsInput
 }
 
@@ -305,18 +339,22 @@ export type NPCDetailsUncheckedCreateInput = {
   id?: number
   entityId: number
   species?: string | null
-  location?: string | null
   age?: string | null
   status?: string | null
   appearance?: string | null
+  location?: string | null
+  locationId?: number | null
+  factionId?: number | null
 }
 
 export type NPCDetailsUpdateInput = {
   species?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   age?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   appearance?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  locationId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  factionId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   entity?: Prisma.EntityUpdateOneRequiredWithoutNpcDetailsNestedInput
 }
 
@@ -324,38 +362,46 @@ export type NPCDetailsUncheckedUpdateInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   entityId?: Prisma.IntFieldUpdateOperationsInput | number
   species?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   age?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   appearance?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  locationId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  factionId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 export type NPCDetailsCreateManyInput = {
   id?: number
   entityId: number
   species?: string | null
-  location?: string | null
   age?: string | null
   status?: string | null
   appearance?: string | null
+  location?: string | null
+  locationId?: number | null
+  factionId?: number | null
 }
 
 export type NPCDetailsUpdateManyMutationInput = {
   species?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   age?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   appearance?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  locationId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  factionId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 export type NPCDetailsUncheckedUpdateManyInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   entityId?: Prisma.IntFieldUpdateOperationsInput | number
   species?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   age?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   appearance?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  locationId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  factionId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 export type NPCDetailsNullableScalarRelationFilter = {
@@ -367,40 +413,50 @@ export type NPCDetailsCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   entityId?: Prisma.SortOrder
   species?: Prisma.SortOrder
-  location?: Prisma.SortOrder
   age?: Prisma.SortOrder
   status?: Prisma.SortOrder
   appearance?: Prisma.SortOrder
+  location?: Prisma.SortOrder
+  locationId?: Prisma.SortOrder
+  factionId?: Prisma.SortOrder
 }
 
 export type NPCDetailsAvgOrderByAggregateInput = {
   id?: Prisma.SortOrder
   entityId?: Prisma.SortOrder
+  locationId?: Prisma.SortOrder
+  factionId?: Prisma.SortOrder
 }
 
 export type NPCDetailsMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   entityId?: Prisma.SortOrder
   species?: Prisma.SortOrder
-  location?: Prisma.SortOrder
   age?: Prisma.SortOrder
   status?: Prisma.SortOrder
   appearance?: Prisma.SortOrder
+  location?: Prisma.SortOrder
+  locationId?: Prisma.SortOrder
+  factionId?: Prisma.SortOrder
 }
 
 export type NPCDetailsMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   entityId?: Prisma.SortOrder
   species?: Prisma.SortOrder
-  location?: Prisma.SortOrder
   age?: Prisma.SortOrder
   status?: Prisma.SortOrder
   appearance?: Prisma.SortOrder
+  location?: Prisma.SortOrder
+  locationId?: Prisma.SortOrder
+  factionId?: Prisma.SortOrder
 }
 
 export type NPCDetailsSumOrderByAggregateInput = {
   id?: Prisma.SortOrder
   entityId?: Prisma.SortOrder
+  locationId?: Prisma.SortOrder
+  factionId?: Prisma.SortOrder
 }
 
 export type NPCDetailsCreateNestedOneWithoutEntityInput = {
@@ -435,21 +491,33 @@ export type NPCDetailsUncheckedUpdateOneWithoutEntityNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.NPCDetailsUpdateToOneWithWhereWithoutEntityInput, Prisma.NPCDetailsUpdateWithoutEntityInput>, Prisma.NPCDetailsUncheckedUpdateWithoutEntityInput>
 }
 
+export type NullableIntFieldUpdateOperationsInput = {
+  set?: number | null
+  increment?: number
+  decrement?: number
+  multiply?: number
+  divide?: number
+}
+
 export type NPCDetailsCreateWithoutEntityInput = {
   species?: string | null
-  location?: string | null
   age?: string | null
   status?: string | null
   appearance?: string | null
+  location?: string | null
+  locationId?: number | null
+  factionId?: number | null
 }
 
 export type NPCDetailsUncheckedCreateWithoutEntityInput = {
   id?: number
   species?: string | null
-  location?: string | null
   age?: string | null
   status?: string | null
   appearance?: string | null
+  location?: string | null
+  locationId?: number | null
+  factionId?: number | null
 }
 
 export type NPCDetailsCreateOrConnectWithoutEntityInput = {
@@ -470,19 +538,23 @@ export type NPCDetailsUpdateToOneWithWhereWithoutEntityInput = {
 
 export type NPCDetailsUpdateWithoutEntityInput = {
   species?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   age?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   appearance?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  locationId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  factionId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 export type NPCDetailsUncheckedUpdateWithoutEntityInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   species?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   age?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   appearance?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  locationId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  factionId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 
@@ -491,10 +563,12 @@ export type NPCDetailsSelect<ExtArgs extends runtime.Types.Extensions.InternalAr
   id?: boolean
   entityId?: boolean
   species?: boolean
-  location?: boolean
   age?: boolean
   status?: boolean
   appearance?: boolean
+  location?: boolean
+  locationId?: boolean
+  factionId?: boolean
   entity?: boolean | Prisma.EntityDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["nPCDetails"]>
 
@@ -502,10 +576,12 @@ export type NPCDetailsSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Ex
   id?: boolean
   entityId?: boolean
   species?: boolean
-  location?: boolean
   age?: boolean
   status?: boolean
   appearance?: boolean
+  location?: boolean
+  locationId?: boolean
+  factionId?: boolean
   entity?: boolean | Prisma.EntityDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["nPCDetails"]>
 
@@ -513,10 +589,12 @@ export type NPCDetailsSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Ex
   id?: boolean
   entityId?: boolean
   species?: boolean
-  location?: boolean
   age?: boolean
   status?: boolean
   appearance?: boolean
+  location?: boolean
+  locationId?: boolean
+  factionId?: boolean
   entity?: boolean | Prisma.EntityDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["nPCDetails"]>
 
@@ -524,13 +602,15 @@ export type NPCDetailsSelectScalar = {
   id?: boolean
   entityId?: boolean
   species?: boolean
-  location?: boolean
   age?: boolean
   status?: boolean
   appearance?: boolean
+  location?: boolean
+  locationId?: boolean
+  factionId?: boolean
 }
 
-export type NPCDetailsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "entityId" | "species" | "location" | "age" | "status" | "appearance", ExtArgs["result"]["nPCDetails"]>
+export type NPCDetailsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "entityId" | "species" | "age" | "status" | "appearance" | "location" | "locationId" | "factionId", ExtArgs["result"]["nPCDetails"]>
 export type NPCDetailsInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   entity?: boolean | Prisma.EntityDefaultArgs<ExtArgs>
 }
@@ -550,10 +630,12 @@ export type $NPCDetailsPayload<ExtArgs extends runtime.Types.Extensions.Internal
     id: number
     entityId: number
     species: string | null
-    location: string | null
     age: string | null
     status: string | null
     appearance: string | null
+    location: string | null
+    locationId: number | null
+    factionId: number | null
   }, ExtArgs["result"]["nPCDetails"]>
   composites: {}
 }
@@ -981,10 +1063,12 @@ export interface NPCDetailsFieldRefs {
   readonly id: Prisma.FieldRef<"NPCDetails", 'Int'>
   readonly entityId: Prisma.FieldRef<"NPCDetails", 'Int'>
   readonly species: Prisma.FieldRef<"NPCDetails", 'String'>
-  readonly location: Prisma.FieldRef<"NPCDetails", 'String'>
   readonly age: Prisma.FieldRef<"NPCDetails", 'String'>
   readonly status: Prisma.FieldRef<"NPCDetails", 'String'>
   readonly appearance: Prisma.FieldRef<"NPCDetails", 'String'>
+  readonly location: Prisma.FieldRef<"NPCDetails", 'String'>
+  readonly locationId: Prisma.FieldRef<"NPCDetails", 'Int'>
+  readonly factionId: Prisma.FieldRef<"NPCDetails", 'Int'>
 }
     
 
