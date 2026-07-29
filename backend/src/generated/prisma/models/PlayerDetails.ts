@@ -29,11 +29,13 @@ export type AggregatePlayerDetails = {
 export type PlayerDetailsAvgAggregateOutputType = {
   id: number | null
   entityId: number | null
+  locationId: number | null
 }
 
 export type PlayerDetailsSumAggregateOutputType = {
   id: number | null
   entityId: number | null
+  locationId: number | null
 }
 
 export type PlayerDetailsMinAggregateOutputType = {
@@ -45,6 +47,7 @@ export type PlayerDetailsMinAggregateOutputType = {
   status: string | null
   appearance: string | null
   player: string | null
+  locationId: number | null
 }
 
 export type PlayerDetailsMaxAggregateOutputType = {
@@ -56,6 +59,7 @@ export type PlayerDetailsMaxAggregateOutputType = {
   status: string | null
   appearance: string | null
   player: string | null
+  locationId: number | null
 }
 
 export type PlayerDetailsCountAggregateOutputType = {
@@ -67,6 +71,7 @@ export type PlayerDetailsCountAggregateOutputType = {
   status: number
   appearance: number
   player: number
+  locationId: number
   _all: number
 }
 
@@ -74,11 +79,13 @@ export type PlayerDetailsCountAggregateOutputType = {
 export type PlayerDetailsAvgAggregateInputType = {
   id?: true
   entityId?: true
+  locationId?: true
 }
 
 export type PlayerDetailsSumAggregateInputType = {
   id?: true
   entityId?: true
+  locationId?: true
 }
 
 export type PlayerDetailsMinAggregateInputType = {
@@ -90,6 +97,7 @@ export type PlayerDetailsMinAggregateInputType = {
   status?: true
   appearance?: true
   player?: true
+  locationId?: true
 }
 
 export type PlayerDetailsMaxAggregateInputType = {
@@ -101,6 +109,7 @@ export type PlayerDetailsMaxAggregateInputType = {
   status?: true
   appearance?: true
   player?: true
+  locationId?: true
 }
 
 export type PlayerDetailsCountAggregateInputType = {
@@ -112,6 +121,7 @@ export type PlayerDetailsCountAggregateInputType = {
   status?: true
   appearance?: true
   player?: true
+  locationId?: true
   _all?: true
 }
 
@@ -210,6 +220,7 @@ export type PlayerDetailsGroupByOutputType = {
   status: string | null
   appearance: string | null
   player: string | null
+  locationId: number | null
   _count: PlayerDetailsCountAggregateOutputType | null
   _avg: PlayerDetailsAvgAggregateOutputType | null
   _sum: PlayerDetailsSumAggregateOutputType | null
@@ -244,6 +255,7 @@ export type PlayerDetailsWhereInput = {
   status?: Prisma.StringNullableFilter<"PlayerDetails"> | string | null
   appearance?: Prisma.StringNullableFilter<"PlayerDetails"> | string | null
   player?: Prisma.StringNullableFilter<"PlayerDetails"> | string | null
+  locationId?: Prisma.IntNullableFilter<"PlayerDetails"> | number | null
   entity?: Prisma.XOR<Prisma.EntityScalarRelationFilter, Prisma.EntityWhereInput>
 }
 
@@ -256,6 +268,7 @@ export type PlayerDetailsOrderByWithRelationInput = {
   status?: Prisma.SortOrderInput | Prisma.SortOrder
   appearance?: Prisma.SortOrderInput | Prisma.SortOrder
   player?: Prisma.SortOrderInput | Prisma.SortOrder
+  locationId?: Prisma.SortOrderInput | Prisma.SortOrder
   entity?: Prisma.EntityOrderByWithRelationInput
 }
 
@@ -271,6 +284,7 @@ export type PlayerDetailsWhereUniqueInput = Prisma.AtLeast<{
   status?: Prisma.StringNullableFilter<"PlayerDetails"> | string | null
   appearance?: Prisma.StringNullableFilter<"PlayerDetails"> | string | null
   player?: Prisma.StringNullableFilter<"PlayerDetails"> | string | null
+  locationId?: Prisma.IntNullableFilter<"PlayerDetails"> | number | null
   entity?: Prisma.XOR<Prisma.EntityScalarRelationFilter, Prisma.EntityWhereInput>
 }, "id" | "entityId">
 
@@ -283,6 +297,7 @@ export type PlayerDetailsOrderByWithAggregationInput = {
   status?: Prisma.SortOrderInput | Prisma.SortOrder
   appearance?: Prisma.SortOrderInput | Prisma.SortOrder
   player?: Prisma.SortOrderInput | Prisma.SortOrder
+  locationId?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.PlayerDetailsCountOrderByAggregateInput
   _avg?: Prisma.PlayerDetailsAvgOrderByAggregateInput
   _max?: Prisma.PlayerDetailsMaxOrderByAggregateInput
@@ -302,6 +317,7 @@ export type PlayerDetailsScalarWhereWithAggregatesInput = {
   status?: Prisma.StringNullableWithAggregatesFilter<"PlayerDetails"> | string | null
   appearance?: Prisma.StringNullableWithAggregatesFilter<"PlayerDetails"> | string | null
   player?: Prisma.StringNullableWithAggregatesFilter<"PlayerDetails"> | string | null
+  locationId?: Prisma.IntNullableWithAggregatesFilter<"PlayerDetails"> | number | null
 }
 
 export type PlayerDetailsCreateInput = {
@@ -311,6 +327,7 @@ export type PlayerDetailsCreateInput = {
   status?: string | null
   appearance?: string | null
   player?: string | null
+  locationId?: number | null
   entity: Prisma.EntityCreateNestedOneWithoutPlayerDetailsInput
 }
 
@@ -323,6 +340,7 @@ export type PlayerDetailsUncheckedCreateInput = {
   status?: string | null
   appearance?: string | null
   player?: string | null
+  locationId?: number | null
 }
 
 export type PlayerDetailsUpdateInput = {
@@ -332,6 +350,7 @@ export type PlayerDetailsUpdateInput = {
   status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   appearance?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   player?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  locationId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   entity?: Prisma.EntityUpdateOneRequiredWithoutPlayerDetailsNestedInput
 }
 
@@ -344,6 +363,7 @@ export type PlayerDetailsUncheckedUpdateInput = {
   status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   appearance?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   player?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  locationId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 export type PlayerDetailsCreateManyInput = {
@@ -355,6 +375,7 @@ export type PlayerDetailsCreateManyInput = {
   status?: string | null
   appearance?: string | null
   player?: string | null
+  locationId?: number | null
 }
 
 export type PlayerDetailsUpdateManyMutationInput = {
@@ -364,6 +385,7 @@ export type PlayerDetailsUpdateManyMutationInput = {
   status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   appearance?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   player?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  locationId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 export type PlayerDetailsUncheckedUpdateManyInput = {
@@ -375,6 +397,7 @@ export type PlayerDetailsUncheckedUpdateManyInput = {
   status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   appearance?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   player?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  locationId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 export type PlayerDetailsNullableScalarRelationFilter = {
@@ -391,11 +414,13 @@ export type PlayerDetailsCountOrderByAggregateInput = {
   status?: Prisma.SortOrder
   appearance?: Prisma.SortOrder
   player?: Prisma.SortOrder
+  locationId?: Prisma.SortOrder
 }
 
 export type PlayerDetailsAvgOrderByAggregateInput = {
   id?: Prisma.SortOrder
   entityId?: Prisma.SortOrder
+  locationId?: Prisma.SortOrder
 }
 
 export type PlayerDetailsMaxOrderByAggregateInput = {
@@ -407,6 +432,7 @@ export type PlayerDetailsMaxOrderByAggregateInput = {
   status?: Prisma.SortOrder
   appearance?: Prisma.SortOrder
   player?: Prisma.SortOrder
+  locationId?: Prisma.SortOrder
 }
 
 export type PlayerDetailsMinOrderByAggregateInput = {
@@ -418,11 +444,13 @@ export type PlayerDetailsMinOrderByAggregateInput = {
   status?: Prisma.SortOrder
   appearance?: Prisma.SortOrder
   player?: Prisma.SortOrder
+  locationId?: Prisma.SortOrder
 }
 
 export type PlayerDetailsSumOrderByAggregateInput = {
   id?: Prisma.SortOrder
   entityId?: Prisma.SortOrder
+  locationId?: Prisma.SortOrder
 }
 
 export type PlayerDetailsCreateNestedOneWithoutEntityInput = {
@@ -464,6 +492,7 @@ export type PlayerDetailsCreateWithoutEntityInput = {
   status?: string | null
   appearance?: string | null
   player?: string | null
+  locationId?: number | null
 }
 
 export type PlayerDetailsUncheckedCreateWithoutEntityInput = {
@@ -474,6 +503,7 @@ export type PlayerDetailsUncheckedCreateWithoutEntityInput = {
   status?: string | null
   appearance?: string | null
   player?: string | null
+  locationId?: number | null
 }
 
 export type PlayerDetailsCreateOrConnectWithoutEntityInput = {
@@ -499,6 +529,7 @@ export type PlayerDetailsUpdateWithoutEntityInput = {
   status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   appearance?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   player?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  locationId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 export type PlayerDetailsUncheckedUpdateWithoutEntityInput = {
@@ -509,6 +540,7 @@ export type PlayerDetailsUncheckedUpdateWithoutEntityInput = {
   status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   appearance?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   player?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  locationId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 
@@ -522,6 +554,7 @@ export type PlayerDetailsSelect<ExtArgs extends runtime.Types.Extensions.Interna
   status?: boolean
   appearance?: boolean
   player?: boolean
+  locationId?: boolean
   entity?: boolean | Prisma.EntityDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["playerDetails"]>
 
@@ -534,6 +567,7 @@ export type PlayerDetailsSelectCreateManyAndReturn<ExtArgs extends runtime.Types
   status?: boolean
   appearance?: boolean
   player?: boolean
+  locationId?: boolean
   entity?: boolean | Prisma.EntityDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["playerDetails"]>
 
@@ -546,6 +580,7 @@ export type PlayerDetailsSelectUpdateManyAndReturn<ExtArgs extends runtime.Types
   status?: boolean
   appearance?: boolean
   player?: boolean
+  locationId?: boolean
   entity?: boolean | Prisma.EntityDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["playerDetails"]>
 
@@ -558,9 +593,10 @@ export type PlayerDetailsSelectScalar = {
   status?: boolean
   appearance?: boolean
   player?: boolean
+  locationId?: boolean
 }
 
-export type PlayerDetailsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "entityId" | "species" | "location" | "age" | "status" | "appearance" | "player", ExtArgs["result"]["playerDetails"]>
+export type PlayerDetailsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "entityId" | "species" | "location" | "age" | "status" | "appearance" | "player" | "locationId", ExtArgs["result"]["playerDetails"]>
 export type PlayerDetailsInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   entity?: boolean | Prisma.EntityDefaultArgs<ExtArgs>
 }
@@ -585,6 +621,7 @@ export type $PlayerDetailsPayload<ExtArgs extends runtime.Types.Extensions.Inter
     status: string | null
     appearance: string | null
     player: string | null
+    locationId: number | null
   }, ExtArgs["result"]["playerDetails"]>
   composites: {}
 }
@@ -1017,6 +1054,7 @@ export interface PlayerDetailsFieldRefs {
   readonly status: Prisma.FieldRef<"PlayerDetails", 'String'>
   readonly appearance: Prisma.FieldRef<"PlayerDetails", 'String'>
   readonly player: Prisma.FieldRef<"PlayerDetails", 'String'>
+  readonly locationId: Prisma.FieldRef<"PlayerDetails", 'Int'>
 }
     
 

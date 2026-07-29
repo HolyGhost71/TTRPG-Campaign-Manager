@@ -5,7 +5,7 @@ import EntityCard from "../components/EntityCard/EntityCard";
 import { useParams } from "react-router-dom";
 
 export default function Factions() {
-  const [factionArray, setFactionArray] = useState<any[]>([]);
+  const [faction, setFactionArray] = useState<any[]>([]);
 
   const campaignId = useParams().campaignId;
 
@@ -24,7 +24,7 @@ export default function Factions() {
     <>
       <div className="page-heading">Factions</div>
       <div className="entity-grid">
-        {factionArray.map((entity) => (
+        {faction.map((entity) => (
           <EntityCard key={entity.id} entity={entity} />
         ))}
       </div>

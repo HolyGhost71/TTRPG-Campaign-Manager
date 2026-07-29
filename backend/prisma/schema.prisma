@@ -44,10 +44,14 @@ model NPCDetails {
   entityId    Int      @unique
 
   species     String?
-  location    String?
   age         String?
   status      String?
   appearance  String?
+
+  location    String?
+
+  locationId Int?
+  factionId Int?
 
   entity Entity @relation(fields: [entityId], references: [id], onDelete: Cascade)
 }
@@ -92,6 +96,7 @@ model PlayerDetails {
   status      String?
   appearance  String?
   player      String?
+  locationId Int?
 
   entity Entity @relation(fields: [entityId], references: [id], onDelete: Cascade)
 }

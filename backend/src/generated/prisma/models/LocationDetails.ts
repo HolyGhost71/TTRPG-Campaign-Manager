@@ -397,14 +397,6 @@ export type LocationDetailsUncheckedUpdateOneWithoutEntityNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.LocationDetailsUpdateToOneWithWhereWithoutEntityInput, Prisma.LocationDetailsUpdateWithoutEntityInput>, Prisma.LocationDetailsUncheckedUpdateWithoutEntityInput>
 }
 
-export type NullableIntFieldUpdateOperationsInput = {
-  set?: number | null
-  increment?: number
-  decrement?: number
-  multiply?: number
-  divide?: number
-}
-
 export type LocationDetailsCreateWithoutEntityInput = {
   population?: number | null
   ruler?: string | null

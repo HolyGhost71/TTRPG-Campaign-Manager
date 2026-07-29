@@ -1144,10 +1144,12 @@ export const NPCDetailsScalarFieldEnum = {
   id: 'id',
   entityId: 'entityId',
   species: 'species',
-  location: 'location',
   age: 'age',
   status: 'status',
-  appearance: 'appearance'
+  appearance: 'appearance',
+  location: 'location',
+  locationId: 'locationId',
+  factionId: 'factionId'
 } as const
 
 export type NPCDetailsScalarFieldEnum = (typeof NPCDetailsScalarFieldEnum)[keyof typeof NPCDetailsScalarFieldEnum]
@@ -1191,7 +1193,8 @@ export const PlayerDetailsScalarFieldEnum = {
   age: 'age',
   status: 'status',
   appearance: 'appearance',
-  player: 'player'
+  player: 'player',
+  locationId: 'locationId'
 } as const
 
 export type PlayerDetailsScalarFieldEnum = (typeof PlayerDetailsScalarFieldEnum)[keyof typeof PlayerDetailsScalarFieldEnum]

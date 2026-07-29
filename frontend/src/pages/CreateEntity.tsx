@@ -1,6 +1,11 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import api from "../api/api";
 import { useNavigate, useParams } from "react-router-dom";
+
+interface Entity {
+  id: number;
+  name: string;
+}
 
 export default function CreateEntity() {
   // All
@@ -10,7 +15,6 @@ export default function CreateEntity() {
   // NPC / PC
   const [age, setAge] = useState("");
   const [status, setStatus] = useState("Alive");
-  const [location, setLocation] = useState("");
   const [species, setSpecies] = useState("");
   const [player, setPlayer] = useState("");
 
@@ -43,6 +47,22 @@ export default function CreateEntity() {
   const navigator = useNavigate();
   const campaignId = useParams().campaignId;
 
+  const [locations, setLocations] = useState<Entity[]>([]);
+  const [factions, setFactions] = useState<Entity[]>([]);
+
+  const [locationId, setLocationId] = useState<number | "">("");
+  const [factionId, setFactionId] = useState<number | "">("");
+
+  useEffect(() => {
+    api
+      .get(`/campaigns/${campaignId}/entities?type=LOCATION`)
+      .then((res) => setLocations(res.data));
+
+    api
+      .get(`/campaigns/${campaignId}/entities?type=FACTION`)
+      .then((res) => setFactions(res.data));
+  }, []);
+
   const createEntity = async () => {
     try {
       const formData = new FormData();
@@ -65,8 +85,9 @@ export default function CreateEntity() {
           JSON.stringify({
             species,
             age,
-            location,
             status,
+            locationId: locationId === "" ? null : locationId,
+            factionId: factionId === "" ? null : factionId,
           }),
         );
       } else if (type === "LOCATION") {
@@ -99,9 +120,9 @@ export default function CreateEntity() {
           JSON.stringify({
             species,
             age,
-            location,
             status,
             player,
+            locationId: locationId === "" ? null : locationId,
           }),
         );
       } else if (type === "QUEST") {
@@ -182,11 +203,37 @@ export default function CreateEntity() {
             className="input-field"
           />
           <div className="creation-subheading">Location</div>
-          <input
-            value={location}
-            onChange={(e) => setLocation(e.target.value)}
+          <select
+            value={locationId}
+            onChange={(e) =>
+              setLocationId(e.target.value === "" ? "" : Number(e.target.value))
+            }
             className="input-field"
-          />
+          >
+            <option value="">Unknown</option>
+
+            {locations.map((location) => (
+              <option key={location.id} value={location.id}>
+                {location.name}
+              </option>
+            ))}
+          </select>
+          <div className="creation-subheading">Faction</div>
+          <select
+            value={factionId}
+            onChange={(e) =>
+              setFactionId(e.target.value === "" ? "" : Number(e.target.value))
+            }
+            className="input-field"
+          >
+            <option value="">Unknown</option>
+
+            {factions.map((faction) => (
+              <option key={faction.id} value={faction.id}>
+                {faction.name}
+              </option>
+            ))}
+          </select>
           <div className="creation-subheading">Age</div>
           <input
             value={age}
@@ -210,11 +257,21 @@ export default function CreateEntity() {
             className="input-field"
           />
           <div className="creation-subheading">Location</div>
-          <input
-            value={location}
-            onChange={(e) => setLocation(e.target.value)}
+          <select
+            value={locationId}
+            onChange={(e) =>
+              setLocationId(e.target.value === "" ? "" : Number(e.target.value))
+            }
             className="input-field"
-          />
+          >
+            <option value="">Unknown</option>
+
+            {locations.map((location) => (
+              <option key={location.id} value={location.id}>
+                {location.name}
+              </option>
+            ))}
+          </select>
           <div className="creation-subheading">Age</div>
           <input
             value={age}
