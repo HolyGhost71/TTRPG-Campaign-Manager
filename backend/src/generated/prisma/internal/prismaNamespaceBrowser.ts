@@ -52,14 +52,14 @@ export const AnyNull = runtime.AnyNull
 
 export const ModelName = {
   Campaign: 'Campaign',
+  Session: 'Session',
   Entity: 'Entity',
   NPCDetails: 'NPCDetails',
   LocationDetails: 'LocationDetails',
   ItemDetails: 'ItemDetails',
   FactionDetails: 'FactionDetails',
   PlayerDetails: 'PlayerDetails',
-  QuestDetails: 'QuestDetails',
-  SessionDetails: 'SessionDetails'
+  QuestDetails: 'QuestDetails'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -85,6 +85,20 @@ export const CampaignScalarFieldEnum = {
 } as const
 
 export type CampaignScalarFieldEnum = (typeof CampaignScalarFieldEnum)[keyof typeof CampaignScalarFieldEnum]
+
+
+export const SessionScalarFieldEnum = {
+  id: 'id',
+  campaignId: 'campaignId',
+  sessionNumber: 'sessionNumber',
+  title: 'title',
+  description: 'description',
+  date: 'date',
+  recap: 'recap',
+  playerNotes: 'playerNotes'
+} as const
+
+export type SessionScalarFieldEnum = (typeof SessionScalarFieldEnum)[keyof typeof SessionScalarFieldEnum]
 
 
 export const EntityScalarFieldEnum = {
@@ -169,15 +183,6 @@ export const QuestDetailsScalarFieldEnum = {
 } as const
 
 export type QuestDetailsScalarFieldEnum = (typeof QuestDetailsScalarFieldEnum)[keyof typeof QuestDetailsScalarFieldEnum]
-
-
-export const SessionDetailsScalarFieldEnum = {
-  id: 'id',
-  entityId: 'entityId',
-  date: 'date'
-} as const
-
-export type SessionDetailsScalarFieldEnum = (typeof SessionDetailsScalarFieldEnum)[keyof typeof SessionDetailsScalarFieldEnum]
 
 
 export const SortOrder = {

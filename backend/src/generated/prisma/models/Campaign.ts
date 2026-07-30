@@ -201,6 +201,7 @@ export type CampaignWhereInput = {
   name?: Prisma.StringFilter<"Campaign"> | string
   description?: Prisma.StringNullableFilter<"Campaign"> | string | null
   entities?: Prisma.EntityListRelationFilter
+  sessions?: Prisma.SessionListRelationFilter
 }
 
 export type CampaignOrderByWithRelationInput = {
@@ -208,6 +209,7 @@ export type CampaignOrderByWithRelationInput = {
   name?: Prisma.SortOrder
   description?: Prisma.SortOrderInput | Prisma.SortOrder
   entities?: Prisma.EntityOrderByRelationAggregateInput
+  sessions?: Prisma.SessionOrderByRelationAggregateInput
 }
 
 export type CampaignWhereUniqueInput = Prisma.AtLeast<{
@@ -218,6 +220,7 @@ export type CampaignWhereUniqueInput = Prisma.AtLeast<{
   name?: Prisma.StringFilter<"Campaign"> | string
   description?: Prisma.StringNullableFilter<"Campaign"> | string | null
   entities?: Prisma.EntityListRelationFilter
+  sessions?: Prisma.SessionListRelationFilter
 }, "id">
 
 export type CampaignOrderByWithAggregationInput = {
@@ -244,6 +247,7 @@ export type CampaignCreateInput = {
   name: string
   description?: string | null
   entities?: Prisma.EntityCreateNestedManyWithoutCampaignInput
+  sessions?: Prisma.SessionCreateNestedManyWithoutCampaignInput
 }
 
 export type CampaignUncheckedCreateInput = {
@@ -251,12 +255,14 @@ export type CampaignUncheckedCreateInput = {
   name: string
   description?: string | null
   entities?: Prisma.EntityUncheckedCreateNestedManyWithoutCampaignInput
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutCampaignInput
 }
 
 export type CampaignUpdateInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   entities?: Prisma.EntityUpdateManyWithoutCampaignNestedInput
+  sessions?: Prisma.SessionUpdateManyWithoutCampaignNestedInput
 }
 
 export type CampaignUncheckedUpdateInput = {
@@ -264,6 +270,7 @@ export type CampaignUncheckedUpdateInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   entities?: Prisma.EntityUncheckedUpdateManyWithoutCampaignNestedInput
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutCampaignNestedInput
 }
 
 export type CampaignCreateManyInput = {
@@ -330,6 +337,20 @@ export type IntFieldUpdateOperationsInput = {
   divide?: number
 }
 
+export type CampaignCreateNestedOneWithoutSessionsInput = {
+  create?: Prisma.XOR<Prisma.CampaignCreateWithoutSessionsInput, Prisma.CampaignUncheckedCreateWithoutSessionsInput>
+  connectOrCreate?: Prisma.CampaignCreateOrConnectWithoutSessionsInput
+  connect?: Prisma.CampaignWhereUniqueInput
+}
+
+export type CampaignUpdateOneRequiredWithoutSessionsNestedInput = {
+  create?: Prisma.XOR<Prisma.CampaignCreateWithoutSessionsInput, Prisma.CampaignUncheckedCreateWithoutSessionsInput>
+  connectOrCreate?: Prisma.CampaignCreateOrConnectWithoutSessionsInput
+  upsert?: Prisma.CampaignUpsertWithoutSessionsInput
+  connect?: Prisma.CampaignWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.CampaignUpdateToOneWithWhereWithoutSessionsInput, Prisma.CampaignUpdateWithoutSessionsInput>, Prisma.CampaignUncheckedUpdateWithoutSessionsInput>
+}
+
 export type CampaignCreateNestedOneWithoutEntitiesInput = {
   create?: Prisma.XOR<Prisma.CampaignCreateWithoutEntitiesInput, Prisma.CampaignUncheckedCreateWithoutEntitiesInput>
   connectOrCreate?: Prisma.CampaignCreateOrConnectWithoutEntitiesInput
@@ -344,15 +365,59 @@ export type CampaignUpdateOneRequiredWithoutEntitiesNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.CampaignUpdateToOneWithWhereWithoutEntitiesInput, Prisma.CampaignUpdateWithoutEntitiesInput>, Prisma.CampaignUncheckedUpdateWithoutEntitiesInput>
 }
 
+export type CampaignCreateWithoutSessionsInput = {
+  name: string
+  description?: string | null
+  entities?: Prisma.EntityCreateNestedManyWithoutCampaignInput
+}
+
+export type CampaignUncheckedCreateWithoutSessionsInput = {
+  id?: number
+  name: string
+  description?: string | null
+  entities?: Prisma.EntityUncheckedCreateNestedManyWithoutCampaignInput
+}
+
+export type CampaignCreateOrConnectWithoutSessionsInput = {
+  where: Prisma.CampaignWhereUniqueInput
+  create: Prisma.XOR<Prisma.CampaignCreateWithoutSessionsInput, Prisma.CampaignUncheckedCreateWithoutSessionsInput>
+}
+
+export type CampaignUpsertWithoutSessionsInput = {
+  update: Prisma.XOR<Prisma.CampaignUpdateWithoutSessionsInput, Prisma.CampaignUncheckedUpdateWithoutSessionsInput>
+  create: Prisma.XOR<Prisma.CampaignCreateWithoutSessionsInput, Prisma.CampaignUncheckedCreateWithoutSessionsInput>
+  where?: Prisma.CampaignWhereInput
+}
+
+export type CampaignUpdateToOneWithWhereWithoutSessionsInput = {
+  where?: Prisma.CampaignWhereInput
+  data: Prisma.XOR<Prisma.CampaignUpdateWithoutSessionsInput, Prisma.CampaignUncheckedUpdateWithoutSessionsInput>
+}
+
+export type CampaignUpdateWithoutSessionsInput = {
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  entities?: Prisma.EntityUpdateManyWithoutCampaignNestedInput
+}
+
+export type CampaignUncheckedUpdateWithoutSessionsInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  entities?: Prisma.EntityUncheckedUpdateManyWithoutCampaignNestedInput
+}
+
 export type CampaignCreateWithoutEntitiesInput = {
   name: string
   description?: string | null
+  sessions?: Prisma.SessionCreateNestedManyWithoutCampaignInput
 }
 
 export type CampaignUncheckedCreateWithoutEntitiesInput = {
   id?: number
   name: string
   description?: string | null
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutCampaignInput
 }
 
 export type CampaignCreateOrConnectWithoutEntitiesInput = {
@@ -374,12 +439,14 @@ export type CampaignUpdateToOneWithWhereWithoutEntitiesInput = {
 export type CampaignUpdateWithoutEntitiesInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sessions?: Prisma.SessionUpdateManyWithoutCampaignNestedInput
 }
 
 export type CampaignUncheckedUpdateWithoutEntitiesInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutCampaignNestedInput
 }
 
 
@@ -389,10 +456,12 @@ export type CampaignUncheckedUpdateWithoutEntitiesInput = {
 
 export type CampaignCountOutputType = {
   entities: number
+  sessions: number
 }
 
 export type CampaignCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   entities?: boolean | CampaignCountOutputTypeCountEntitiesArgs
+  sessions?: boolean | CampaignCountOutputTypeCountSessionsArgs
 }
 
 /**
@@ -412,12 +481,20 @@ export type CampaignCountOutputTypeCountEntitiesArgs<ExtArgs extends runtime.Typ
   where?: Prisma.EntityWhereInput
 }
 
+/**
+ * CampaignCountOutputType without action
+ */
+export type CampaignCountOutputTypeCountSessionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.SessionWhereInput
+}
+
 
 export type CampaignSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   name?: boolean
   description?: boolean
   entities?: boolean | Prisma.Campaign$entitiesArgs<ExtArgs>
+  sessions?: boolean | Prisma.Campaign$sessionsArgs<ExtArgs>
   _count?: boolean | Prisma.CampaignCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["campaign"]>
 
@@ -442,6 +519,7 @@ export type CampaignSelectScalar = {
 export type CampaignOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "description", ExtArgs["result"]["campaign"]>
 export type CampaignInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   entities?: boolean | Prisma.Campaign$entitiesArgs<ExtArgs>
+  sessions?: boolean | Prisma.Campaign$sessionsArgs<ExtArgs>
   _count?: boolean | Prisma.CampaignCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type CampaignIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -451,6 +529,7 @@ export type $CampaignPayload<ExtArgs extends runtime.Types.Extensions.InternalAr
   name: "Campaign"
   objects: {
     entities: Prisma.$EntityPayload<ExtArgs>[]
+    sessions: Prisma.$SessionPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
@@ -851,6 +930,7 @@ readonly fields: CampaignFieldRefs;
 export interface Prisma__CampaignClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   entities<T extends Prisma.Campaign$entitiesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Campaign$entitiesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EntityPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  sessions<T extends Prisma.Campaign$sessionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Campaign$sessionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SessionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1297,6 +1377,30 @@ export type Campaign$entitiesArgs<ExtArgs extends runtime.Types.Extensions.Inter
   take?: number
   skip?: number
   distinct?: Prisma.EntityScalarFieldEnum | Prisma.EntityScalarFieldEnum[]
+}
+
+/**
+ * Campaign.sessions
+ */
+export type Campaign$sessionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Session
+   */
+  select?: Prisma.SessionSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Session
+   */
+  omit?: Prisma.SessionOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SessionInclude<ExtArgs> | null
+  where?: Prisma.SessionWhereInput
+  orderBy?: Prisma.SessionOrderByWithRelationInput | Prisma.SessionOrderByWithRelationInput[]
+  cursor?: Prisma.SessionWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.SessionScalarFieldEnum | Prisma.SessionScalarFieldEnum[]
 }
 
 /**

@@ -155,7 +155,7 @@ body{
               font-weight: "bold";}
 
 .button {
-  width: 10%;
+  width: fit-content;
   padding: 10px 12px;
 
   margin: 0px 0;
@@ -215,4 +215,54 @@ body{
   .notes-box {
     width: calc(100% - 14px);
   }
+}
+
+.add-session-button {
+    width: 60px;
+    height: 60px;
+
+    border-radius: 50%;
+    border:none;
+
+    font-size:32px;
+
+    background:#222831;
+    color:white;
+
+    cursor:pointer;
+
+    margin:20px auto;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+
+.add-session-button:hover {
+    transform:scale(1.05);
+}
+
+
+.create-session-dropdown {
+
+    width:400px;
+
+    background:#ffffff;
+
+    padding:20px;
+
+    border-radius:12px;
+
+    display:flex;
+    flex-direction:column;
+
+    gap:10px;
+
+    align-items:center;
+    justify-content:center;
+
+        margin: 0 auto;
+
+
 }

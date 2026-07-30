@@ -14,6 +14,26 @@ model Campaign {
   description String?
 
   entities    Entity[]
+  sessions Session[]
+}
+
+model Session {
+  id            Int       @id @default(autoincrement())
+
+  campaignId    Int
+  campaign      Campaign  @relation(fields: [campaignId], references: [id], onDelete: Cascade)
+
+  sessionNumber Int
+  title         String?
+  description   String?
+
+  date          DateTime?
+
+  recap         String?   @db.Text
+  playerNotes   String?   @db.Text
+
+  @@unique([campaignId, sessionNumber])
+  @@index([campaignId])
 }
 
 model Entity {
@@ -36,7 +56,6 @@ model Entity {
   factionDetails  FactionDetails?
   questDetails    QuestDetails?
   playerDetails   PlayerDetails?
-  sessionDetails  SessionDetails?
 }
 
 model NPCDetails {
@@ -107,15 +126,6 @@ model QuestDetails {
 
   questGiver    String?
   status        String?
-
-  entity Entity @relation(fields: [entityId], references: [id], onDelete: Cascade)
-}
-
-model SessionDetails {
-  id        Int @id @default(autoincrement())
-  entityId  Int @unique
-
-  date        String?
 
   entity Entity @relation(fields: [entityId], references: [id], onDelete: Cascade)
 }

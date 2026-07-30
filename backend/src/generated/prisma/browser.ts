@@ -23,6 +23,11 @@ export * from './enums';
  */
 export type Campaign = Prisma.CampaignModel
 /**
+ * Model Session
+ * 
+ */
+export type Session = Prisma.SessionModel
+/**
  * Model Entity
  * 
  */
@@ -57,8 +62,3 @@ export type PlayerDetails = Prisma.PlayerDetailsModel
  * 
  */
 export type QuestDetails = Prisma.QuestDetailsModel
-/**
- * Model SessionDetails
- * 
- */
-export type SessionDetails = Prisma.SessionDetailsModel
