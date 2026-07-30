@@ -9,6 +9,7 @@
  * 🟢 You can import this file directly.
  */
 export type * from './models/Campaign'
+export type * from './models/Session'
 export type * from './models/Entity'
 export type * from './models/NPCDetails'
 export type * from './models/LocationDetails'
@@ -16,5 +17,4 @@ export type * from './models/ItemDetails'
 export type * from './models/FactionDetails'
 export type * from './models/PlayerDetails'
 export type * from './models/QuestDetails'
-export type * from './models/SessionDetails'
 export type * from './commonInputTypes'

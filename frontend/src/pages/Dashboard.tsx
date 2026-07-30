@@ -38,7 +38,7 @@ export default function Dashboard() {
 
       <div className="page-subheading">Stats</div>
       <div className="page-body">{`Number of Player Characters: ${campaign?.stats.pcs}`}</div>
-      <div className="page-body">{`Number of NPCS: ${campaign?.stats.npcs}`}</div>
+      <div className="page-body">{`Number of NPCs: ${campaign?.stats.npcs}`}</div>
       <div className="page-body">{`Number of Locations: ${campaign?.stats.locations}`}</div>
       <div className="page-body">{`Number of Items: ${campaign?.stats.items}`}</div>
       <div className="page-body">{`Number of Quests: ${campaign?.stats.quests}`}</div>

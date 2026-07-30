@@ -16,6 +16,7 @@ import CreateEntity from "./pages/CreateEntity";
 import EditEntity from "./pages/EditEntity";
 import Layout from "./Layout";
 import CampaignSelect from "./pages/Campaign Select/CampaignSelect";
+import SessionPage from "./pages/SessionPage";
 
 function App() {
   return (
@@ -36,6 +37,7 @@ function App() {
           <Route path="entities/:entityId" element={<SoloEntity />} />
           <Route path="create-entity" element={<CreateEntity />} />
           <Route path="edit-entity/:entityId" element={<EditEntity />} />
+          <Route path="sessions/:sessionId" element={<SessionPage />} />
         </Route>
       </Routes>
     </BrowserRouter>

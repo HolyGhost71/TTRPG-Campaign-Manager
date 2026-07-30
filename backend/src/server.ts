@@ -17,7 +17,6 @@ const prisma = new PrismaClient({
     adapter,
 });
 
-// Dashboard info
 app.use(cors({
   origin: [
     "http://localhost:5173",
@@ -131,13 +130,6 @@ app.get("/campaigns/:id/dashboard", async (req, res) => {
                 type: "FACTION"
             }
         }),
-
-        sessions: await prisma.entity.count({
-            where: {
-                campaignId,
-                type: "SESSION"
-            }
-        })
     };
 
     res.json({
@@ -271,7 +263,6 @@ app.get("/campaigns/:id/entities", async (req, res) => {
             factionDetails: true,
             questDetails: true,
             playerDetails: true,
-            sessionDetails: true,
         },
     });
 
@@ -365,7 +356,6 @@ app.get("/entities/:id", async (req, res) => {
             factionDetails: true,
             questDetails: true,
             playerDetails: true,
-            sessionDetails: true,
         },
     });
 
@@ -449,7 +439,6 @@ app.post(
   "factionDetails",
   "playerDetails",
   "questDetails",
-  "sessionDetails",
 ];
 
 jsonFields.forEach((field) => {
@@ -527,14 +516,6 @@ jsonFields.forEach((field) => {
                     }
                 }
                 : undefined,
-
-            sessionDetails: req.body.type === "SESSION"
-                ? {
-                    create: {
-                        date: req.body.sessionDetails.date,
-                    }
-                }
-                : undefined
         },
     });
 
@@ -573,7 +554,6 @@ app.put(
             "factionDetails",
             "playerDetails",
             "questDetails",
-            "sessionDetails",
         ];
 
         jsonFields.forEach((field) => {
@@ -686,18 +666,6 @@ app.put(
                     });
                 }
                 break;
-
-
-            case "SESSION":
-                if (req.body.sessionDetails) {
-                    await prisma.sessionDetails.update({
-                        where: { entityId: id },
-                        data: {
-                            date: req.body.sessionDetails.date,
-                        },
-                    });
-                }
-                break;
         }
 
 
@@ -711,7 +679,6 @@ app.put(
                 factionDetails: true,
                 questDetails: true,
                 playerDetails: true,
-                sessionDetails: true,
             },
         });
 
@@ -748,6 +715,195 @@ app.get("/", (req, res) => {
             entities: "/entities"
         }
     });
+});
+
+// SESSIONS
+
+app.get("/campaigns/:campaignId/sessions", async (req, res) => {
+    const campaignId = Number(req.params.campaignId);
+
+    try {
+        const sessions = await prisma.session.findMany({
+            where: {
+                campaignId,
+            },
+            orderBy: {
+                sessionNumber: "asc",
+            },
+        });
+
+        res.json(sessions);
+
+    } catch (error) {
+        console.error(error);
+
+        res.status(500).json({
+            message: "Failed to fetch sessions",
+        });
+    }
+});
+
+app.get("/sessions/:id", async (req, res) => {
+    const id = Number(req.params.id);
+
+    try {
+        const session = await prisma.session.findUnique({
+            where: {
+                id,
+            },
+        });
+
+        if (!session) {
+            return res.status(404).json({
+                message: "Session not found",
+            });
+        }
+
+        res.json(session);
+
+    } catch (error) {
+        console.error(error);
+
+        res.status(500).json({
+            message: "Failed to fetch session",
+        });
+    }
+});
+
+app.post("/sessions", async (req,res)=>{
+
+    const {
+        campaignId,
+        title,
+        description,
+        date,
+        sessionNumber
+    } = req.body;
+
+
+    try {
+
+        const session = await prisma.session.create({
+            data:{
+                campaignId:Number(campaignId),
+                sessionNumber:Number(sessionNumber),
+                title,
+                description,
+                date:new Date(date)
+            }
+        });
+
+
+        res.json(session);
+
+
+    } catch(error){
+
+        console.error(error);
+
+        res.status(500).json({
+            message:"Failed to create session"
+        });
+    }
+
+});
+
+app.delete("/sessions/:id", async (req, res) => {
+
+    const id = Number(req.params.id);
+
+    try {
+
+        await prisma.session.delete({
+            where:{
+                id,
+            },
+        });
+
+
+        res.json({
+            message:"Session deleted",
+        });
+
+
+    } catch(error){
+
+        console.error(error);
+
+        res.status(500).json({
+            message:"Failed to delete session",
+        });
+    }
+});
+
+app.put("/sessions/:id", async (req, res) => {
+
+    const id = Number(req.params.id);
+
+    const {
+        title,
+        description,
+        date,
+        recap,
+        playerNotes
+    } = req.body;
+
+
+    try {
+
+        const session = await prisma.session.update({
+            where: {
+                id,
+            },
+            data: {
+                title,
+                description,
+                date: date ? new Date(date) : null,
+                recap,
+                playerNotes,
+            },
+        });
+
+
+        res.json(session);
+
+
+    } catch(error) {
+
+        console.error(error);
+
+        res.status(500).json({
+            message: "Failed to update session",
+        });
+    }
+});
+
+app.delete("/sessions/:id", async (req, res) => {
+
+    const id = Number(req.params.id);
+
+    try {
+
+        await prisma.session.delete({
+            where:{
+                id,
+            },
+        });
+
+
+        res.json({
+            message:"Session deleted",
+        });
+
+
+    } catch(error){
+
+        console.error(error);
+
+        res.status(500).json({
+            message:"Failed to delete session",
+        });
+    }
 });
 
 const PORT = process.env.PORT || 3000;

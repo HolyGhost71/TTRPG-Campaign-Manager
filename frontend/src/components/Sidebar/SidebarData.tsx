@@ -27,13 +27,6 @@ export const SidebarData = [
   },
   {
     type: "link",
-    title: "Sessions",
-    path: "sessions",
-    icon: <IoIcons.IoIosPaper />,
-    cName: "nav-text",
-  },
-  {
-    type: "link",
     title: "Player Characters",
     path: "pcs",
     icon: <BsPeopleFill />,
@@ -41,16 +34,17 @@ export const SidebarData = [
   },
   {
     type: "link",
+    title: "Sessions",
+    path: "sessions",
+    icon: <IoIcons.IoIosPaper />,
+    cName: "nav-text",
+  },
+
+  {
+    type: "link",
     title: "Quests",
     path: "quests",
     icon: <BsStopwatch />,
-    cName: "nav-text",
-  },
-  {
-    type: "link",
-    title: "History",
-    path: "history",
-    icon: <CgSandClock />,
     cName: "nav-text",
   },
   {
@@ -84,6 +78,13 @@ export const SidebarData = [
     title: "Items",
     path: "items",
     icon: <GiBroadsword />,
+    cName: "nav-text",
+  },
+  {
+    type: "link",
+    title: "History + Lore",
+    path: "history",
+    icon: <CgSandClock />,
     cName: "nav-text",
   },
 ];
