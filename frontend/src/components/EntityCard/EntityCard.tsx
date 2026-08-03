@@ -113,7 +113,7 @@ const EntityCard = (props: any) => {
 
             <div className="info-row">
               <span className="label">Location</span>
-              <span>{entity.location?.name ?? "Unknown"}</span>
+                            <span>{entity.playerDetails.location?.name ?? "Unknown"}</span>
             </div>
 
             <div className="info-row">
