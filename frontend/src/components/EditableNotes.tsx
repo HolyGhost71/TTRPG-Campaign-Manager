@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import ReactMarkdown from "react-markdown";
 
 interface EditableNotesProps {
   initialValue?: string;
@@ -25,8 +26,11 @@ export default function EditableNotes({
     <div className="notes-box" onDoubleClick={() => setIsEditing(true)}>
       {!isEditing ? (
         <div className="notes-text">
-          {value ||
-            "Be the first to add notes for this entity. Double click to add notes..."}
+          {value ? (
+            <ReactMarkdown>{value}</ReactMarkdown>
+          ) : (
+            "Be the first to add notes. Double click to add notes..."
+          )}
         </div>
       ) : (
         <div className="notes-editor">

@@ -747,6 +747,7 @@ app.get("/sessions/:id", async (req, res) => {
     const id = Number(req.params.id);
 
     try {
+        // Get the current session
         const session = await prisma.session.findUnique({
             where: {
                 id,
@@ -759,7 +760,32 @@ app.get("/sessions/:id", async (req, res) => {
             });
         }
 
-        res.json(session);
+        // Find the immediately previous session
+        const previousSession = await prisma.session.findFirst({
+            where: {
+                campaignId: session.campaignId,
+                sessionNumber: {
+                    lt: session.sessionNumber,
+                },
+            },
+            orderBy: {
+                sessionNumber: "desc",
+            },
+            select: {
+                id: true,
+                sessionNumber: true,
+                title: true,
+                description: true,
+                date: true,
+                recap: true,
+                playerNotes: true,
+            },
+        });
+
+        res.json({
+            ...session,
+            previousSession,
+        });
 
     } catch (error) {
         console.error(error);
@@ -768,44 +794,6 @@ app.get("/sessions/:id", async (req, res) => {
             message: "Failed to fetch session",
         });
     }
-});
-
-app.post("/sessions", async (req,res)=>{
-
-    const {
-        campaignId,
-        title,
-        description,
-        date,
-        sessionNumber
-    } = req.body;
-
-
-    try {
-
-        const session = await prisma.session.create({
-            data:{
-                campaignId:Number(campaignId),
-                sessionNumber:Number(sessionNumber),
-                title,
-                description,
-                date:new Date(date)
-            }
-        });
-
-
-        res.json(session);
-
-
-    } catch(error){
-
-        console.error(error);
-
-        res.status(500).json({
-            message:"Failed to create session"
-        });
-    }
-
 });
 
 app.delete("/sessions/:id", async (req, res) => {
@@ -837,71 +825,43 @@ app.delete("/sessions/:id", async (req, res) => {
 });
 
 app.put("/sessions/:id", async (req, res) => {
-
     const id = Number(req.params.id);
 
     const {
-        title,
-        description,
-        date,
+        playerNotes,
         recap,
-        playerNotes
     } = req.body;
 
-
     try {
+        const existingSession = await prisma.session.findUnique({
+            where: {
+                id,
+            },
+        });
 
-        const session = await prisma.session.update({
+        if (!existingSession) {
+            return res.status(404).json({
+                message: "Session not found",
+            });
+        }
+
+        const updatedSession = await prisma.session.update({
             where: {
                 id,
             },
             data: {
-                title,
-                description,
-                date: date ? new Date(date) : null,
-                recap,
                 playerNotes,
+                recap,
             },
         });
 
+        res.json(updatedSession);
 
-        res.json(session);
-
-
-    } catch(error) {
-
+    } catch (error) {
         console.error(error);
 
         res.status(500).json({
             message: "Failed to update session",
-        });
-    }
-});
-
-app.delete("/sessions/:id", async (req, res) => {
-
-    const id = Number(req.params.id);
-
-    try {
-
-        await prisma.session.delete({
-            where:{
-                id,
-            },
-        });
-
-
-        res.json({
-            message:"Session deleted",
-        });
-
-
-    } catch(error){
-
-        console.error(error);
-
-        res.status(500).json({
-            message:"Failed to delete session",
         });
     }
 });

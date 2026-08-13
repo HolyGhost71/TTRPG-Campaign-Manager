@@ -13,8 +13,7 @@
   justify-content: center;
 
   position: fixed;
-  top: 0;
-  left: 0;
+
 
   transition: transform 350ms ease;
   transform: translateX(0);
@@ -39,7 +38,7 @@
 .nav-text a {
   text-decoration: none;
   color: #f5f5f5;
-  font-size: 18px;
+  font-size: 19px;
   width: 95%;
   height: 100%;
   display: flex;
@@ -50,11 +49,11 @@
 
 .nav-heading {
   color: #948979;
-  font-size: 0.8rem;
+  font-size: 0.9rem;
   text-transform: uppercase;
   letter-spacing: 1px;
   padding: 16px 20px 8px;
-  font-weight: bold;
+  font-weight: bolder;
 }
 
 .nav-title {
