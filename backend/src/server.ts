@@ -20,7 +20,8 @@ const prisma = new PrismaClient({
 app.use(cors({
   origin: [
     "http://localhost:5173",
-    "https://ttrpg-campaign-manager-1.onrender.com"
+    "https://ttrpg-campaign-manager-1.onrender.com",
+    "https://dungeon-drafts.onrender.com"
   ]
 }));
 
