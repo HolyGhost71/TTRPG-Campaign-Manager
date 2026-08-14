@@ -29,19 +29,17 @@ export type AggregateLocationDetails = {
 export type LocationDetailsAvgAggregateOutputType = {
   id: number | null
   entityId: number | null
-  population: number | null
 }
 
 export type LocationDetailsSumAggregateOutputType = {
   id: number | null
   entityId: number | null
-  population: number | null
 }
 
 export type LocationDetailsMinAggregateOutputType = {
   id: number | null
   entityId: number | null
-  population: number | null
+  population: string | null
   ruler: string | null
   region: string | null
 }
@@ -49,7 +47,7 @@ export type LocationDetailsMinAggregateOutputType = {
 export type LocationDetailsMaxAggregateOutputType = {
   id: number | null
   entityId: number | null
-  population: number | null
+  population: string | null
   ruler: string | null
   region: string | null
 }
@@ -67,13 +65,11 @@ export type LocationDetailsCountAggregateOutputType = {
 export type LocationDetailsAvgAggregateInputType = {
   id?: true
   entityId?: true
-  population?: true
 }
 
 export type LocationDetailsSumAggregateInputType = {
   id?: true
   entityId?: true
-  population?: true
 }
 
 export type LocationDetailsMinAggregateInputType = {
@@ -190,7 +186,7 @@ export type LocationDetailsGroupByArgs<ExtArgs extends runtime.Types.Extensions.
 export type LocationDetailsGroupByOutputType = {
   id: number
   entityId: number
-  population: number | null
+  population: string | null
   ruler: string | null
   region: string | null
   _count: LocationDetailsCountAggregateOutputType | null
@@ -221,7 +217,7 @@ export type LocationDetailsWhereInput = {
   NOT?: Prisma.LocationDetailsWhereInput | Prisma.LocationDetailsWhereInput[]
   id?: Prisma.IntFilter<"LocationDetails"> | number
   entityId?: Prisma.IntFilter<"LocationDetails"> | number
-  population?: Prisma.IntNullableFilter<"LocationDetails"> | number | null
+  population?: Prisma.StringNullableFilter<"LocationDetails"> | string | null
   ruler?: Prisma.StringNullableFilter<"LocationDetails"> | string | null
   region?: Prisma.StringNullableFilter<"LocationDetails"> | string | null
   entity?: Prisma.XOR<Prisma.EntityScalarRelationFilter, Prisma.EntityWhereInput>
@@ -242,7 +238,7 @@ export type LocationDetailsWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.LocationDetailsWhereInput | Prisma.LocationDetailsWhereInput[]
   OR?: Prisma.LocationDetailsWhereInput[]
   NOT?: Prisma.LocationDetailsWhereInput | Prisma.LocationDetailsWhereInput[]
-  population?: Prisma.IntNullableFilter<"LocationDetails"> | number | null
+  population?: Prisma.StringNullableFilter<"LocationDetails"> | string | null
   ruler?: Prisma.StringNullableFilter<"LocationDetails"> | string | null
   region?: Prisma.StringNullableFilter<"LocationDetails"> | string | null
   entity?: Prisma.XOR<Prisma.EntityScalarRelationFilter, Prisma.EntityWhereInput>
@@ -267,13 +263,13 @@ export type LocationDetailsScalarWhereWithAggregatesInput = {
   NOT?: Prisma.LocationDetailsScalarWhereWithAggregatesInput | Prisma.LocationDetailsScalarWhereWithAggregatesInput[]
   id?: Prisma.IntWithAggregatesFilter<"LocationDetails"> | number
   entityId?: Prisma.IntWithAggregatesFilter<"LocationDetails"> | number
-  population?: Prisma.IntNullableWithAggregatesFilter<"LocationDetails"> | number | null
+  population?: Prisma.StringNullableWithAggregatesFilter<"LocationDetails"> | string | null
   ruler?: Prisma.StringNullableWithAggregatesFilter<"LocationDetails"> | string | null
   region?: Prisma.StringNullableWithAggregatesFilter<"LocationDetails"> | string | null
 }
 
 export type LocationDetailsCreateInput = {
-  population?: number | null
+  population?: string | null
   ruler?: string | null
   region?: string | null
   entity: Prisma.EntityCreateNestedOneWithoutLocationDetailsInput
@@ -282,13 +278,13 @@ export type LocationDetailsCreateInput = {
 export type LocationDetailsUncheckedCreateInput = {
   id?: number
   entityId: number
-  population?: number | null
+  population?: string | null
   ruler?: string | null
   region?: string | null
 }
 
 export type LocationDetailsUpdateInput = {
-  population?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  population?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ruler?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   region?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   entity?: Prisma.EntityUpdateOneRequiredWithoutLocationDetailsNestedInput
@@ -297,7 +293,7 @@ export type LocationDetailsUpdateInput = {
 export type LocationDetailsUncheckedUpdateInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   entityId?: Prisma.IntFieldUpdateOperationsInput | number
-  population?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  population?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ruler?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   region?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
@@ -305,13 +301,13 @@ export type LocationDetailsUncheckedUpdateInput = {
 export type LocationDetailsCreateManyInput = {
   id?: number
   entityId: number
-  population?: number | null
+  population?: string | null
   ruler?: string | null
   region?: string | null
 }
 
 export type LocationDetailsUpdateManyMutationInput = {
-  population?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  population?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ruler?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   region?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
@@ -319,7 +315,7 @@ export type LocationDetailsUpdateManyMutationInput = {
 export type LocationDetailsUncheckedUpdateManyInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   entityId?: Prisma.IntFieldUpdateOperationsInput | number
-  population?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  population?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ruler?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   region?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
@@ -340,7 +336,6 @@ export type LocationDetailsCountOrderByAggregateInput = {
 export type LocationDetailsAvgOrderByAggregateInput = {
   id?: Prisma.SortOrder
   entityId?: Prisma.SortOrder
-  population?: Prisma.SortOrder
 }
 
 export type LocationDetailsMaxOrderByAggregateInput = {
@@ -362,7 +357,6 @@ export type LocationDetailsMinOrderByAggregateInput = {
 export type LocationDetailsSumOrderByAggregateInput = {
   id?: Prisma.SortOrder
   entityId?: Prisma.SortOrder
-  population?: Prisma.SortOrder
 }
 
 export type LocationDetailsCreateNestedOneWithoutEntityInput = {
@@ -398,14 +392,14 @@ export type LocationDetailsUncheckedUpdateOneWithoutEntityNestedInput = {
 }
 
 export type LocationDetailsCreateWithoutEntityInput = {
-  population?: number | null
+  population?: string | null
   ruler?: string | null
   region?: string | null
 }
 
 export type LocationDetailsUncheckedCreateWithoutEntityInput = {
   id?: number
-  population?: number | null
+  population?: string | null
   ruler?: string | null
   region?: string | null
 }
@@ -427,14 +421,14 @@ export type LocationDetailsUpdateToOneWithWhereWithoutEntityInput = {
 }
 
 export type LocationDetailsUpdateWithoutEntityInput = {
-  population?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  population?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ruler?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   region?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type LocationDetailsUncheckedUpdateWithoutEntityInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
-  population?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  population?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ruler?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   region?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
@@ -495,7 +489,7 @@ export type $LocationDetailsPayload<ExtArgs extends runtime.Types.Extensions.Int
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
     entityId: number
-    population: number | null
+    population: string | null
     ruler: string | null
     region: string | null
   }, ExtArgs["result"]["locationDetails"]>
@@ -924,7 +918,7 @@ export interface Prisma__LocationDetailsClient<T, Null = never, ExtArgs extends 
 export interface LocationDetailsFieldRefs {
   readonly id: Prisma.FieldRef<"LocationDetails", 'Int'>
   readonly entityId: Prisma.FieldRef<"LocationDetails", 'Int'>
-  readonly population: Prisma.FieldRef<"LocationDetails", 'Int'>
+  readonly population: Prisma.FieldRef<"LocationDetails", 'String'>
   readonly ruler: Prisma.FieldRef<"LocationDetails", 'String'>
   readonly region: Prisma.FieldRef<"LocationDetails", 'String'>
 }

@@ -605,7 +605,7 @@ app.put(
                     await prisma.locationDetails.update({
                         where: { entityId: id },
                         data: {
-                            population: Number(req.body.locationDetails.population),
+                            population: req.body.locationDetails.population,
                             ruler: req.body.locationDetails.ruler,
                             region: req.body.locationDetails.region,
                         },

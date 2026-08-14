@@ -39,7 +39,7 @@ export default function EditEntity() {
   const [player, setPlayer] = useState("");
 
   // Location
-  const [population, setPopulation] = useState(0);
+  const [population, setPopulation] = useState("");
   const [ruler, setRuler] = useState("");
   const [region, setRegion] = useState("");
 
@@ -201,7 +201,7 @@ export default function EditEntity() {
         break;
 
       case "LOCATION":
-        setPopulation(entity.locationDetails?.population ?? 0);
+        setPopulation(entity.locationDetails?.population ?? "");
         setRuler(entity.locationDetails?.ruler ?? "");
         setRegion(entity.locationDetails?.region ?? "");
         break;
@@ -351,8 +351,7 @@ export default function EditEntity() {
           <div className="creation-subheading">Population</div>
           <input
             value={population}
-            type="number"
-            onChange={(e) => setPopulation(parseInt(e.target.value))}
+            onChange={(e) => setPopulation(e.target.value)}
             className="input-field"
           />
           <div className="creation-subheading">Ruler</div>
