@@ -19,7 +19,7 @@ export default function CreateEntity() {
   const [player, setPlayer] = useState("");
 
   // Location
-  const [population, setPopulation] = useState(0);
+  const [population, setPopulation] = useState("");
   const [ruler, setRuler] = useState("");
   const [region, setRegion] = useState("");
 
@@ -298,7 +298,7 @@ export default function CreateEntity() {
           <input
             value={population}
             type="number"
-            onChange={(e) => setPopulation(parseInt(e.target.value))}
+            onChange={(e) => setPopulation(e.target.value)}
             className="input-field"
           />
           <div className="creation-subheading">Ruler</div>

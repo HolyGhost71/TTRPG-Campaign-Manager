@@ -79,7 +79,7 @@ model LocationDetails {
   id        Int @id @default(autoincrement())
   entityId  Int @unique
 
-  population Int?
+  population String?
   ruler      String?
   region    String?
 
