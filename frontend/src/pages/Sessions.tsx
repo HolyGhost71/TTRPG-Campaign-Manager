@@ -16,6 +16,8 @@ export default function Sessions() {
 
   const dropdownRef = useRef<HTMLDivElement | null>(null);
 
+  const [loading, setLoading] = useState(true);
+
   const { campaignId } = useParams();
 
   console.log(campaignId);
@@ -44,7 +46,8 @@ export default function Sessions() {
       })
       .catch((err) => {
         console.error(err);
-      });
+      })
+      .finally(() => setLoading(false));
   }, [campaignId]);
 
   // Create new session
@@ -75,9 +78,19 @@ export default function Sessions() {
     <>
       <div className="page-heading">Sessions</div>
 
-      {sessionsArray.map((session) => (
-        <SessionCard key={session.id} session={session} />
-      ))}
+      {loading ? (
+        <div className="popup">
+          Fetching Items from server<span className="dots"></span>
+        </div>
+      ) : sessionsArray.length === 0 ? (
+        <div className="popup">No Items found!.</div>
+      ) : (
+        <>
+          {sessionsArray.map((session) => (
+            <SessionCard key={session.id} session={session} />
+          ))}
+        </>
+      )}
 
       <button
         className="add-session-button"

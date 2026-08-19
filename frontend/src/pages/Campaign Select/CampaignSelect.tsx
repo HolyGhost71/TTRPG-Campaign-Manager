@@ -17,20 +17,16 @@ export default function CampaignSelect() {
       .finally(() => setLoading(false));
   }, []);
 
-  useEffect(() => {
-    console.log(campaigns);
-  }, [campaigns]);
-
   return (
     <>
       <div className="cs-page-heading">Campaign Select</div>
 
       {loading ? (
         <div className="popup">
-          Fetching campaigns from server<span className="dots"></span>
+          Fetching Campaigns from server<span className="dots"></span>
         </div>
       ) : campaigns.length === 0 ? (
-        <div className="popup">No campaigns found.</div>
+        <div className="popup">No Campaigns found.</div>
       ) : (
         campaigns.map((campaign) => (
           <CampaignCard
