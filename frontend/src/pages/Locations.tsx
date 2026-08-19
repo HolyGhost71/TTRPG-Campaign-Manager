@@ -2,13 +2,16 @@ import { useEffect, useState } from "react";
 
 import api from "../api/api";
 import EntityCard from "../components/EntityCard/EntityCard";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import SmallEntityCard from "../components/EntityCard/SmallEntityCard";
 
 export default function Locations() {
   const [locationArray, setLocationArray] = useState<any[]>([]);
   const [sortType, setSortType] = useState("alphabetical");
   const [isBigCard, setIsBigCard] = useState(false);
+
+  const navigator = useNavigate();
+  const [loading, setLoading] = useState(true);
 
   const campaignId = useParams().campaignId;
 
@@ -24,7 +27,8 @@ export default function Locations() {
       })
       .catch((err) => {
         console.error(err);
-      });
+      })
+      .finally(() => setLoading(false));
   }, [campaignId]);
 
   const changeSort = (type: string) => {
@@ -73,15 +77,33 @@ export default function Locations() {
         </label>
       </div>
 
-      <div className="entity-grid">
-        {locationArray.map((entity) =>
-          isBigCard ? (
-            <EntityCard key={entity.id} entity={entity} />
-          ) : (
-            <SmallEntityCard key={entity.id} entity={entity} />
-          ),
-        )}
-      </div>
+      {loading ? (
+        <div className="popup">
+          Fetching Locations from server<span className="dots"></span>
+        </div>
+      ) : locationArray.length === 0 ? (
+        <div className="popup">No Locations found!.</div>
+      ) : (
+        <div className="entity-grid">
+          {locationArray.map((entity) =>
+            isBigCard ? (
+              <EntityCard key={entity.id} entity={entity} />
+            ) : (
+              <SmallEntityCard key={entity.id} entity={entity} />
+            ),
+          )}
+        </div>
+      )}
+      <button
+        className="creation-button"
+        onClick={() => {
+          navigator(`/campaigns/${campaignId}/create-entity`, {
+            state: { type: "LOCATION" },
+          });
+        }}
+      >
+        Create New Location
+      </button>
     </>
   );
 }

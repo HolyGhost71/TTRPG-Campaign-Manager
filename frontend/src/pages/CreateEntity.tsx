@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import api from "../api/api";
 import { useNavigate, useParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 interface Entity {
   id: number;
@@ -34,7 +35,9 @@ export default function CreateEntity() {
   const [questGiver, setQuestGiver] = useState("");
   const [questStatus, setQuestStatus] = useState("In progress");
 
-  const [type, setType] = useState("NPC");
+  const location = useLocation();
+  const presetType = location.state?.type;
+  const [type, setType] = useState(presetType);
 
   const [image, setImage] = useState<File | null>(null);
 
