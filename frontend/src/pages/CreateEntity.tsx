@@ -300,7 +300,6 @@ export default function CreateEntity() {
           <div className="creation-subheading">Population</div>
           <input
             value={population}
-            type="number"
             onChange={(e) => setPopulation(e.target.value)}
             className="input-field"
           />
