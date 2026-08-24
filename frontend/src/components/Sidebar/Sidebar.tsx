@@ -80,7 +80,9 @@ const Sidebar = ({ collapsed, setCollapsed }: SidebarProps) => {
               className="creation-button"
               onClick={() => {
                 closeSidebarIfMobile();
-                navigator(`/campaigns/${campaignId}/create-entity`);
+                navigator(`/campaigns/${campaignId}/create-entity`, {
+                  state: { type: "NPC" },
+                });
               }}
             >
               Create new Entity

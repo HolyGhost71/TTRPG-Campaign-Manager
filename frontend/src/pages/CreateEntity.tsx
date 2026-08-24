@@ -47,6 +47,8 @@ export default function CreateEntity() {
     }
   };
 
+  const [isCreating, setIsCreating] = useState(false);
+
   const navigator = useNavigate();
   const campaignId = useParams().campaignId;
 
@@ -67,6 +69,10 @@ export default function CreateEntity() {
   }, []);
 
   const createEntity = async () => {
+    if (isCreating) return;
+
+    setIsCreating(true);
+
     try {
       const formData = new FormData();
 
@@ -153,6 +159,8 @@ export default function CreateEntity() {
     } catch (err) {
       console.error(err);
       alert("Failed to create entity");
+    } finally {
+      setIsCreating(false);
     }
   };
 
