@@ -867,6 +867,37 @@ app.put("/sessions/:id", async (req, res) => {
     }
 });
 
+app.post("/sessions", async (req, res) => {
+    const {
+        campaignId,
+        title,
+        description,
+        date,
+        sessionNumber
+    } = req.body;
+
+    try {
+        const session = await prisma.session.create({
+            data: {
+                campaignId: Number(campaignId),
+                sessionNumber: Number(sessionNumber),
+                title,
+                description,
+                date: new Date(date)
+            }
+        });
+
+        res.json(session);
+
+    } catch (error) {
+        console.error(error);
+
+        res.status(500).json({
+            message: "Failed to create session"
+        });
+    }
+});
+
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => {
