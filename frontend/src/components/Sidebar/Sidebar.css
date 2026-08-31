@@ -139,7 +139,7 @@
 
   color: #cdd0d8;
 
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 500;
 
   transition:
@@ -169,6 +169,9 @@
 
 /* ========================================
    ACTIVE NAVIGATION ITEM
+
+   Add "active" to the link if you use
+   NavLink from React Router.
 ======================================== */
 
 .nav-text a.active {
@@ -220,9 +223,7 @@
 .creation-button {
   width: calc(80% - 40px);
 
-  min-height: 42px;
-
-  padding: 10px 14px;
+  min-height: 38px;
 
   margin: 30px 45px;
   margin-right: auto;  margin-left: auto;
@@ -240,7 +241,7 @@
 
   color: #ffffff;
 
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 700;
 
   cursor: pointer;
@@ -338,7 +339,7 @@
 @media (max-width: 768px) {
 
   .nav-menu {
-    width: 250px;
+    width: 100%;
 
     transform: translateX(0);
   }
@@ -353,6 +354,7 @@
 
   .nav-text {
     height: 54px;
+    justify-content: center;
   }
 
   .nav-text a {
