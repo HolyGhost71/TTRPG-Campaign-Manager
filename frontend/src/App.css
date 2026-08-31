@@ -1,51 +1,225 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
 
+/* ================================
+   GLOBAL
+================================ */
+
 * {
   box-sizing: border-box;
   padding: 0;
-  font-family: 'Lato', sans-serif;
+  margin: 0;
+  font-family: "Lato", sans-serif;
 }
 
 html {
   scroll-behavior: smooth;
 }
 
-body{
-  background-color: rgb(57, 62, 70);
+body {
+  background:
+    radial-gradient(
+      circle at 15% 10%,
+      rgba(108, 92, 231, 0.08),
+      transparent 35%
+    ),
+    radial-gradient(
+      circle at 85% 90%,
+      rgba(52, 152, 219, 0.06),
+      transparent 35%
+    ),
+    rgba(57, 62, 70);
 
+  color: #f2f2f2;
+  min-height: 100vh;
 }
+
+
+/* ================================
+   LAYOUT
+================================ */
 
 .layout-content {
-  padding-left: 250px
+  padding-left: 250px;
 }
+
+
+/* ================================
+   PAGE HEADINGS
+================================ */
 
 .page-heading {
-    font-size: 64px;
-    font-weight: bold;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    color: #ffffff;
-    text-decoration: underline;
+  position: relative;
+
+  font-size: clamp(42px, 5vw, 64px);
+  font-weight: 800;
+
+  padding-top: 15px;
+  padding-bottom: 18px;
+
+  color: #ffffff;
+
+  letter-spacing: -1.5px;
+  line-height: 1.1;
+
+  text-decoration: none;
 }
 
-.page-subheading {
-  font-size: 32px;
-  color: white;
-  font-weight: bold;
-  padding-top: 10px;
+/* Accent line underneath heading */
+
+.page-heading::after {
+  content: "";
+
+  display: block;
+
+  width: 70px;
+  height: 4px;
+
+  margin-top: 12px;
+
+  border-radius: 10px;
+
+  background: linear-gradient(
+    90deg,
+    #8b7cf6,
+    #5b9cf6
+  );
+
+  box-shadow:
+    0 0 12px rgba(139, 124, 246, 0.35);
 }
+
+
+/* ================================
+   SUBHEADINGS
+================================ */
+
+.page-subheading {
+  font-size: clamp(24px, 3vw, 32px);
+  font-weight: 700;
+
+  color: #ffffff;
+
+  padding-top: 24px;
+  padding-bottom: 8px;
+
+  letter-spacing: -0.5px;
+}
+
+
+/* ================================
+   LARGE BODY TEXT
+================================ */
 
 .page-large-body {
   font-size: 22px;
-  color: white;
+  line-height: 1.65;
+
+  color: #d7d9df;
+
   padding-top: 10px;
-  padding-bottom: 10px;
+  padding-bottom: 15px;
+
+  max-width: 1000px;
 }
 
+
+/* ================================
+   NORMAL BODY TEXT
+================================ */
+
 .page-body {
-  font-size: 22px;
+  font-size: 18px;
+  line-height: 1.65;
+
+  color: #c8cad1;
+
+  padding-top: 6px;
+
+  max-width: 1000px;
+}
+
+
+/* ================================
+   SELECTION
+================================ */
+
+::selection {
+  background: rgba(139, 124, 246, 0.35);
   color: white;
-  padding-top: 5px;
+}
+
+
+/* ================================
+   SCROLLBAR
+================================ */
+
+::-webkit-scrollbar {
+  width: 9px;
+}
+
+::-webkit-scrollbar-track {
+  background: #15171c;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #343842;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #4b5060;
+}
+
+
+/* ================================
+   LINKS
+================================ */
+
+a {
+  color: #9d91ff;
+  transition:
+    color 0.2s ease,
+    opacity 0.2s ease;
+}
+
+a:hover {
+  color: #b7afff;
+}
+
+
+/* ================================
+   MOBILE
+================================ */
+
+@media (max-width: 768px) {
+
+  .layout-content {
+    padding-left: 0;
+  }
+
+  .page-heading {
+    font-size: 42px;
+    padding-top: 12px;
+    padding-bottom: 15px;
+  }
+
+  .page-heading::after {
+    width: 55px;
+    height: 3px;
+  }
+
+  .page-subheading {
+    font-size: 26px;
+    padding-top: 20px;
+  }
+
+  .page-large-body {
+    font-size: 19px;
+  }
+
+  .page-body {
+    font-size: 17px;
+  }
 }
 
 .solo-entity-page {

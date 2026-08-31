@@ -1,4 +1,4 @@
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { NavLink, useNavigate, useParams } from "react-router-dom";
 import { SidebarData } from "./SidebarData";
 import "./Sidebar.css";
 import { useEffect, useState } from "react";
@@ -49,7 +49,8 @@ const Sidebar = ({ collapsed, setCollapsed }: SidebarProps) => {
               if (item.type === "link") {
                 return (
                   <li key={index} className={item.cName}>
-                    <Link
+                    <NavLink
+                      className={({ isActive }) => (isActive ? "active" : "")}
                       to={
                         item.path === ""
                           ? `/campaigns/${campaignId}`
@@ -59,7 +60,7 @@ const Sidebar = ({ collapsed, setCollapsed }: SidebarProps) => {
                     >
                       {item.icon}
                       <span>{item.title}</span>
-                    </Link>
+                    </NavLink>
                   </li>
                 );
               } else if (item.type === "heading") {
