@@ -57,6 +57,8 @@ export default function EditEntity() {
   const [image, setImage] = useState<File | null>(null); // New uploaded file
   const [imagePreview, setImagePreview] = useState(""); // Existing/new image URL
 
+  const [isCreating, setIsCreating] = useState(false);
+
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
 
@@ -72,6 +74,10 @@ export default function EditEntity() {
   const params = useParams();
 
   const editEntity = async () => {
+    if (isCreating) return;
+
+    setIsCreating(true);
+
     try {
       const formData = new FormData();
 
@@ -154,6 +160,8 @@ export default function EditEntity() {
       console.error(err.response?.data || err.message);
 
       alert("Failed to update entity");
+    } finally {
+      setIsCreating(false);
     }
   };
 

@@ -8,7 +8,7 @@
 .entity-card {
     background: #22262e;
     border-radius: 14px;
-    border: 1px solid #363c47;
+    border: 1px solid #5b8cff;
     padding: 20px;
     color: white;
 
@@ -36,6 +36,8 @@
     gap: 18px;
     justify-self:  center;
     margin-top: 20px;
+
+    
 }
 
 .entity-card:hover {
@@ -71,16 +73,6 @@
 .entity-title h2 {
     margin: 0;
     font-size: 1.4rem;
-}
-
-.entity-type {
-    display: inline-block;
-    margin-top: 6px;
-    background: #5b8cff;
-    padding: 4px 10px;
-    border-radius: 20px;
-    font-size: .75rem;
-    font-weight: bold;
 }
 
 .entity-info {

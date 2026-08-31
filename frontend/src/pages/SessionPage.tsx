@@ -43,7 +43,7 @@ export default function SessionPage() {
 
   return (
     <>
-      <div className="page-heading">{`Session ${session?.sessionNumber}`}</div>
+      <div className="page-heading">{`Session ${session?.sessionNumber} - ${session?.title}`}</div>
       <div className="page-body">{session?.description}</div>
 
       {session?.previousSession && (

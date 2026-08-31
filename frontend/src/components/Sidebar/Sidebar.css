@@ -1,143 +1,361 @@
-.menu-bars {
-  margin-left: 2rem;
-  font-size: 2rem;
-  background: none;
-}
+/* ========================================
+   SIDEBAR
+======================================== */
 
 .nav-menu {
-  background-color: #222831;
-  width: 250px;
-  height: 100vh;
+  position: fixed;
+
   top: 0;
   left: 0;
+
+  width: 250px;
+  height: 100vh;
+
   display: flex;
   justify-content: center;
 
-  position: fixed;
+  background:
+    linear-gradient(
+      180deg,
+      #20242c 0%,
+      #1b1e25 100%
+    );
 
+  border-right: 1px solid rgba(255, 255, 255, 0.06);
+
+  box-shadow:
+    8px 0 30px rgba(0, 0, 0, 0.15);
+
+  z-index: 1000;
 
   transition: transform 350ms ease;
+
   transform: translateX(0);
 }
 
-.layout:not(.collapsed) .navbar-toggle {
-    left: 270px;
-}
 
-.nav-text {
-  display: flex;
-  justify-content: start;
-  align-items: center;
-  padding: 8px 0px 8px 16px;
-  list-style: none;
-  height: 60px;
-  color: white
-}
-
-
-
-.nav-text a {
-  text-decoration: none;
-  color: #f5f5f5;
-  font-size: 18px;
-  width: 95%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  padding: 0 16px;
-  border-radius: 4px;
-}
-
-.nav-heading {
-  color: #948979;
-  font-size: 0.9rem;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  padding: 16px 20px 8px;
-  font-weight: bolder;
-}
-
-.nav-title {
-  color: #948979;
-  font-size: 1.6rem;
-  padding: 16px 20px 8px;
-  justify-self: center;
-  font-weight: bold;
-}
-
-.nav-text a:hover {
-  background-color: #1a83ff;
-}
+/* ========================================
+   SIDEBAR CONTENT
+======================================== */
 
 .nav-menu-items {
   width: 100%;
+  padding-top: 10px;
 }
 
-.sidebar-toggle {
-    position: fixed;
-    top: 5px;
-    left: 250px;
-    transition: left 350ms ease;
 
-    background: #333333b1;
-    color: white;
+/* ========================================
+   TITLE
+======================================== */
 
-    border: none;
-    border-radius: 15px;
+.nav-title {
+  position: relative;
 
-    width: 30px;
-    height: 30px;
+  color: #ffffff;
 
-    cursor: pointer;
-    display: none;
+  font-size: 1.55rem;
+  font-weight: 800;
+
+  letter-spacing: -0.5px;
+
+  padding: 20px 20px 18px;
+
+  text-align: center;
 }
 
-@media (max-width: 768px) {
+/* Small accent beneath Dungeon Drafts */
 
-    .sidebar-toggle {
-        display: block;
-    }
-}
+.nav-title::after {
+  content: "";
 
-.sidebar-toggle.collapsed {
-    left: 20px;
-}
+  display: block;
 
-.creation-button {
-  width: 160px;
-  padding: 10px 12px;
+  width: 45px;
+  height: 3px;
 
-  margin: 30px 45px;
+  margin: 10px auto 0;
 
   border-radius: 10px;
-  border: 1px solid #3a3a3a;
 
-  background: linear-gradient(135deg, #f5f5f5, #f5f5f5);
-  color: black;
+  background: linear-gradient(
+    90deg,
+    #8b7cf6,
+    #5b9cf6
+  );
+
+  box-shadow:
+    0 0 10px rgba(139, 124, 246, 0.35);
+}
+
+
+/* ========================================
+   SECTION HEADINGS
+======================================== */
+
+.nav-heading {
+  color: #858b9a;
+
+  font-size: 0.72rem;
+  font-weight: 700;
+
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+
+  padding: 22px 20px 8px;
+}
+
+
+/* ========================================
+   NAVIGATION ITEMS
+======================================== */
+
+.nav-text {
+  display: flex;
+
+  justify-content: flex-start;
+  align-items: center;
+
+  list-style: none;
+
+  height: 52px;
+
+  padding: 5px 12px;
+}
+
+.nav-text a {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+
+  width: 100%;
+  height: 100%;
+
+  padding: 0 14px;
+
+  border-radius: 9px;
+
+  text-decoration: none;
+
+  color: #cdd0d8;
+
+  font-size: 18px;
+  font-weight: 500;
+
+  transition:
+    background 180ms ease,
+    color 180ms ease,
+    transform 180ms ease;
+}
+
+
+/* ========================================
+   NAVIGATION HOVER
+======================================== */
+
+.nav-text a:hover {
+  color: #ffffff;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(139, 124, 246, 0.16),
+      rgba(91, 156, 246, 0.08)
+    );
+
+  transform: translateX(3px);
+}
+
+
+/* ========================================
+   ACTIVE NAVIGATION ITEM
+======================================== */
+
+.nav-text a.active {
+  color: #ffffff;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(139, 124, 246, 0.22),
+      rgba(91, 156, 246, 0.10)
+    );
+}
+
+
+/* Accent bar on active item */
+
+.nav-text a.active::before {
+  content: "";
+
+  position: absolute;
+
+  left: 0;
+
+  width: 3px;
+  height: 22px;
+
+  border-radius: 0 5px 5px 0;
+
+  background: #8b7cf6;
+
+  box-shadow:
+    0 0 10px rgba(139, 124, 246, 0.5);
+}
+
+
+/* ========================================
+   ICON / TEXT SPACING
+======================================== */
+
+.nav-text span {
+  margin-left: 14px;
+}
+
+
+/* ========================================
+   CREATE BUTTON
+======================================== */
+
+.creation-button {
+  width: calc(80% - 40px);
+
+  min-height: 42px;
+
+  padding: 10px 14px;
+
+  margin: 30px 45px;
+  margin-right: auto;  margin-left: auto;
+
+  border: 1px solid rgba(139, 124, 246, 0.35);
+
+  border-radius: 9px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(139, 124, 246, 0.95),
+      rgba(91, 156, 246, 0.95)
+    );
+
+  color: #ffffff;
 
   font-size: 14px;
-  font-weight: 600;
+  font-weight: 700;
 
   cursor: pointer;
-
-  transition: all 0.15s ease;
 
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-right: auto;  margin-left: auto;
+
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease,
+    filter 180ms ease;
 }
 
 .creation-button:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 6px 18px rgba(108, 92, 231, 0.35);
+  transform: translateY(-2px);
+
+  filter: brightness(1.08);
+
+  box-shadow:
+    0 8px 25px rgba(108, 92, 231, 0.28);
 }
+
+.creation-button:active {
+  transform: translateY(0);
+}
+
+
+/* ========================================
+   BUTTON ICONS
+======================================== */
 
 .creation-button svg {
   width: 16px;
   height: 16px;
 }
-span {
-  margin-left: 16px;
+
+
+/* ========================================
+   SIDEBAR TOGGLE
+======================================== */
+
+.sidebar-toggle {
+  position: fixed;
+
+  top: 12px;
+  left: 250px;
+
+  width: 32px;
+  height: 32px;
+
+  display: none;
+
+  align-items: center;
+  justify-content: center;
+
+  background: rgba(30, 33, 40, 0.9);
+
+  color: #ffffff;
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
+
+  border-radius: 9px;
+
+  cursor: pointer;
+
+  z-index: 1100;
+
+  transition:
+    left 350ms ease,
+    background 180ms ease,
+    transform 180ms ease;
 }
 
+.sidebar-toggle:hover {
+  background: rgba(139, 124, 246, 0.25);
+
+  transform: scale(1.05);
+}
+
+
+/* ========================================
+   COLLAPSED TOGGLE
+======================================== */
+
+.sidebar-toggle.collapsed {
+  left: 15px;
+}
+
+
+/* ========================================
+   MOBILE
+======================================== */
+
+@media (max-width: 768px) {
+
+  .nav-menu {
+    width: 250px;
+
+    transform: translateX(0);
+  }
+
+  .sidebar-toggle {
+    display: flex;
+  }
+
+  .nav-title {
+    font-size: 1.4rem;
+  }
+
+  .nav-text {
+    height: 54px;
+  }
+
+  .nav-text a {
+    font-size: 16px;
+  }
+}
