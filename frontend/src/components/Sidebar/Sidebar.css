@@ -339,7 +339,7 @@
 @media (max-width: 768px) {
 
   .nav-menu {
-    width: 100%;
+    width: 250px;
 
     transform: translateX(0);
   }
@@ -354,7 +354,6 @@
 
   .nav-text {
     height: 54px;
-    justify-content: center;
   }
 
   .nav-text a {
