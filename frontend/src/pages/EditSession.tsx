@@ -73,7 +73,7 @@ export default function EditSession() {
           className="input-field"
         />
 
-        <div className="creation-subheading">Descripyion</div>
+        <div className="creation-subheading">Description</div>
         <input
           value={description}
           onChange={(e) => setDescription(e.target.value)}
