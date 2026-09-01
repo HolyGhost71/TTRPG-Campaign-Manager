@@ -826,45 +826,50 @@ app.delete("/sessions/:id", async (req, res) => {
 });
 
 app.put("/sessions/:id", async (req, res) => {
-    const id = Number(req.params.id);
+  const id = Number(req.params.id);
 
-    const {
+  const {
+    title,
+    description,
+    date,
+    playerNotes,
+    recap,
+  } = req.body;
+
+  try {
+    const existingSession = await prisma.session.findUnique({
+      where: {
+        id,
+      },
+    });
+
+    if (!existingSession) {
+      return res.status(404).json({
+        message: "Session not found",
+      });
+    }
+
+    const updatedSession = await prisma.session.update({
+      where: {
+        id,
+      },
+      data: {
+        title,
+        description,
+        date: date ? new Date(date) : null,
         playerNotes,
         recap,
-    } = req.body;
+      },
+    });
 
-    try {
-        const existingSession = await prisma.session.findUnique({
-            where: {
-                id,
-            },
-        });
+    res.json(updatedSession);
+  } catch (error) {
+    console.error(error);
 
-        if (!existingSession) {
-            return res.status(404).json({
-                message: "Session not found",
-            });
-        }
-
-        const updatedSession = await prisma.session.update({
-            where: {
-                id,
-            },
-            data: {
-                playerNotes,
-                recap,
-            },
-        });
-
-        res.json(updatedSession);
-
-    } catch (error) {
-        console.error(error);
-
-        res.status(500).json({
-            message: "Failed to update session",
-        });
-    }
+    res.status(500).json({
+      message: "Failed to update session",
+    });
+  }
 });
 
 app.post("/sessions", async (req, res) => {
