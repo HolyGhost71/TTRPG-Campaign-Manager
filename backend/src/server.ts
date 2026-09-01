@@ -729,11 +729,16 @@ app.get("/campaigns/:campaignId/sessions", async (req, res) => {
                 campaignId,
             },
             orderBy: {
-                sessionNumber: "asc",
+                date: "asc",
             },
         });
 
-        res.json(sessions);
+        const numberedSessions = sessions.map((session, index) => ({
+  ...session,
+  sessionNumber: index + 1,
+}));
+
+res.json(numberedSessions);
 
     } catch (error) {
         console.error(error);
@@ -745,14 +750,73 @@ app.get("/campaigns/:campaignId/sessions", async (req, res) => {
 });
 
 app.get("/sessions/:id", async (req, res) => {
+  const id = Number(req.params.id);
+
+  try {
+    // Get the current session
+    const session = await prisma.session.findUnique({
+      where: {
+        id,
+      },
+    });
+
+    if (!session) {
+      return res.status(404).json({
+        message: "Session not found",
+      });
+    }
+
+    // Count sessions before this one to determine its session number
+    const sessionsBefore = await prisma.session.count({
+      where: {
+        campaignId: session.campaignId,
+        date: {
+          lt: session.date,
+        },
+      },
+    });
+
+    const sessionNumber = sessionsBefore + 1;
+
+    // Find the immediately previous session
+    const previousSession = await prisma.session.findFirst({
+      where: {
+        campaignId: session.campaignId,
+        date: {
+          lt: session.date,
+        },
+      },
+      orderBy: {
+        date: "desc",
+      },
+    });
+
+    res.json({
+      ...session,
+      sessionNumber,
+      previousSession,
+    });
+  } catch (error) {
+    console.error(error);
+
+    res.status(500).json({
+      message: "Failed to fetch session",
+    });
+  }
+});
+
+app.delete("/sessions/:id", async (req, res) => {
     const id = Number(req.params.id);
 
+    if (isNaN(id)) {
+        return res.status(400).json({
+            message: "Invalid session ID",
+        });
+    }
+
     try {
-        // Get the current session
         const session = await prisma.session.findUnique({
-            where: {
-                id,
-            },
+            where: { id },
         });
 
         if (!session) {
@@ -761,66 +825,18 @@ app.get("/sessions/:id", async (req, res) => {
             });
         }
 
-        // Find the immediately previous session
-        const previousSession = await prisma.session.findFirst({
-            where: {
-                campaignId: session.campaignId,
-                sessionNumber: {
-                    lt: session.sessionNumber,
-                },
-            },
-            orderBy: {
-                sessionNumber: "desc",
-            },
-            select: {
-                id: true,
-                sessionNumber: true,
-                title: true,
-                description: true,
-                date: true,
-                recap: true,
-                playerNotes: true,
-            },
+        await prisma.session.delete({
+            where: { id },
         });
 
         res.json({
-            ...session,
-            previousSession,
+            message: "Session deleted",
         });
-
     } catch (error) {
         console.error(error);
 
         res.status(500).json({
-            message: "Failed to fetch session",
-        });
-    }
-});
-
-app.delete("/sessions/:id", async (req, res) => {
-
-    const id = Number(req.params.id);
-
-    try {
-
-        await prisma.session.delete({
-            where:{
-                id,
-            },
-        });
-
-
-        res.json({
-            message:"Session deleted",
-        });
-
-
-    } catch(error){
-
-        console.error(error);
-
-        res.status(500).json({
-            message:"Failed to delete session",
+            message: "Failed to delete session",
         });
     }
 });
@@ -854,11 +870,11 @@ app.put("/sessions/:id", async (req, res) => {
         id,
       },
       data: {
-        title,
-        description,
-        date: date ? new Date(date) : null,
-        playerNotes,
-        recap,
+        title: title ?? existingSession.title,
+        description: description ?? existingSession.description,
+        date: date ? new Date(date) : existingSession.date,
+        playerNotes: playerNotes ?? existingSession.playerNotes,
+        recap: recap ?? existingSession.recap,
       },
     });
 
@@ -885,7 +901,6 @@ app.post("/sessions", async (req, res) => {
         const session = await prisma.session.create({
             data: {
                 campaignId: Number(campaignId),
-                sessionNumber: Number(sessionNumber),
                 title,
                 description,
                 date: new Date(date)

@@ -23,16 +23,14 @@ model Session {
   campaignId    Int
   campaign      Campaign  @relation(fields: [campaignId], references: [id], onDelete: Cascade)
 
-  sessionNumber Int
   title         String?
   description   String?
 
-  date          DateTime?
+  date          DateTime
 
   recap         String?   @db.Text
   playerNotes   String?   @db.Text
 
-  @@unique([campaignId, sessionNumber])
   @@index([campaignId])
 }
 

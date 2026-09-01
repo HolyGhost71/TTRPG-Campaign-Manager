@@ -69,6 +69,7 @@ export default function Sessions() {
       setDate(today);
 
       setShowCreate(false);
+      window.location.reload();
     } catch (err) {
       console.error(err);
     }
@@ -83,7 +84,7 @@ export default function Sessions() {
           Fetching Items from server<span className="dots"></span>
         </div>
       ) : sessionsArray.length === 0 ? (
-        <div className="popup">No Items found!.</div>
+        <div className="popup">No sessions found.</div>
       ) : (
         <>
           {sessionsArray.map((session) => (

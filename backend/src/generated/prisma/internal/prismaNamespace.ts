@@ -1129,7 +1129,6 @@ export type CampaignScalarFieldEnum = (typeof CampaignScalarFieldEnum)[keyof typ
 export const SessionScalarFieldEnum = {
   id: 'id',
   campaignId: 'campaignId',
-  sessionNumber: 'sessionNumber',
   title: 'title',
   description: 'description',
   date: 'date',

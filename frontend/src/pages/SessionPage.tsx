@@ -4,7 +4,7 @@ import api from "../api/api";
 import { useNavigate, useParams } from "react-router-dom";
 
 export default function SessionPage() {
-  const [session, setSession] = useState<any>(null);
+  const [session, setSession] = useState<any>();
   const { sessionId } = useParams();
 
   const navigator = useNavigate();
@@ -20,7 +20,7 @@ export default function SessionPage() {
       .catch((err) => {
         console.error(err);
       });
-  }, [sessionId]);
+  }, []);
 
   const saveNotes = async (newNotes: string, noteType: "RECAP" | "NOTES") => {
     if (!session) return;

@@ -29,19 +29,16 @@ export type AggregateSession = {
 export type SessionAvgAggregateOutputType = {
   id: number | null
   campaignId: number | null
-  sessionNumber: number | null
 }
 
 export type SessionSumAggregateOutputType = {
   id: number | null
   campaignId: number | null
-  sessionNumber: number | null
 }
 
 export type SessionMinAggregateOutputType = {
   id: number | null
   campaignId: number | null
-  sessionNumber: number | null
   title: string | null
   description: string | null
   date: Date | null
@@ -52,7 +49,6 @@ export type SessionMinAggregateOutputType = {
 export type SessionMaxAggregateOutputType = {
   id: number | null
   campaignId: number | null
-  sessionNumber: number | null
   title: string | null
   description: string | null
   date: Date | null
@@ -63,7 +59,6 @@ export type SessionMaxAggregateOutputType = {
 export type SessionCountAggregateOutputType = {
   id: number
   campaignId: number
-  sessionNumber: number
   title: number
   description: number
   date: number
@@ -76,19 +71,16 @@ export type SessionCountAggregateOutputType = {
 export type SessionAvgAggregateInputType = {
   id?: true
   campaignId?: true
-  sessionNumber?: true
 }
 
 export type SessionSumAggregateInputType = {
   id?: true
   campaignId?: true
-  sessionNumber?: true
 }
 
 export type SessionMinAggregateInputType = {
   id?: true
   campaignId?: true
-  sessionNumber?: true
   title?: true
   description?: true
   date?: true
@@ -99,7 +91,6 @@ export type SessionMinAggregateInputType = {
 export type SessionMaxAggregateInputType = {
   id?: true
   campaignId?: true
-  sessionNumber?: true
   title?: true
   description?: true
   date?: true
@@ -110,7 +101,6 @@ export type SessionMaxAggregateInputType = {
 export type SessionCountAggregateInputType = {
   id?: true
   campaignId?: true
-  sessionNumber?: true
   title?: true
   description?: true
   date?: true
@@ -208,10 +198,9 @@ export type SessionGroupByArgs<ExtArgs extends runtime.Types.Extensions.Internal
 export type SessionGroupByOutputType = {
   id: number
   campaignId: number
-  sessionNumber: number
   title: string | null
   description: string | null
-  date: Date | null
+  date: Date
   recap: string | null
   playerNotes: string | null
   _count: SessionCountAggregateOutputType | null
@@ -242,10 +231,9 @@ export type SessionWhereInput = {
   NOT?: Prisma.SessionWhereInput | Prisma.SessionWhereInput[]
   id?: Prisma.IntFilter<"Session"> | number
   campaignId?: Prisma.IntFilter<"Session"> | number
-  sessionNumber?: Prisma.IntFilter<"Session"> | number
   title?: Prisma.StringNullableFilter<"Session"> | string | null
   description?: Prisma.StringNullableFilter<"Session"> | string | null
-  date?: Prisma.DateTimeNullableFilter<"Session"> | Date | string | null
+  date?: Prisma.DateTimeFilter<"Session"> | Date | string
   recap?: Prisma.StringNullableFilter<"Session"> | string | null
   playerNotes?: Prisma.StringNullableFilter<"Session"> | string | null
   campaign?: Prisma.XOR<Prisma.CampaignScalarRelationFilter, Prisma.CampaignWhereInput>
@@ -254,10 +242,9 @@ export type SessionWhereInput = {
 export type SessionOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   campaignId?: Prisma.SortOrder
-  sessionNumber?: Prisma.SortOrder
   title?: Prisma.SortOrderInput | Prisma.SortOrder
   description?: Prisma.SortOrderInput | Prisma.SortOrder
-  date?: Prisma.SortOrderInput | Prisma.SortOrder
+  date?: Prisma.SortOrder
   recap?: Prisma.SortOrderInput | Prisma.SortOrder
   playerNotes?: Prisma.SortOrderInput | Prisma.SortOrder
   campaign?: Prisma.CampaignOrderByWithRelationInput
@@ -265,27 +252,24 @@ export type SessionOrderByWithRelationInput = {
 
 export type SessionWhereUniqueInput = Prisma.AtLeast<{
   id?: number
-  campaignId_sessionNumber?: Prisma.SessionCampaignIdSessionNumberCompoundUniqueInput
   AND?: Prisma.SessionWhereInput | Prisma.SessionWhereInput[]
   OR?: Prisma.SessionWhereInput[]
   NOT?: Prisma.SessionWhereInput | Prisma.SessionWhereInput[]
   campaignId?: Prisma.IntFilter<"Session"> | number
-  sessionNumber?: Prisma.IntFilter<"Session"> | number
   title?: Prisma.StringNullableFilter<"Session"> | string | null
   description?: Prisma.StringNullableFilter<"Session"> | string | null
-  date?: Prisma.DateTimeNullableFilter<"Session"> | Date | string | null
+  date?: Prisma.DateTimeFilter<"Session"> | Date | string
   recap?: Prisma.StringNullableFilter<"Session"> | string | null
   playerNotes?: Prisma.StringNullableFilter<"Session"> | string | null
   campaign?: Prisma.XOR<Prisma.CampaignScalarRelationFilter, Prisma.CampaignWhereInput>
-}, "id" | "campaignId_sessionNumber">
+}, "id">
 
 export type SessionOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   campaignId?: Prisma.SortOrder
-  sessionNumber?: Prisma.SortOrder
   title?: Prisma.SortOrderInput | Prisma.SortOrder
   description?: Prisma.SortOrderInput | Prisma.SortOrder
-  date?: Prisma.SortOrderInput | Prisma.SortOrder
+  date?: Prisma.SortOrder
   recap?: Prisma.SortOrderInput | Prisma.SortOrder
   playerNotes?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.SessionCountOrderByAggregateInput
@@ -301,19 +285,17 @@ export type SessionScalarWhereWithAggregatesInput = {
   NOT?: Prisma.SessionScalarWhereWithAggregatesInput | Prisma.SessionScalarWhereWithAggregatesInput[]
   id?: Prisma.IntWithAggregatesFilter<"Session"> | number
   campaignId?: Prisma.IntWithAggregatesFilter<"Session"> | number
-  sessionNumber?: Prisma.IntWithAggregatesFilter<"Session"> | number
   title?: Prisma.StringNullableWithAggregatesFilter<"Session"> | string | null
   description?: Prisma.StringNullableWithAggregatesFilter<"Session"> | string | null
-  date?: Prisma.DateTimeNullableWithAggregatesFilter<"Session"> | Date | string | null
+  date?: Prisma.DateTimeWithAggregatesFilter<"Session"> | Date | string
   recap?: Prisma.StringNullableWithAggregatesFilter<"Session"> | string | null
   playerNotes?: Prisma.StringNullableWithAggregatesFilter<"Session"> | string | null
 }
 
 export type SessionCreateInput = {
-  sessionNumber: number
   title?: string | null
   description?: string | null
-  date?: Date | string | null
+  date: Date | string
   recap?: string | null
   playerNotes?: string | null
   campaign: Prisma.CampaignCreateNestedOneWithoutSessionsInput
@@ -322,19 +304,17 @@ export type SessionCreateInput = {
 export type SessionUncheckedCreateInput = {
   id?: number
   campaignId: number
-  sessionNumber: number
   title?: string | null
   description?: string | null
-  date?: Date | string | null
+  date: Date | string
   recap?: string | null
   playerNotes?: string | null
 }
 
 export type SessionUpdateInput = {
-  sessionNumber?: Prisma.IntFieldUpdateOperationsInput | number
   title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   recap?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   playerNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   campaign?: Prisma.CampaignUpdateOneRequiredWithoutSessionsNestedInput
@@ -343,10 +323,9 @@ export type SessionUpdateInput = {
 export type SessionUncheckedUpdateInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   campaignId?: Prisma.IntFieldUpdateOperationsInput | number
-  sessionNumber?: Prisma.IntFieldUpdateOperationsInput | number
   title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   recap?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   playerNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
@@ -354,19 +333,17 @@ export type SessionUncheckedUpdateInput = {
 export type SessionCreateManyInput = {
   id?: number
   campaignId: number
-  sessionNumber: number
   title?: string | null
   description?: string | null
-  date?: Date | string | null
+  date: Date | string
   recap?: string | null
   playerNotes?: string | null
 }
 
 export type SessionUpdateManyMutationInput = {
-  sessionNumber?: Prisma.IntFieldUpdateOperationsInput | number
   title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   recap?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   playerNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
@@ -374,10 +351,9 @@ export type SessionUpdateManyMutationInput = {
 export type SessionUncheckedUpdateManyInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   campaignId?: Prisma.IntFieldUpdateOperationsInput | number
-  sessionNumber?: Prisma.IntFieldUpdateOperationsInput | number
   title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   recap?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   playerNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
@@ -392,15 +368,9 @@ export type SessionOrderByRelationAggregateInput = {
   _count?: Prisma.SortOrder
 }
 
-export type SessionCampaignIdSessionNumberCompoundUniqueInput = {
-  campaignId: number
-  sessionNumber: number
-}
-
 export type SessionCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   campaignId?: Prisma.SortOrder
-  sessionNumber?: Prisma.SortOrder
   title?: Prisma.SortOrder
   description?: Prisma.SortOrder
   date?: Prisma.SortOrder
@@ -411,13 +381,11 @@ export type SessionCountOrderByAggregateInput = {
 export type SessionAvgOrderByAggregateInput = {
   id?: Prisma.SortOrder
   campaignId?: Prisma.SortOrder
-  sessionNumber?: Prisma.SortOrder
 }
 
 export type SessionMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   campaignId?: Prisma.SortOrder
-  sessionNumber?: Prisma.SortOrder
   title?: Prisma.SortOrder
   description?: Prisma.SortOrder
   date?: Prisma.SortOrder
@@ -428,7 +396,6 @@ export type SessionMaxOrderByAggregateInput = {
 export type SessionMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   campaignId?: Prisma.SortOrder
-  sessionNumber?: Prisma.SortOrder
   title?: Prisma.SortOrder
   description?: Prisma.SortOrder
   date?: Prisma.SortOrder
@@ -439,7 +406,6 @@ export type SessionMinOrderByAggregateInput = {
 export type SessionSumOrderByAggregateInput = {
   id?: Prisma.SortOrder
   campaignId?: Prisma.SortOrder
-  sessionNumber?: Prisma.SortOrder
 }
 
 export type SessionCreateNestedManyWithoutCampaignInput = {
@@ -484,25 +450,23 @@ export type SessionUncheckedUpdateManyWithoutCampaignNestedInput = {
   deleteMany?: Prisma.SessionScalarWhereInput | Prisma.SessionScalarWhereInput[]
 }
 
-export type NullableDateTimeFieldUpdateOperationsInput = {
-  set?: Date | string | null
+export type DateTimeFieldUpdateOperationsInput = {
+  set?: Date | string
 }
 
 export type SessionCreateWithoutCampaignInput = {
-  sessionNumber: number
   title?: string | null
   description?: string | null
-  date?: Date | string | null
+  date: Date | string
   recap?: string | null
   playerNotes?: string | null
 }
 
 export type SessionUncheckedCreateWithoutCampaignInput = {
   id?: number
-  sessionNumber: number
   title?: string | null
   description?: string | null
-  date?: Date | string | null
+  date: Date | string
   recap?: string | null
   playerNotes?: string | null
 }
@@ -539,49 +503,44 @@ export type SessionScalarWhereInput = {
   NOT?: Prisma.SessionScalarWhereInput | Prisma.SessionScalarWhereInput[]
   id?: Prisma.IntFilter<"Session"> | number
   campaignId?: Prisma.IntFilter<"Session"> | number
-  sessionNumber?: Prisma.IntFilter<"Session"> | number
   title?: Prisma.StringNullableFilter<"Session"> | string | null
   description?: Prisma.StringNullableFilter<"Session"> | string | null
-  date?: Prisma.DateTimeNullableFilter<"Session"> | Date | string | null
+  date?: Prisma.DateTimeFilter<"Session"> | Date | string
   recap?: Prisma.StringNullableFilter<"Session"> | string | null
   playerNotes?: Prisma.StringNullableFilter<"Session"> | string | null
 }
 
 export type SessionCreateManyCampaignInput = {
   id?: number
-  sessionNumber: number
   title?: string | null
   description?: string | null
-  date?: Date | string | null
+  date: Date | string
   recap?: string | null
   playerNotes?: string | null
 }
 
 export type SessionUpdateWithoutCampaignInput = {
-  sessionNumber?: Prisma.IntFieldUpdateOperationsInput | number
   title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   recap?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   playerNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type SessionUncheckedUpdateWithoutCampaignInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
-  sessionNumber?: Prisma.IntFieldUpdateOperationsInput | number
   title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   recap?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   playerNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type SessionUncheckedUpdateManyWithoutCampaignInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
-  sessionNumber?: Prisma.IntFieldUpdateOperationsInput | number
   title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   recap?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   playerNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
@@ -591,7 +550,6 @@ export type SessionUncheckedUpdateManyWithoutCampaignInput = {
 export type SessionSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   campaignId?: boolean
-  sessionNumber?: boolean
   title?: boolean
   description?: boolean
   date?: boolean
@@ -603,7 +561,6 @@ export type SessionSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
 export type SessionSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   campaignId?: boolean
-  sessionNumber?: boolean
   title?: boolean
   description?: boolean
   date?: boolean
@@ -615,7 +572,6 @@ export type SessionSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exten
 export type SessionSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   campaignId?: boolean
-  sessionNumber?: boolean
   title?: boolean
   description?: boolean
   date?: boolean
@@ -627,7 +583,6 @@ export type SessionSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
 export type SessionSelectScalar = {
   id?: boolean
   campaignId?: boolean
-  sessionNumber?: boolean
   title?: boolean
   description?: boolean
   date?: boolean
@@ -635,7 +590,7 @@ export type SessionSelectScalar = {
   playerNotes?: boolean
 }
 
-export type SessionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "campaignId" | "sessionNumber" | "title" | "description" | "date" | "recap" | "playerNotes", ExtArgs["result"]["session"]>
+export type SessionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "campaignId" | "title" | "description" | "date" | "recap" | "playerNotes", ExtArgs["result"]["session"]>
 export type SessionInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   campaign?: boolean | Prisma.CampaignDefaultArgs<ExtArgs>
 }
@@ -654,10 +609,9 @@ export type $SessionPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
     campaignId: number
-    sessionNumber: number
     title: string | null
     description: string | null
-    date: Date | null
+    date: Date
     recap: string | null
     playerNotes: string | null
   }, ExtArgs["result"]["session"]>
@@ -1086,7 +1040,6 @@ export interface Prisma__SessionClient<T, Null = never, ExtArgs extends runtime.
 export interface SessionFieldRefs {
   readonly id: Prisma.FieldRef<"Session", 'Int'>
   readonly campaignId: Prisma.FieldRef<"Session", 'Int'>
-  readonly sessionNumber: Prisma.FieldRef<"Session", 'Int'>
   readonly title: Prisma.FieldRef<"Session", 'String'>
   readonly description: Prisma.FieldRef<"Session", 'String'>
   readonly date: Prisma.FieldRef<"Session", 'DateTime'>
