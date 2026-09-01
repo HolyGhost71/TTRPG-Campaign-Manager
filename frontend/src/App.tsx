@@ -17,6 +17,7 @@ import EditEntity from "./pages/EditEntity";
 import Layout from "./Layout";
 import CampaignSelect from "./pages/Campaign Select/CampaignSelect";
 import SessionPage from "./pages/SessionPage";
+import EditSession from "./pages/EditSession";
 
 function App() {
   return (
@@ -36,8 +37,9 @@ function App() {
           <Route path="factions" element={<Factions />} />
           <Route path="entities/:entityId" element={<SoloEntity />} />
           <Route path="create-entity" element={<CreateEntity />} />
-          <Route path="edit-entity/:entityId" element={<EditEntity />} />
+          <Route path="entities/:entityId/edit" element={<EditEntity />} />
           <Route path="sessions/:sessionId" element={<SessionPage />} />
+          <Route path="sessions/:sessionId/edit" element={<EditSession />} />
         </Route>
       </Routes>
     </BrowserRouter>

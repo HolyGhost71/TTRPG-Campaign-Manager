@@ -584,7 +584,7 @@ a:hover {
 
     width:400px;
 
-    background:#ffffff;
+    background:#22262e;
 
     padding:20px;
 
@@ -601,4 +601,37 @@ a:hover {
         margin: 0 auto;
 
 
+}
+
+.session-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.session-title .page-heading {
+  margin: 0;
+  padding: 10px 0;
+}
+
+.edit-session-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: transparent;
+  border: none;
+  color: #ffffff;
+
+  padding: 6px;
+  padding-bottom: 60px;
+  cursor: pointer;
+  border-radius: 6px;
+
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.edit-session-button:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #a78bfa;
 }

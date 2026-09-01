@@ -1,13 +1,16 @@
 import { useEffect, useState } from "react";
 import EditableNotes from "../components/EditableNotes";
 import api from "../api/api";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 export default function SessionPage() {
-  const [session, setSession] = useState<any>();
+  const [session, setSession] = useState<any>(null);
   const { sessionId } = useParams();
 
+  const navigator = useNavigate();
+
   useEffect(() => {
+    if (!sessionId) return;
     api
       .get("/sessions/" + sessionId)
       .then((response) => {
@@ -17,7 +20,7 @@ export default function SessionPage() {
       .catch((err) => {
         console.error(err);
       });
-  }, []);
+  }, [sessionId]);
 
   const saveNotes = async (newNotes: string, noteType: "RECAP" | "NOTES") => {
     if (!session) return;
@@ -41,10 +44,31 @@ export default function SessionPage() {
     }
   };
 
+  const params = useParams();
+
   return (
     <>
-      <div className="page-heading">{`Session ${session?.sessionNumber} - ${session?.title}`}</div>
-      <div className="page-body">{session?.description}</div>
+      <div className="session-title">
+        <div className="page-heading">
+          {`Session ${session?.sessionNumber} - ${session?.title}`}
+        </div>
+
+        <button
+          className="edit-session-button"
+          onClick={() =>
+            navigator(
+              `/campaigns/${params.campaignId}/sessions/${params.sessionId}/edit`,
+            )
+          }
+          aria-label="Edit session"
+        >
+          <span className="edit-icon">✎</span>
+        </button>
+      </div>
+      <div className="page-body">
+        {session?.description ||
+          "No session description created. Don't worry! You can fill this in once the session ends."}
+      </div>
 
       {session?.previousSession && (
         <>

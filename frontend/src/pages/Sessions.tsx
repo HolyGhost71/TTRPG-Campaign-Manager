@@ -101,6 +101,9 @@ export default function Sessions() {
 
       {showCreate && (
         <div ref={dropdownRef} className="create-session-dropdown">
+          <div className="page-body" style={{ fontWeight: "bold" }}>
+            Create Session
+          </div>
           <label>Date</label>
 
           <input

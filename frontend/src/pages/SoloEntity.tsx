@@ -16,7 +16,7 @@ export default function SoloEntity() {
   const params = useParams();
 
   const goToEditPage = () => {
-    let path = `/campaigns/${params.campaignId}/edit-entity/${params.entityId}`;
+    let path = `/campaigns/${params.campaignId}/entities/${params.entityId}/edit`;
     navigate(path);
   };
 
