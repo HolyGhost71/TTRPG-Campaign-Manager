@@ -55,14 +55,23 @@ export default function SoloEntity() {
 
   return (
     <div className="solo-entity-page">
-      <div className="page-heading">{entity?.name}</div>
+      <div className="session-title">
+        <div className="page-heading">{entity?.name}</div>
 
-      <div className="entity-card-wrapper">
-        <EntityCard entity={entity ?? {}} />
-        <button onClick={goToEditPage} className="button">
-          Edit
+        <button
+          className="edit-session-button"
+          onClick={goToEditPage}
+          aria-label="Edit session"
+        >
+          <span className="edit-icon">✎</span>
         </button>
       </div>
+
+      <div className="entity-card-wrapper">
+        {entity?.type != "QUEST" && <EntityCard entity={entity ?? {}} />}
+      </div>
+
+      <div className="page-body">{entity?.description || ""}</div>
 
       <div className="page-subheading">DM Notes</div>
       <EditableNotes

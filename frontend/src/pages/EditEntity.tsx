@@ -165,6 +165,27 @@ export default function EditEntity() {
     }
   };
 
+  const deleteEntity = async () => {
+    const shouldDelete = confirm(
+      "Are you sure you want to delete this entity? Once deleted, it can not be retrieved.",
+    );
+
+    if (shouldDelete) {
+      try {
+        const res = await api.delete(`/entities/${entity.id}`);
+
+        const deletedEntity = res.data;
+        console.log(deletedEntity);
+
+        // Redirect to the new entity page
+        navigator(`/campaigns/${params.campaignId}/${entity.type}s`);
+      } catch (err) {
+        console.error(err);
+        alert("Failed to delete entity");
+      }
+    }
+  };
+
   useEffect(() => {
     if (!params.campaignId) return;
 
@@ -423,6 +444,13 @@ export default function EditEntity() {
       )}
       <button onClick={editEntity} className="button">
         Submit
+      </button>
+      <button
+        onClick={deleteEntity}
+        className="button"
+        style={{ color: "white", background: "red", marginLeft: 100 }}
+      >
+        Delete
       </button>
     </div>
   );

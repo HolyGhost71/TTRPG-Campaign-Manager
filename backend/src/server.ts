@@ -131,6 +131,12 @@ app.get("/campaigns/:id/dashboard", async (req, res) => {
                 type: "FACTION"
             }
         }),
+
+        sessions: await prisma.session.count({
+    where: {
+        campaignId,
+    },
+}),
     };
 
     res.json({
