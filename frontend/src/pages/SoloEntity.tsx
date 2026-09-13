@@ -71,6 +71,8 @@ export default function SoloEntity() {
         {entity?.type != "QUEST" && <EntityCard entity={entity ?? {}} />}
       </div>
 
+      <div className="page-body">{entity?.description || ""}</div>
+
       <div className="page-subheading">DM Notes</div>
       <EditableNotes
         initialValue={entity?.dmNotes}
