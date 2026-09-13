@@ -43,7 +43,7 @@ export default function Dashboard() {
       <div className="page-body">{`Number of Items: ${campaign?.stats.items}`}</div>
       <div className="page-body">{`Number of Quests: ${campaign?.stats.quests}`}</div>
       <div className="page-body">{`Number of Factions: ${campaign?.stats.factions}`}</div>
-      <div className="page-body">Number of Sessions: 0</div>
+      <div className="page-body">{`Number of Sessions: ${campaign?.stats.sessions}`}</div>
     </>
   );
 }

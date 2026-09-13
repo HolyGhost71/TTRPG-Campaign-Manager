@@ -17,7 +17,7 @@ const SessionCard = (props: any) => {
       <div className="entity-header-small">
         <div>
           <div className="entity-title-small">
-            <h2>{`${session.sessionNumber} - ${session.title} - ${new Date(session.date).toLocaleDateString("en-GB")}`}</h2>
+            <h2>{`${session.sessionNumber} - ${new Date(session.date).toLocaleDateString("en-GB")} - ${session.title} `}</h2>
           </div>
           <div className="entity-description-small">
             {session.description || "No description available."}
