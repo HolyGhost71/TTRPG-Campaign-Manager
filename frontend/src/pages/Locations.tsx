@@ -79,7 +79,7 @@ export default function Locations() {
 
       {loading ? (
         <div className="popup">
-          Fetching Locations from server<span className="dots"></span>
+          Fetching locations from server<span className="dots"></span>
         </div>
       ) : locationArray.length === 0 ? (
         <div className="popup">No Locations found!.</div>
