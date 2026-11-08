@@ -29,7 +29,7 @@ export default function Factions() {
       <div className="page-heading">Factions</div>
       {loading ? (
         <div className="popup">
-          Fetching Factions from server<span className="dots"></span>
+          Fetching factions from server<span className="dots"></span>
         </div>
       ) : factionArray.length === 0 ? (
         <div className="popup">No Factions found!.</div>

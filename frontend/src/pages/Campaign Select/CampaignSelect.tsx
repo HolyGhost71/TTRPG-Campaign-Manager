@@ -23,7 +23,7 @@ export default function CampaignSelect() {
 
       {loading ? (
         <div className="popup">
-          Fetching Campaigns from server<span className="dots"></span>
+          Fetching campaigns from server<span className="dots"></span>
         </div>
       ) : campaigns.length === 0 ? (
         <div className="popup">No Campaigns found.</div>

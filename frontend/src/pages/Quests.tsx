@@ -32,7 +32,7 @@ export default function Quests() {
 
       {loading ? (
         <div className="popup">
-          Fetching Quests from server<span className="dots"></span>
+          Fetching quests from server<span className="dots"></span>
         </div>
       ) : questArray.length === 0 ? (
         <div className="popup">No Quests found!.</div>

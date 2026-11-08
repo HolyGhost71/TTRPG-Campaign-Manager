@@ -81,7 +81,7 @@ export default function Sessions() {
 
       {loading ? (
         <div className="popup">
-          Fetching Items from server<span className="dots"></span>
+          Fetching Sessions from server<span className="dots"></span>
         </div>
       ) : sessionsArray.length === 0 ? (
         <div className="popup">No sessions found.</div>

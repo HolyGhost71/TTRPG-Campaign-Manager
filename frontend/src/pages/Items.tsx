@@ -29,7 +29,7 @@ export default function Items() {
       <div className="page-heading">Items</div>
       {loading ? (
         <div className="popup">
-          Fetching Items from server<span className="dots"></span>
+          Fetching items from server<span className="dots"></span>
         </div>
       ) : itemArray.length === 0 ? (
         <div className="popup">No Items found!.</div>

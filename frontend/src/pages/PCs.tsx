@@ -29,7 +29,7 @@ export default function PCs() {
       <div className="page-heading">PCs</div>
       {loading ? (
         <div className="popup">
-          Fetching Player Characters from server<span className="dots"></span>
+          Fetching player characters from server<span className="dots"></span>
         </div>
       ) : pcArray.length === 0 ? (
         <div className="popup">No Player Characters found!.</div>
