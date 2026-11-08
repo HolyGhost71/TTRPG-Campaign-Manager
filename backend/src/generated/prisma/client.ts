@@ -84,3 +84,8 @@ export type PlayerDetails = Prisma.PlayerDetailsModel
  * 
  */
 export type QuestDetails = Prisma.QuestDetailsModel
+/**
+ * Model LorePage
+ * 
+ */
+export type LorePage = Prisma.LorePageModel

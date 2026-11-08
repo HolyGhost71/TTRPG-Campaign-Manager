@@ -7,37 +7,37 @@ datasource db {
   provider = "postgresql"
 }
 
-
 model Campaign {
-  id          Int      @id @default(autoincrement())
+  id          Int     @id @default(autoincrement())
   name        String
   description String?
 
-  entities    Entity[]
-  sessions Session[]
+  entities  Entity[]
+  sessions  Session[]
+  lorePages LorePage[]
 }
 
 model Session {
-  id            Int       @id @default(autoincrement())
+  id Int @id @default(autoincrement())
 
-  campaignId    Int
-  campaign      Campaign  @relation(fields: [campaignId], references: [id], onDelete: Cascade)
+  campaignId Int
+  campaign   Campaign @relation(fields: [campaignId], references: [id], onDelete: Cascade)
 
-  title         String?
-  description   String?
+  title       String?
+  description String?
 
-  date          DateTime
+  date DateTime
 
-  recap         String?   @db.Text
-  playerNotes   String?   @db.Text
+  recap       String? @db.Text
+  playerNotes String? @db.Text
 
   @@index([campaignId])
 }
 
 model Entity {
-  id          Int      @id @default(autoincrement())
+  id Int @id @default(autoincrement())
 
-  campaignId  Int
+  campaignId Int
 
   type        EntityType
   name        String
@@ -57,73 +57,73 @@ model Entity {
 }
 
 model NPCDetails {
-  id          Int      @id @default(autoincrement())
-  entityId    Int      @unique
+  id       Int @id @default(autoincrement())
+  entityId Int @unique
 
-  species     String?
-  age         String?
-  status      String?
-  appearance  String?
+  species    String?
+  age        String?
+  status     String?
+  appearance String?
 
-  location    String?
+  location String?
 
   locationId Int?
-  factionId Int?
+  factionId  Int?
 
   entity Entity @relation(fields: [entityId], references: [id], onDelete: Cascade)
 }
 
 model LocationDetails {
-  id        Int @id @default(autoincrement())
-  entityId  Int @unique
+  id       Int @id @default(autoincrement())
+  entityId Int @unique
 
   population String?
   ruler      String?
-  region    String?
+  region     String?
 
   entity Entity @relation(fields: [entityId], references: [id], onDelete: Cascade)
 }
 
 model ItemDetails {
-  id        Int @id @default(autoincrement())
-  entityId  Int @unique
+  id       Int @id @default(autoincrement())
+  entityId Int @unique
 
-  owner     String?
-  rarity    String?
+  owner  String?
+  rarity String?
 
   entity Entity @relation(fields: [entityId], references: [id], onDelete: Cascade)
 }
 
 model FactionDetails {
-  id        Int @id @default(autoincrement())
-  entityId  Int @unique
+  id       Int @id @default(autoincrement())
+  entityId Int @unique
 
-  leader    String?
+  leader String?
 
   entity Entity @relation(fields: [entityId], references: [id], onDelete: Cascade)
 }
 
 model PlayerDetails {
-  id          Int      @id @default(autoincrement())
-  entityId    Int      @unique
+  id       Int @id @default(autoincrement())
+  entityId Int @unique
 
-  species     String?
-  location    String?
-  age         String?
-  status      String?
-  appearance  String?
-  player      String?
+  species    String?
+  location   String?
+  age        String?
+  status     String?
+  appearance String?
+  player     String?
   locationId Int?
 
   entity Entity @relation(fields: [entityId], references: [id], onDelete: Cascade)
 }
 
 model QuestDetails {
-  id        Int @id @default(autoincrement())
-  entityId  Int @unique
+  id       Int @id @default(autoincrement())
+  entityId Int @unique
 
-  questGiver    String?
-  status        String?
+  questGiver String?
+  status     String?
 
   entity Entity @relation(fields: [entityId], references: [id], onDelete: Cascade)
 }
@@ -136,4 +136,19 @@ enum EntityType {
   PLAYER
   FACTION
   SESSION
+}
+
+model LorePage {
+  id Int @id @default(autoincrement())
+
+  campaignId Int
+  campaign   Campaign @relation(fields: [campaignId], references: [id], onDelete: Cascade)
+
+  title     String
+  content   String  @default("") @db.Text
+  image     String?
+  sortOrder Int     @default(0)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }

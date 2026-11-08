@@ -235,7 +235,19 @@ app.delete("/campaigns/:id", async (req, res) => {
     res.sendStatus(204);
 });
 
-// ----------------------------- ENTITIES --------------------------------------
+
+
+
+
+
+// ----------------------------- ENTITIES -------------------------------------- //
+
+
+
+
+
+
+
 
 // Get all entities
 app.get("/entities", async (req, res) => {
@@ -923,6 +935,158 @@ app.post("/sessions", async (req, res) => {
         });
     }
 });
+
+
+
+
+
+
+
+
+// ============================ HISTORY AND LORE ============================= //
+
+app.get("/campaigns/:id/lore", async (req, res) => {
+  const campaignId = Number(req.params.id);
+
+  if (!Number.isInteger(campaignId)) {
+    return res.status(400).json({ message: "Invalid campaign ID" });
+  }
+
+  try {
+    const pages = await prisma.lorePage.findMany({
+      where: { campaignId },
+      orderBy: { sortOrder: "asc" },
+    });
+
+    res.json(pages);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Failed to retrieve lore pages" });
+  }
+});
+
+app.post("/campaigns/:id/lore", async (req, res) => {
+  const campaignId = Number(req.params.id);
+  const { title } = req.body;
+
+  if (!Number.isInteger(campaignId)) {
+    return res.status(400).json({ message: "Invalid campaign ID" });
+  }
+
+  if (typeof title !== "string" || !title.trim()) {
+    return res.status(400).json({ message: "Page title is required" });
+  }
+
+  try {
+    const campaign = await prisma.campaign.findUnique({
+      where: { id: campaignId },
+      select: { id: true },
+    });
+
+    if (!campaign) {
+      return res.status(404).json({ message: "Campaign not found" });
+    }
+
+    const lastPage = await prisma.lorePage.findFirst({
+      where: { campaignId },
+      orderBy: { sortOrder: "desc" },
+      select: { sortOrder: true },
+    });
+
+    const page = await prisma.lorePage.create({
+      data: {
+        campaignId,
+        title: title.trim(),
+        sortOrder: (lastPage?.sortOrder ?? -1) + 1,
+      },
+    });
+
+    res.status(201).json(page);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Failed to create lore page" });
+  }
+});
+
+app.put("/lore/:id", async (req, res) => {
+  const id = Number(req.params.id);
+  const { title, content, image, sortOrder } = req.body;
+
+  if (!Number.isInteger(id)) {
+    return res.status(400).json({ message: "Invalid page ID" });
+  }
+
+  if (title !== undefined &&
+      (typeof title !== "string" || !title.trim())) {
+    return res.status(400).json({ message: "Invalid page title" });
+  }
+
+  if (content !== undefined && typeof content !== "string") {
+    return res.status(400).json({ message: "Invalid page content" });
+  }
+
+  if (image !== undefined && image !== null && typeof image !== "string") {
+    return res.status(400).json({ message: "Invalid image path" });
+  }
+
+  if (sortOrder !== undefined &&
+      (!Number.isInteger(sortOrder) || sortOrder < 0)) {
+    return res.status(400).json({ message: "Invalid sort order" });
+  }
+
+  try {
+    const existingPage = await prisma.lorePage.findUnique({
+      where: { id },
+    });
+
+    if (!existingPage) {
+      return res.status(404).json({ message: "Lore page not found" });
+    }
+
+    const updatedPage = await prisma.lorePage.update({
+      where: { id },
+      data: {
+        ...(title !== undefined && { title: title.trim() }),
+        ...(content !== undefined && { content }),
+        ...(image !== undefined && { image }),
+        ...(sortOrder !== undefined && { sortOrder }),
+      },
+    });
+
+    res.json(updatedPage);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Failed to update lore page" });
+  }
+});
+
+app.delete("/lore/:id", async (req, res) => {
+  const id = Number(req.params.id);
+
+  if (!Number.isInteger(id)) {
+    return res.status(400).json({ message: "Invalid page ID" });
+  }
+
+  try {
+    const page = await prisma.lorePage.findUnique({
+      where: { id },
+    });
+
+    if (!page) {
+      return res.status(404).json({ message: "Lore page not found" });
+    }
+
+    await prisma.lorePage.delete({
+      where: { id },
+    });
+
+    res.json({ message: "Lore page deleted successfully" });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Failed to delete lore page" });
+  }
+});
+
 
 const PORT = process.env.PORT || 3000;
 

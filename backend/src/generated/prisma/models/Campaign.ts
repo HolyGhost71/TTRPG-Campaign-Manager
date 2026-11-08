@@ -202,6 +202,7 @@ export type CampaignWhereInput = {
   description?: Prisma.StringNullableFilter<"Campaign"> | string | null
   entities?: Prisma.EntityListRelationFilter
   sessions?: Prisma.SessionListRelationFilter
+  lorePages?: Prisma.LorePageListRelationFilter
 }
 
 export type CampaignOrderByWithRelationInput = {
@@ -210,6 +211,7 @@ export type CampaignOrderByWithRelationInput = {
   description?: Prisma.SortOrderInput | Prisma.SortOrder
   entities?: Prisma.EntityOrderByRelationAggregateInput
   sessions?: Prisma.SessionOrderByRelationAggregateInput
+  lorePages?: Prisma.LorePageOrderByRelationAggregateInput
 }
 
 export type CampaignWhereUniqueInput = Prisma.AtLeast<{
@@ -221,6 +223,7 @@ export type CampaignWhereUniqueInput = Prisma.AtLeast<{
   description?: Prisma.StringNullableFilter<"Campaign"> | string | null
   entities?: Prisma.EntityListRelationFilter
   sessions?: Prisma.SessionListRelationFilter
+  lorePages?: Prisma.LorePageListRelationFilter
 }, "id">
 
 export type CampaignOrderByWithAggregationInput = {
@@ -248,6 +251,7 @@ export type CampaignCreateInput = {
   description?: string | null
   entities?: Prisma.EntityCreateNestedManyWithoutCampaignInput
   sessions?: Prisma.SessionCreateNestedManyWithoutCampaignInput
+  lorePages?: Prisma.LorePageCreateNestedManyWithoutCampaignInput
 }
 
 export type CampaignUncheckedCreateInput = {
@@ -256,6 +260,7 @@ export type CampaignUncheckedCreateInput = {
   description?: string | null
   entities?: Prisma.EntityUncheckedCreateNestedManyWithoutCampaignInput
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutCampaignInput
+  lorePages?: Prisma.LorePageUncheckedCreateNestedManyWithoutCampaignInput
 }
 
 export type CampaignUpdateInput = {
@@ -263,6 +268,7 @@ export type CampaignUpdateInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   entities?: Prisma.EntityUpdateManyWithoutCampaignNestedInput
   sessions?: Prisma.SessionUpdateManyWithoutCampaignNestedInput
+  lorePages?: Prisma.LorePageUpdateManyWithoutCampaignNestedInput
 }
 
 export type CampaignUncheckedUpdateInput = {
@@ -271,6 +277,7 @@ export type CampaignUncheckedUpdateInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   entities?: Prisma.EntityUncheckedUpdateManyWithoutCampaignNestedInput
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutCampaignNestedInput
+  lorePages?: Prisma.LorePageUncheckedUpdateManyWithoutCampaignNestedInput
 }
 
 export type CampaignCreateManyInput = {
@@ -365,10 +372,25 @@ export type CampaignUpdateOneRequiredWithoutEntitiesNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.CampaignUpdateToOneWithWhereWithoutEntitiesInput, Prisma.CampaignUpdateWithoutEntitiesInput>, Prisma.CampaignUncheckedUpdateWithoutEntitiesInput>
 }
 
+export type CampaignCreateNestedOneWithoutLorePagesInput = {
+  create?: Prisma.XOR<Prisma.CampaignCreateWithoutLorePagesInput, Prisma.CampaignUncheckedCreateWithoutLorePagesInput>
+  connectOrCreate?: Prisma.CampaignCreateOrConnectWithoutLorePagesInput
+  connect?: Prisma.CampaignWhereUniqueInput
+}
+
+export type CampaignUpdateOneRequiredWithoutLorePagesNestedInput = {
+  create?: Prisma.XOR<Prisma.CampaignCreateWithoutLorePagesInput, Prisma.CampaignUncheckedCreateWithoutLorePagesInput>
+  connectOrCreate?: Prisma.CampaignCreateOrConnectWithoutLorePagesInput
+  upsert?: Prisma.CampaignUpsertWithoutLorePagesInput
+  connect?: Prisma.CampaignWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.CampaignUpdateToOneWithWhereWithoutLorePagesInput, Prisma.CampaignUpdateWithoutLorePagesInput>, Prisma.CampaignUncheckedUpdateWithoutLorePagesInput>
+}
+
 export type CampaignCreateWithoutSessionsInput = {
   name: string
   description?: string | null
   entities?: Prisma.EntityCreateNestedManyWithoutCampaignInput
+  lorePages?: Prisma.LorePageCreateNestedManyWithoutCampaignInput
 }
 
 export type CampaignUncheckedCreateWithoutSessionsInput = {
@@ -376,6 +398,7 @@ export type CampaignUncheckedCreateWithoutSessionsInput = {
   name: string
   description?: string | null
   entities?: Prisma.EntityUncheckedCreateNestedManyWithoutCampaignInput
+  lorePages?: Prisma.LorePageUncheckedCreateNestedManyWithoutCampaignInput
 }
 
 export type CampaignCreateOrConnectWithoutSessionsInput = {
@@ -398,6 +421,7 @@ export type CampaignUpdateWithoutSessionsInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   entities?: Prisma.EntityUpdateManyWithoutCampaignNestedInput
+  lorePages?: Prisma.LorePageUpdateManyWithoutCampaignNestedInput
 }
 
 export type CampaignUncheckedUpdateWithoutSessionsInput = {
@@ -405,12 +429,14 @@ export type CampaignUncheckedUpdateWithoutSessionsInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   entities?: Prisma.EntityUncheckedUpdateManyWithoutCampaignNestedInput
+  lorePages?: Prisma.LorePageUncheckedUpdateManyWithoutCampaignNestedInput
 }
 
 export type CampaignCreateWithoutEntitiesInput = {
   name: string
   description?: string | null
   sessions?: Prisma.SessionCreateNestedManyWithoutCampaignInput
+  lorePages?: Prisma.LorePageCreateNestedManyWithoutCampaignInput
 }
 
 export type CampaignUncheckedCreateWithoutEntitiesInput = {
@@ -418,6 +444,7 @@ export type CampaignUncheckedCreateWithoutEntitiesInput = {
   name: string
   description?: string | null
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutCampaignInput
+  lorePages?: Prisma.LorePageUncheckedCreateNestedManyWithoutCampaignInput
 }
 
 export type CampaignCreateOrConnectWithoutEntitiesInput = {
@@ -440,12 +467,60 @@ export type CampaignUpdateWithoutEntitiesInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sessions?: Prisma.SessionUpdateManyWithoutCampaignNestedInput
+  lorePages?: Prisma.LorePageUpdateManyWithoutCampaignNestedInput
 }
 
 export type CampaignUncheckedUpdateWithoutEntitiesInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutCampaignNestedInput
+  lorePages?: Prisma.LorePageUncheckedUpdateManyWithoutCampaignNestedInput
+}
+
+export type CampaignCreateWithoutLorePagesInput = {
+  name: string
+  description?: string | null
+  entities?: Prisma.EntityCreateNestedManyWithoutCampaignInput
+  sessions?: Prisma.SessionCreateNestedManyWithoutCampaignInput
+}
+
+export type CampaignUncheckedCreateWithoutLorePagesInput = {
+  id?: number
+  name: string
+  description?: string | null
+  entities?: Prisma.EntityUncheckedCreateNestedManyWithoutCampaignInput
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutCampaignInput
+}
+
+export type CampaignCreateOrConnectWithoutLorePagesInput = {
+  where: Prisma.CampaignWhereUniqueInput
+  create: Prisma.XOR<Prisma.CampaignCreateWithoutLorePagesInput, Prisma.CampaignUncheckedCreateWithoutLorePagesInput>
+}
+
+export type CampaignUpsertWithoutLorePagesInput = {
+  update: Prisma.XOR<Prisma.CampaignUpdateWithoutLorePagesInput, Prisma.CampaignUncheckedUpdateWithoutLorePagesInput>
+  create: Prisma.XOR<Prisma.CampaignCreateWithoutLorePagesInput, Prisma.CampaignUncheckedCreateWithoutLorePagesInput>
+  where?: Prisma.CampaignWhereInput
+}
+
+export type CampaignUpdateToOneWithWhereWithoutLorePagesInput = {
+  where?: Prisma.CampaignWhereInput
+  data: Prisma.XOR<Prisma.CampaignUpdateWithoutLorePagesInput, Prisma.CampaignUncheckedUpdateWithoutLorePagesInput>
+}
+
+export type CampaignUpdateWithoutLorePagesInput = {
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  entities?: Prisma.EntityUpdateManyWithoutCampaignNestedInput
+  sessions?: Prisma.SessionUpdateManyWithoutCampaignNestedInput
+}
+
+export type CampaignUncheckedUpdateWithoutLorePagesInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  entities?: Prisma.EntityUncheckedUpdateManyWithoutCampaignNestedInput
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutCampaignNestedInput
 }
 
@@ -457,11 +532,13 @@ export type CampaignUncheckedUpdateWithoutEntitiesInput = {
 export type CampaignCountOutputType = {
   entities: number
   sessions: number
+  lorePages: number
 }
 
 export type CampaignCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   entities?: boolean | CampaignCountOutputTypeCountEntitiesArgs
   sessions?: boolean | CampaignCountOutputTypeCountSessionsArgs
+  lorePages?: boolean | CampaignCountOutputTypeCountLorePagesArgs
 }
 
 /**
@@ -488,6 +565,13 @@ export type CampaignCountOutputTypeCountSessionsArgs<ExtArgs extends runtime.Typ
   where?: Prisma.SessionWhereInput
 }
 
+/**
+ * CampaignCountOutputType without action
+ */
+export type CampaignCountOutputTypeCountLorePagesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.LorePageWhereInput
+}
+
 
 export type CampaignSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -495,6 +579,7 @@ export type CampaignSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   description?: boolean
   entities?: boolean | Prisma.Campaign$entitiesArgs<ExtArgs>
   sessions?: boolean | Prisma.Campaign$sessionsArgs<ExtArgs>
+  lorePages?: boolean | Prisma.Campaign$lorePagesArgs<ExtArgs>
   _count?: boolean | Prisma.CampaignCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["campaign"]>
 
@@ -520,6 +605,7 @@ export type CampaignOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs =
 export type CampaignInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   entities?: boolean | Prisma.Campaign$entitiesArgs<ExtArgs>
   sessions?: boolean | Prisma.Campaign$sessionsArgs<ExtArgs>
+  lorePages?: boolean | Prisma.Campaign$lorePagesArgs<ExtArgs>
   _count?: boolean | Prisma.CampaignCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type CampaignIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -530,6 +616,7 @@ export type $CampaignPayload<ExtArgs extends runtime.Types.Extensions.InternalAr
   objects: {
     entities: Prisma.$EntityPayload<ExtArgs>[]
     sessions: Prisma.$SessionPayload<ExtArgs>[]
+    lorePages: Prisma.$LorePagePayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
@@ -931,6 +1018,7 @@ export interface Prisma__CampaignClient<T, Null = never, ExtArgs extends runtime
   readonly [Symbol.toStringTag]: "PrismaPromise"
   entities<T extends Prisma.Campaign$entitiesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Campaign$entitiesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EntityPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   sessions<T extends Prisma.Campaign$sessionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Campaign$sessionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SessionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  lorePages<T extends Prisma.Campaign$lorePagesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Campaign$lorePagesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$LorePagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1401,6 +1489,30 @@ export type Campaign$sessionsArgs<ExtArgs extends runtime.Types.Extensions.Inter
   take?: number
   skip?: number
   distinct?: Prisma.SessionScalarFieldEnum | Prisma.SessionScalarFieldEnum[]
+}
+
+/**
+ * Campaign.lorePages
+ */
+export type Campaign$lorePagesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the LorePage
+   */
+  select?: Prisma.LorePageSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the LorePage
+   */
+  omit?: Prisma.LorePageOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.LorePageInclude<ExtArgs> | null
+  where?: Prisma.LorePageWhereInput
+  orderBy?: Prisma.LorePageOrderByWithRelationInput | Prisma.LorePageOrderByWithRelationInput[]
+  cursor?: Prisma.LorePageWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.LorePageScalarFieldEnum | Prisma.LorePageScalarFieldEnum[]
 }
 
 /**

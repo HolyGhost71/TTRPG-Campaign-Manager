@@ -59,7 +59,8 @@ export const ModelName = {
   ItemDetails: 'ItemDetails',
   FactionDetails: 'FactionDetails',
   PlayerDetails: 'PlayerDetails',
-  QuestDetails: 'QuestDetails'
+  QuestDetails: 'QuestDetails',
+  LorePage: 'LorePage'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -182,6 +183,20 @@ export const QuestDetailsScalarFieldEnum = {
 } as const
 
 export type QuestDetailsScalarFieldEnum = (typeof QuestDetailsScalarFieldEnum)[keyof typeof QuestDetailsScalarFieldEnum]
+
+
+export const LorePageScalarFieldEnum = {
+  id: 'id',
+  campaignId: 'campaignId',
+  title: 'title',
+  content: 'content',
+  image: 'image',
+  sortOrder: 'sortOrder',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type LorePageScalarFieldEnum = (typeof LorePageScalarFieldEnum)[keyof typeof LorePageScalarFieldEnum]
 
 
 export const SortOrder = {

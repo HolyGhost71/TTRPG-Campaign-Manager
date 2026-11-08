@@ -392,7 +392,8 @@ export const ModelName = {
   ItemDetails: 'ItemDetails',
   FactionDetails: 'FactionDetails',
   PlayerDetails: 'PlayerDetails',
-  QuestDetails: 'QuestDetails'
+  QuestDetails: 'QuestDetails',
+  LorePage: 'LorePage'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -408,7 +409,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "campaign" | "session" | "entity" | "nPCDetails" | "locationDetails" | "itemDetails" | "factionDetails" | "playerDetails" | "questDetails"
+    modelProps: "campaign" | "session" | "entity" | "nPCDetails" | "locationDetails" | "itemDetails" | "factionDetails" | "playerDetails" | "questDetails" | "lorePage"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1078,6 +1079,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    LorePage: {
+      payload: Prisma.$LorePagePayload<ExtArgs>
+      fields: Prisma.LorePageFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.LorePageFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LorePagePayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.LorePageFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LorePagePayload>
+        }
+        findFirst: {
+          args: Prisma.LorePageFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LorePagePayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.LorePageFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LorePagePayload>
+        }
+        findMany: {
+          args: Prisma.LorePageFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LorePagePayload>[]
+        }
+        create: {
+          args: Prisma.LorePageCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LorePagePayload>
+        }
+        createMany: {
+          args: Prisma.LorePageCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.LorePageCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LorePagePayload>[]
+        }
+        delete: {
+          args: Prisma.LorePageDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LorePagePayload>
+        }
+        update: {
+          args: Prisma.LorePageUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LorePagePayload>
+        }
+        deleteMany: {
+          args: Prisma.LorePageDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.LorePageUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.LorePageUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LorePagePayload>[]
+        }
+        upsert: {
+          args: Prisma.LorePageUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LorePagePayload>
+        }
+        aggregate: {
+          args: Prisma.LorePageAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateLorePage>
+        }
+        groupBy: {
+          args: Prisma.LorePageGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.LorePageGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.LorePageCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.LorePageCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -1221,6 +1296,20 @@ export const QuestDetailsScalarFieldEnum = {
 } as const
 
 export type QuestDetailsScalarFieldEnum = (typeof QuestDetailsScalarFieldEnum)[keyof typeof QuestDetailsScalarFieldEnum]
+
+
+export const LorePageScalarFieldEnum = {
+  id: 'id',
+  campaignId: 'campaignId',
+  title: 'title',
+  content: 'content',
+  image: 'image',
+  sortOrder: 'sortOrder',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type LorePageScalarFieldEnum = (typeof LorePageScalarFieldEnum)[keyof typeof LorePageScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -1441,6 +1530,7 @@ export type GlobalOmitConfig = {
   factionDetails?: Prisma.FactionDetailsOmit
   playerDetails?: Prisma.PlayerDetailsOmit
   questDetails?: Prisma.QuestDetailsOmit
+  lorePage?: Prisma.LorePageOmit
 }
 
 /* Types for Logging */
